@@ -18,6 +18,8 @@ namespace rehabGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        public Camera camera { get; protected set; }
+        ModelManager modelManager;
 
         public Game1()
         {
@@ -25,6 +27,7 @@ namespace rehabGame
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1366;
             graphics.PreferredBackBufferHeight = 768;
+            //Enable Full Screen Mode
             graphics.IsFullScreen = true;
         }
 
@@ -36,8 +39,10 @@ namespace rehabGame
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            camera = new Camera(this, new Vector3(0, -200, 200), Vector3.Zero, Vector3.Up);
+            Components.Add(camera);
+            modelManager = new ModelManager(this);
+            Components.Add(modelManager);
             base.Initialize();
         }
 
@@ -73,8 +78,6 @@ namespace rehabGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
@@ -84,10 +87,8 @@ namespace rehabGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-
+            GraphicsDevice.Clear(Color.Black);
+            
             base.Draw(gameTime);
         }
     }
