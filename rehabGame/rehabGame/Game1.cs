@@ -39,7 +39,7 @@ namespace rehabGame
         /// </summary>
         protected override void Initialize()
         {
-            camera = new Camera(this, new Vector3(0, -200, 200), Vector3.Zero, Vector3.Up);
+            camera = new Camera(this, new Vector3(0, 100, 160), Vector3.Zero, Vector3.Down);
             Components.Add(camera);
             modelManager = new ModelManager(this);
             Components.Add(modelManager);
@@ -77,7 +77,7 @@ namespace rehabGame
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
+            
             base.Update(gameTime);
         }
 

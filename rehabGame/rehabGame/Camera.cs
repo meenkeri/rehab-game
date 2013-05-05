@@ -23,7 +23,7 @@ namespace rehabGame
         public Camera(Game game, Vector3 pos, Vector3 target, Vector3 up)
             : base(game)
         {
-            // Initialize view matrix
+            //Build camera view matrix
             view = Matrix.CreateLookAt(pos, target, up);
 
             // Initialize projection matrix
@@ -40,8 +40,7 @@ namespace rehabGame
         /// </summary>
         public override void Initialize()
         {
-            // TODO: Add your initialization code here
-
+           
             base.Initialize();
         }
 
@@ -51,8 +50,7 @@ namespace rehabGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
-
+        
             base.Update(gameTime);
         }
     }
