@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace rehabGame
 {
@@ -22,6 +27,23 @@ namespace rehabGame
 
         public override void Update()
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                yawAngle += 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                yawAngle -= 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                pitchAngle += 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                pitchAngle -= 0.01F;
+            if (yawAngle >= 0.4F )
+                yawAngle = 0.4F;
+            if (yawAngle <= -0.4F)
+                yawAngle = -0.4F;
+            if (pitchAngle >= 0.4F)
+                pitchAngle = 0.4F;
+            if (pitchAngle <= -0.4F)
+                pitchAngle = -0.4F;
+
             rotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
             
             //Rotate model

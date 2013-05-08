@@ -19,7 +19,7 @@ namespace rehabGame
 
         public virtual void Update()
         {
-         
+           
         }
 
         public void Draw(Camera camera)
