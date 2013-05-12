@@ -18,6 +18,7 @@ namespace rehabGame
     public class ModelManager : DrawableGameComponent
     {
         List<BasicModel> models = new List<BasicModel>();
+        
         public ModelManager(Game game)
             : base(game)
         {
@@ -37,7 +38,8 @@ namespace rehabGame
 
         protected override void LoadContent()
         {
-            models.Add(new BoardRotation(Game.Content.Load<Model>(@"Models\board")));
+            models.Add(new BoardTilt(Game.Content.Load<Model>(@"Models\board")));
+            models.Add(new BallMovement(Game.Content.Load<Model>(@"Models\ball")));
             base.LoadContent();
         }
 

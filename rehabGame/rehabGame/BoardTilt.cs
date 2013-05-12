@@ -12,14 +12,14 @@ using Microsoft.Xna.Framework.Media;
 
 namespace rehabGame
 {
-    class BoardRotation : BasicModel
+    class BoardTilt : BasicModel
     {
         Matrix rotation = Matrix.Identity;
         float yawAngle = 0; //Left Right
         float pitchAngle = 0; // Up Down
         float rollAngle = 0; //Do nothing
 
-        public BoardRotation(Model m)
+        public BoardTilt(Model m)
             : base(m)
         {
             
@@ -35,14 +35,14 @@ namespace rehabGame
                 pitchAngle += 0.01F;
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
                 pitchAngle -= 0.01F;
-            if (yawAngle >= 0.4F )
-                yawAngle = 0.4F;
-            if (yawAngle <= -0.4F)
-                yawAngle = -0.4F;
-            if (pitchAngle >= 0.4F)
-                pitchAngle = 0.4F;
-            if (pitchAngle <= -0.4F)
-                pitchAngle = -0.4F;
+            if (yawAngle >= 0.2F )
+                yawAngle = 0.2F;
+            if (yawAngle <= -0.2F)
+                yawAngle = -0.2F;
+            if (pitchAngle >= 0.2F)
+                pitchAngle = 0.2F;
+            if (pitchAngle <= -0.2F)
+                pitchAngle = -0.2F;
 
             rotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
             
