@@ -29,6 +29,14 @@ namespace rehabGame
                 position += Vector3.Forward * 0.2F;
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
                 position += Vector3.Backward * 0.2F;
+            if (position.X < -23)
+                position.X = -23;
+            if (position.X > 23)
+                position.X = 23;
+            if (position.Z < -18)
+                position.Z = -18;
+            if (position.Z > 18)
+                position.Z = 18;
 
             //Move model
             world = Matrix.CreateTranslation(position);   
