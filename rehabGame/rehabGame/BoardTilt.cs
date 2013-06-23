@@ -35,14 +35,14 @@ namespace rehabGame
                 pitchAngle += 0.01F;
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
                 pitchAngle -= 0.01F;
-            if (yawAngle >= 0.2F )
-                yawAngle = 0.2F;
-            if (yawAngle <= -0.2F)
-                yawAngle = -0.2F;
-            if (pitchAngle >= 0.2F)
-                pitchAngle = 0.2F;
-            if (pitchAngle <= -0.2F)
-                pitchAngle = -0.2F;
+            if (yawAngle >= 0.05F )
+                yawAngle = 0.05F;
+            if (yawAngle <= -0.05F)
+                yawAngle = -0.05F;
+            if (pitchAngle >= 0.05F)
+                pitchAngle = 0.05F;
+            if (pitchAngle <= -0.05F)
+                pitchAngle = -0.05F;
 
             rotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
             
