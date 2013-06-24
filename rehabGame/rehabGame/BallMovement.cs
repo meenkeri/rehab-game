@@ -11,7 +11,7 @@ namespace rehabGame
     class BallMovement : BasicModel
     {
         Matrix rotation = Matrix.Identity;
-        Vector3 position = new Vector3(0, -4, 0);
+        Vector3 position = new Vector3(0, -4.6F, 0);
         
         public BallMovement(Model m)
             : base(m)
@@ -29,14 +29,14 @@ namespace rehabGame
                 position += Vector3.Forward * 0.2F;
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
                 position += Vector3.Backward * 0.2F;
-            if (position.X < -23)
-                position.X = -23;
-            if (position.X > 23)
-                position.X = 23;
+            if (position.X < -24)
+                position.X = -24;
+            if (position.X > 24)
+                position.X = 24;
             if (position.Z < -18)
                 position.Z = -18;
-            if (position.Z > 18)
-                position.Z = 18;
+            if (position.Z > 17)
+                position.Z = 17;
 
             //Move model
             world = Matrix.CreateTranslation(position);   
