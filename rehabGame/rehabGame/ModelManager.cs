@@ -19,18 +19,19 @@ namespace rehabGame
     {
         public Matrix boardRotation = Matrix.Identity;
         public Matrix ballRotation = Matrix.Identity;
+        
         float yawAngle = 0; //Left Right
         float pitchAngle = 0; // Up Down
         float rollAngle = 0; //Do nothing
-
+        
         public Matrix view { get; protected set; }
         public Matrix projection { get; protected set; }
 
-        Vector3 position = new Vector3(0, -4.6F, 0);
+        Vector3 position = new Vector3(0, -4F, 0);
 
-        protected Matrix boardWorld = Matrix.Identity;
+        public Matrix boardWorld = Matrix.Identity;
         public Matrix ballWorld = Matrix.Identity;
-        Model[] models = new Model[3];
+        Model[] models = new Model[2];   
         public ModelManager(Game game)
             : base(game)
         {
@@ -58,8 +59,8 @@ namespace rehabGame
 
         protected override void LoadContent()
         {
-            models[1] = Game.Content.Load<Model>(@"Models\board");
-            models[2] = Game.Content.Load<Model>(@"Models\ball");
+            models[0] = Game.Content.Load<Model>(@"Models\board");
+            models[1] = Game.Content.Load<Model>(@"Models\ball");
           
             base.LoadContent();
         }
@@ -72,7 +73,9 @@ namespace rehabGame
         {
             boardUpdate();
             ballUpdate();
-
+            //if (IsCollision(models[0], GetWorldBoard(), models[1], GetWorldBall()))
+                //position.Y = 19;
+            
             base.Update(gameTime);
         }
 
@@ -80,7 +83,7 @@ namespace rehabGame
         {
             boardDraw();
             ballDraw();
-           
+
             base.Draw(gameTime);
         }
 
@@ -116,11 +119,10 @@ namespace rehabGame
 
         public void boardDraw()
         {
-            Model model = models[1];
-            Matrix[] transforms = new Matrix[model.Bones.Count];
-            model.CopyAbsoluteBoneTransformsTo(transforms);
+           Matrix[] transforms = new Matrix[models[0].Bones.Count];
+            models[0].CopyAbsoluteBoneTransformsTo(transforms);
 
-            foreach (ModelMesh mesh in model.Meshes)
+            foreach (ModelMesh mesh in models[0].Meshes)
             {
                 foreach (BasicEffect be in mesh.Effects)
                 {
@@ -142,6 +144,7 @@ namespace rehabGame
                 position += Vector3.Forward * 0.2F;
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
                 position += Vector3.Backward * 0.2F;
+            
             if (position.X < -24)
                 position.X = -24;
             if (position.X > 24)
@@ -150,6 +153,7 @@ namespace rehabGame
                 position.Z = -18;
             if (position.Z > 17)
                 position.Z = 17;
+            position.Y = -4.1F;
 
             //Move model
             ballWorld = Matrix.CreateTranslation(position);
@@ -157,11 +161,10 @@ namespace rehabGame
 
         public void ballDraw()
         {
-            Model model = models[2];
-            Matrix[] transforms = new Matrix[model.Bones.Count];
-            model.CopyAbsoluteBoneTransformsTo(transforms);
+            Matrix[] transforms = new Matrix[models[1].Bones.Count];
+            models[1].CopyAbsoluteBoneTransformsTo(transforms);
 
-            foreach (ModelMesh mesh in model.Meshes)
+            foreach (ModelMesh mesh in models[1].Meshes)
             {
                 foreach (BasicEffect be in mesh.Effects)
                 {
@@ -176,12 +179,31 @@ namespace rehabGame
         
         public Matrix GetWorldBoard()
         {
-            return boardRotation;
+            return boardWorld * boardRotation;
         }
 
         public Matrix GetWorldBall()
         {
             return ballWorld * ballRotation;
+        }
+
+        public bool IsCollision(Model model1, Matrix world1, Model model2, Matrix world2)
+        {
+            for (int meshIndex1 = 0; meshIndex1 < model1.Meshes.Count; meshIndex1++)
+            {
+                BoundingSphere sphere1 = model1.Meshes[meshIndex1].BoundingSphere;
+                sphere1 = sphere1.Transform(world1);
+                
+                for (int meshIndex2 = 0; meshIndex2 < model2.Meshes.Count; meshIndex2++)
+                {
+                    BoundingSphere sphere2 = model2.Meshes[meshIndex2].BoundingSphere;
+                    sphere2 = sphere2.Transform(world2);
+                    
+                    if (sphere1.Intersects(sphere2))
+                        return true;
+                }
+            }
+            return false;
         }
     }
 }
