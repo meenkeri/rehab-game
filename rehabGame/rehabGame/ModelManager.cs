@@ -20,6 +20,12 @@ namespace rehabGame
         public Matrix boardRotation = Matrix.Identity;
         public Matrix ballRotation = Matrix.Identity;
         
+        Vector3 pos = new Vector3(0, 150, 100);
+        Vector3 target = Vector3.Zero;
+        Vector3 cameraPosition;
+        Vector3 cameraDirection;
+        float speed = 2;
+
         float yawAngle = 0; //Left Right
         float pitchAngle = 0; // Up Down
         float rollAngle = 0; //Do nothing
@@ -27,11 +33,13 @@ namespace rehabGame
         public Matrix view { get; protected set; }
         public Matrix projection { get; protected set; }
 
-        Vector3 position = new Vector3(0, -4F, 0);
+        Vector3 position = new Vector3(0, -4.1F, 0);
 
         public Matrix boardWorld = Matrix.Identity;
         public Matrix ballWorld = Matrix.Identity;
-        Model[] models = new Model[2];   
+        Model[] balls = new Model[1];
+        Model[] boards = new Model[5];
+
         public ModelManager(Game game)
             : base(game)
         {
@@ -45,7 +53,10 @@ namespace rehabGame
         public override void Initialize()
         {
             //Build camera view matrix
-            view = Matrix.CreateLookAt(new Vector3(0, 150, 120), Vector3.Zero, Vector3.Down);
+            cameraPosition = pos;
+            cameraDirection = target - pos;
+            cameraDirection.Normalize();
+            CreateLookAt();
 
             // Initialize projection matrix
             projection = Matrix.CreatePerspectiveFieldOfView(
@@ -59,8 +70,9 @@ namespace rehabGame
 
         protected override void LoadContent()
         {
-            models[0] = Game.Content.Load<Model>(@"Models\board");
-            models[1] = Game.Content.Load<Model>(@"Models\ball");
+            balls[0] = Game.Content.Load<Model>(@"Models\ball");
+            boards[0] = Game.Content.Load<Model>(@"Models\board");
+            //boards[1] = Game.Content.Load<Model>(@"Models\board1");
           
             base.LoadContent();
         }
@@ -119,20 +131,20 @@ namespace rehabGame
 
         public void boardDraw()
         {
-           Matrix[] transforms = new Matrix[models[0].Bones.Count];
-            models[0].CopyAbsoluteBoneTransformsTo(transforms);
+              Matrix[] transforms = new Matrix[boards[0].Bones.Count];
+                boards[0].CopyAbsoluteBoneTransformsTo(transforms);
 
-            foreach (ModelMesh mesh in models[0].Meshes)
-            {
-                foreach (BasicEffect be in mesh.Effects)
+                foreach (ModelMesh mesh in boards[0].Meshes)
                 {
-                    be.EnableDefaultLighting();
-                    be.Projection = projection;
-                    be.View = view;
-                    be.World = GetWorldBoard() * mesh.ParentBone.Transform;
+                    foreach (BasicEffect be in mesh.Effects)
+                    {
+                        be.EnableDefaultLighting();
+                        be.Projection = projection;
+                        be.View = view;
+                        be.World = GetWorldBoard() * mesh.ParentBone.Transform;
+                    }
+                    mesh.Draw();
                 }
-                mesh.Draw();
-            }
         }
         public void ballUpdate()
         {
@@ -153,7 +165,9 @@ namespace rehabGame
                 position.Z = -18;
             if (position.Z > 17)
                 position.Z = 17;
-            position.Y = -4.1F;
+
+            if (position.X > 12 && position.Z < -12)
+                dropTheBall();
 
             //Move model
             ballWorld = Matrix.CreateTranslation(position);
@@ -161,20 +175,20 @@ namespace rehabGame
 
         public void ballDraw()
         {
-            Matrix[] transforms = new Matrix[models[1].Bones.Count];
-            models[1].CopyAbsoluteBoneTransformsTo(transforms);
+              Matrix[] transforms = new Matrix[balls[0].Bones.Count];
+                balls[0].CopyAbsoluteBoneTransformsTo(transforms);
 
-            foreach (ModelMesh mesh in models[1].Meshes)
-            {
-                foreach (BasicEffect be in mesh.Effects)
+                foreach (ModelMesh mesh in balls[0].Meshes)
                 {
-                    be.EnableDefaultLighting();
-                    be.Projection = projection;
-                    be.View = view;
-                    be.World = GetWorldBall() * mesh.ParentBone.Transform;
+                    foreach (BasicEffect be in mesh.Effects)
+                    {
+                        be.EnableDefaultLighting();
+                        be.Projection = projection;
+                        be.View = view;
+                        be.World = GetWorldBall() * mesh.ParentBone.Transform;
+                    }
+                    mesh.Draw();
                 }
-                mesh.Draw();
-            }
         }
         
         public Matrix GetWorldBoard()
@@ -185,6 +199,23 @@ namespace rehabGame
         public Matrix GetWorldBall()
         {
             return ballWorld * ballRotation;
+        }
+
+        public void dropTheBall()
+        {
+            position += Vector3.Up * 0.6F;
+            cameraPosition.Z -= 1.5F;
+            //cameraPosition -= cameraDirection * speed;
+            CreateLookAt();
+
+            //if (position.Y < 20)
+            //    position.Y = 20;
+
+        }
+
+        private void CreateLookAt()
+        {
+            view = Matrix.CreateLookAt(cameraPosition, cameraPosition + cameraDirection, Vector3.Down);
         }
 
         public bool IsCollision(Model model1, Matrix world1, Model model2, Matrix world2)

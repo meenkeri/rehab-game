@@ -16,3 +16,4 @@ C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\git\rehabGame\r
 C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\git\rehabGame\rehabGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\git\rehabGame\rehabGame\obj\x86\Debug\rehabGame.exe
 C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\git\rehabGame\rehabGame\obj\x86\Debug\rehabGame.pdb
+C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Models\board1.xnb
