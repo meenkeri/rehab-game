@@ -18,8 +18,9 @@ namespace rehabGame
     public class ModelManager : DrawableGameComponent
     {
         public Matrix boardRotation = Matrix.Identity;
+        public Matrix board1Rotation = Matrix.Identity;
         public Matrix ballRotation = Matrix.Identity;
-        
+         
         Vector3 pos = new Vector3(0, 150, 100);
         Vector3 target = Vector3.Zero;
         Vector3 cameraPosition;
@@ -33,8 +34,10 @@ namespace rehabGame
         public Matrix projection { get; protected set; }
 
         Vector3 position = new Vector3(0, -4.1F, 0);
+        Vector3 board1Position = new Vector3(0, 0, -200);
 
         public Matrix boardWorld = Matrix.Identity;
+        public Matrix board1World = Matrix.Identity;
         public Matrix ballWorld = Matrix.Identity;
         Model[] balls = new Model[1];
         Model[] boards = new Model[5];
@@ -83,6 +86,7 @@ namespace rehabGame
         public override void Update(GameTime gameTime)
         {
             boardUpdate();
+            board1Update();
             ballUpdate();
            
             base.Update(gameTime);
@@ -91,6 +95,7 @@ namespace rehabGame
         public override void Draw(GameTime gameTime)
         {
             boardDraw();
+            board1Draw();
             ballDraw();
 
             base.Draw(gameTime);
@@ -143,6 +148,53 @@ namespace rehabGame
                     mesh.Draw();
                 }
         }
+
+        public void board1Update()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                yawAngle += 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                yawAngle -= 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                pitchAngle += 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                pitchAngle -= 0.01F;
+            if (yawAngle >= 0.05F)
+                yawAngle = 0.05F;
+            if (yawAngle <= -0.05F)
+                yawAngle = -0.05F;
+            if (pitchAngle >= 0.05F)
+                pitchAngle = 0.05F;
+            if (pitchAngle <= -0.05F)
+                pitchAngle = -0.05F;
+
+            board1Rotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
+
+            //Move model
+            board1World = Matrix.CreateTranslation(board1Position);
+
+            //Rotate model
+            board1Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
+        }
+
+        public void board1Draw()
+        {
+            Matrix[] transforms = new Matrix[boards[1].Bones.Count];
+            boards[1].CopyAbsoluteBoneTransformsTo(transforms);
+
+            foreach (ModelMesh mesh in boards[1].Meshes)
+            {
+                foreach (BasicEffect be in mesh.Effects)
+                {
+                    be.EnableDefaultLighting();
+                    be.Projection = projection;
+                    be.View = view;
+                    be.World = GetWorldBoard1() * mesh.ParentBone.Transform;
+                }
+                mesh.Draw();
+            }
+        }
+
         public void ballUpdate()
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
@@ -191,6 +243,11 @@ namespace rehabGame
         public Matrix GetWorldBoard()
         {
             return boardWorld * boardRotation;
+        }
+
+        public Matrix GetWorldBoard1()
+        {
+            return board1World * board1Rotation;
         }
 
         public Matrix GetWorldBall()
