@@ -24,8 +24,7 @@ namespace rehabGame
         Vector3 target = Vector3.Zero;
         Vector3 cameraPosition;
         Vector3 cameraDirection;
-        float speed = 2;
-
+        
         float yawAngle = 0; //Left Right
         float pitchAngle = 0; // Up Down
         float rollAngle = 0; //Do nothing
@@ -72,7 +71,7 @@ namespace rehabGame
         {
             balls[0] = Game.Content.Load<Model>(@"Models\ball");
             boards[0] = Game.Content.Load<Model>(@"Models\board");
-            //boards[1] = Game.Content.Load<Model>(@"Models\board1");
+            boards[1] = Game.Content.Load<Model>(@"Models\board1");
           
             base.LoadContent();
         }
@@ -85,9 +84,7 @@ namespace rehabGame
         {
             boardUpdate();
             ballUpdate();
-            //if (IsCollision(models[0], GetWorldBoard(), models[1], GetWorldBall()))
-                //position.Y = 19;
-            
+           
             base.Update(gameTime);
         }
 
@@ -205,11 +202,7 @@ namespace rehabGame
         {
             position += Vector3.Up * 0.6F;
             cameraPosition.Z -= 1.5F;
-            //cameraPosition -= cameraDirection * speed;
             CreateLookAt();
-
-            //if (position.Y < 20)
-            //    position.Y = 20;
 
         }
 
