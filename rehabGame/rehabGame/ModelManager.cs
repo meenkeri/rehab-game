@@ -258,7 +258,11 @@ namespace rehabGame
         public void dropTheBall()
         {
             position += Vector3.Up * 0.6F;
+            if (position.Y >= 76)
+                position.Y = 76;
             cameraPosition.Z -= 1.5F;
+            if (cameraPosition.Z <= -90)
+                cameraPosition.Z = -90;
             CreateLookAt();
 
         }
