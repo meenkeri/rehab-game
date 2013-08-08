@@ -19,6 +19,7 @@ namespace rehabGame
     {
         public Matrix boardRotation = Matrix.Identity;
         public Matrix board1Rotation = Matrix.Identity;
+        public Matrix board1Movement = Matrix.Identity;
         public Matrix ballRotation = Matrix.Identity;
          
         Vector3 pos = new Vector3(0, 150, 100);
@@ -171,7 +172,7 @@ namespace rehabGame
             board1Rotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
 
             //Move model
-            board1World = Matrix.CreateTranslation(board1Position);
+            board1Movement = Matrix.CreateTranslation(board1Position);
 
             //Rotate model
             board1Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
@@ -247,7 +248,7 @@ namespace rehabGame
 
         public Matrix GetWorldBoard1()
         {
-            return board1World * board1Rotation;
+            return board1World * board1Rotation * board1Movement;
         }
 
         public Matrix GetWorldBall()
