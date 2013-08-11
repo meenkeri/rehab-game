@@ -3,7 +3,7 @@
   <Asset Type="Graphics:MeshContent">
     <Name>Sphere001</Name>
     <Identity>
-      <SourceFilename>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\git\rehabGame\rehabGameContent\Models\ball.FBX</SourceFilename>
+      <SourceFilename>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\Models\ball.FBX</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <OpaqueData>

@@ -7,11 +7,11 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\git\rehabGame\rehabGame\bin\x86\Debug\Content\Models\panel.xnb</Output>
+      <Output>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Models\panel.xnb</Output>
       <Time>2013-05-12T19:53:10.8261544-07:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\panel_0.xml</Key>
-        <Value>2013-08-08T12:59:07.0970192-07:00</Value>
+        <Value>2013-08-11T12:38:23.3623243-07:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -20,11 +20,11 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\git\rehabGame\rehabGame\bin\x86\Debug\Content\Models\board.xnb</Output>
+      <Output>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Models\board.xnb</Output>
       <Time>2013-05-12T19:53:10.8251778-07:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\board_0.xml</Key>
-        <Value>2013-08-08T12:59:07.2727892-07:00</Value>
+        <Value>2013-08-11T12:38:23.5644805-07:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -33,11 +33,11 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\git\rehabGame\rehabGame\bin\x86\Debug\Content\Models\ball.xnb</Output>
+      <Output>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Models\ball.xnb</Output>
       <Time>2013-05-12T19:53:10.8242012-07:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\ball_0.xml</Key>
-        <Value>2013-08-08T12:59:07.3235672-07:00</Value>
+        <Value>2013-08-11T12:38:23.6240531-07:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -46,11 +46,11 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\git\rehabGame\rehabGame\bin\x86\Debug\Content\Models\board1.xnb</Output>
+      <Output>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Models\board1.xnb</Output>
       <Time>2013-08-08T12:58:10.4717499-07:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\board1_0.xml</Key>
-        <Value>2013-08-08T12:59:07.3977812-07:00</Value>
+        <Value>2013-08-11T12:38:23.7178067-07:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -87,10 +87,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\git\rehabGame\rehabGameContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\git\rehabGame\rehabGame\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\git\rehabGame\rehabGameContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\git\rehabGame\rehabGame\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
