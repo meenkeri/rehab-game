@@ -21,6 +21,7 @@ namespace rehabGame
         public Matrix board1Rotation = Matrix.Identity;
         public Matrix board1Movement = Matrix.Identity;
         public Matrix ballRotation = Matrix.Identity;
+        public Matrix boardMovement = Matrix.Identity;
          
         Vector3 pos = new Vector3(0, 150, 100);
         Vector3 target = Vector3.Zero;
@@ -97,8 +98,9 @@ namespace rehabGame
 
         public override void Draw(GameTime gameTime)
         {
-            boardDraw();
-            board1Draw();
+            boardDraw(0, boardMovement);
+            boardDraw(1, board1Movement);
+            
             ballDraw();
 
             base.Draw(gameTime);
@@ -134,19 +136,19 @@ namespace rehabGame
             boardRotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
         }
 
-        public void boardDraw()
+        public void boardDraw(int boardNum, Matrix boardMovement)
         {
-              Matrix[] transforms = new Matrix[boards[0].Bones.Count];
-                boards[0].CopyAbsoluteBoneTransformsTo(transforms);
+            Matrix[] transforms = new Matrix[boards[boardNum].Bones.Count];
+            boards[boardNum].CopyAbsoluteBoneTransformsTo(transforms);
 
-                foreach (ModelMesh mesh in boards[0].Meshes)
+            foreach (ModelMesh mesh in boards[boardNum].Meshes)
                 {
                     foreach (BasicEffect be in mesh.Effects)
                     {
                         be.EnableDefaultLighting();
                         be.Projection = projection;
                         be.View = view;
-                        be.World = GetWorldBoard() * mesh.ParentBone.Transform;
+                        be.World = GetWorldBoard(boardMovement) * mesh.ParentBone.Transform;
                     }
                     mesh.Draw();
                 }
@@ -178,24 +180,6 @@ namespace rehabGame
 
             //Rotate model
             board1Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
-        }
-
-        public void board1Draw()
-        {
-            Matrix[] transforms = new Matrix[boards[1].Bones.Count];
-            boards[1].CopyAbsoluteBoneTransformsTo(transforms);
-
-            foreach (ModelMesh mesh in boards[1].Meshes)
-            {
-                foreach (BasicEffect be in mesh.Effects)
-                {
-                    be.EnableDefaultLighting();
-                    be.Projection = projection;
-                    be.View = view;
-                    be.World = GetWorldBoard1() * mesh.ParentBone.Transform;
-                }
-                mesh.Draw();
-            }
         }
 
         public void ballUpdate()
@@ -243,14 +227,9 @@ namespace rehabGame
                 }
         }
         
-        public Matrix GetWorldBoard()
+        public Matrix GetWorldBoard(Matrix boardMovement)
         {
-            return boardWorld * boardRotation;
-        }
-
-        public Matrix GetWorldBoard1()
-        {
-            return board1World * board1Rotation * board1Movement;
+            return board1World * board1Rotation * boardMovement;
         }
 
         public Matrix GetWorldBall()
