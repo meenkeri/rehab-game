@@ -75,7 +75,7 @@ namespace rehabGame
         {
             balls[0] = Game.Content.Load<Model>(@"Models\ball");
             boards[0] = Game.Content.Load<Model>(@"Models\board");
-            boards[1] = Game.Content.Load<Model>(@"Models\board1");
+            boards[1] = Game.Content.Load<Model>(@"Models\board");
           
             base.LoadContent();
         }
