@@ -18,7 +18,6 @@ namespace rehabGame
     public class ModelManager : DrawableGameComponent
     {
         public Matrix boardRotation = Matrix.Identity;
-        public Matrix board1Rotation = Matrix.Identity;
         public Matrix board1Movement = Matrix.Identity;
         public Matrix ballRotation = Matrix.Identity;
         public Matrix boardMovement = Matrix.Identity;
@@ -37,7 +36,9 @@ namespace rehabGame
 
         Vector3 position = new Vector3(0, -4.1F, 0);
         Vector3 board1Position = new Vector3(0, 0, -200);
-
+        Vector3 board2Position = new Vector3(0, 0, -400);
+        Vector3 board3Position = new Vector3(0, 0, -600);
+        
         public Matrix boardWorld = Matrix.Identity;
         public Matrix board1World = Matrix.Identity;
         public Matrix ballWorld = Matrix.Identity;
@@ -173,13 +174,13 @@ namespace rehabGame
             if (pitchAngle <= -0.05F)
                 pitchAngle = -0.05F;
 
-            board1Rotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
+            boardRotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
 
             //Move model
             board1Movement = Matrix.CreateTranslation(board1Position);
 
             //Rotate model
-            board1Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
+            boardRotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
         }
 
         public void ballUpdate()
@@ -229,7 +230,7 @@ namespace rehabGame
         
         public Matrix GetWorldBoard(Matrix boardMovement)
         {
-            return board1World * board1Rotation * boardMovement;
+            return board1World * boardRotation * boardMovement;
         }
 
         public Matrix GetWorldBall()
