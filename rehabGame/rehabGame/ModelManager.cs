@@ -40,7 +40,6 @@ namespace rehabGame
         Vector3 board3Position = new Vector3(0, 0, -600);
         
         public Matrix boardWorld = Matrix.Identity;
-        public Matrix board1World = Matrix.Identity;
         public Matrix ballWorld = Matrix.Identity;
         Model[] balls = new Model[1];
         Model[] boards = new Model[5];
@@ -230,7 +229,7 @@ namespace rehabGame
         
         public Matrix GetWorldBoard(Matrix boardMovement)
         {
-            return board1World * boardRotation * boardMovement;
+            return boardRotation * boardMovement;
         }
 
         public Matrix GetWorldBall()
