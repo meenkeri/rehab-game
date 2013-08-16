@@ -148,7 +148,7 @@ namespace rehabGame
                         be.EnableDefaultLighting();
                         be.Projection = projection;
                         be.View = view;
-                        be.World = GetWorldBoard(boardMovement) * mesh.ParentBone.Transform;
+                        be.World = Helper.GetBoardWorld(boardRotation, boardMovement) * mesh.ParentBone.Transform;
                     }
                     mesh.Draw();
                 }
@@ -221,22 +221,12 @@ namespace rehabGame
                         be.EnableDefaultLighting();
                         be.Projection = projection;
                         be.View = view;
-                        be.World = GetWorldBall() * mesh.ParentBone.Transform;
+                        be.World = Helper.GetBallWorld(ballWorld, ballRotation) * mesh.ParentBone.Transform;
                     }
                     mesh.Draw();
                 }
         }
         
-        public Matrix GetWorldBoard(Matrix boardMovement)
-        {
-            return boardRotation * boardMovement;
-        }
-
-        public Matrix GetWorldBall()
-        {
-            return ballWorld * ballRotation;
-        }
-
         public void dropTheBall()
         {
             position += Vector3.Up * 0.6F;
