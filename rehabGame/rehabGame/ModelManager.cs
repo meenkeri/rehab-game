@@ -19,6 +19,8 @@ namespace rehabGame
     {
         public Matrix boardRotation = Matrix.Identity;
         public Matrix board1Movement = Matrix.Identity;
+        public Matrix board2Movement = Matrix.Identity;
+        public Matrix board3Movement = Matrix.Identity;
         public Matrix ballRotation = Matrix.Identity;
         public Matrix boardMovement = Matrix.Identity;
          
@@ -35,9 +37,9 @@ namespace rehabGame
         public Matrix projection { get; protected set; }
 
         Vector3 position = new Vector3(0, -4.1F, 0);
-        Vector3 board1Position = new Vector3(0, 0, -200);
-        Vector3 board2Position = new Vector3(0, 0, -400);
-        Vector3 board3Position = new Vector3(0, 0, -600);
+        Vector3 board1Position = new Vector3(0, 0, -100);
+        Vector3 board2Position = new Vector3(0, 0, -200);
+        Vector3 board3Position = new Vector3(0, 0, -300);
         
         public Matrix boardWorld = Matrix.Identity;
         public Matrix ballWorld = Matrix.Identity;
@@ -91,6 +93,8 @@ namespace rehabGame
         {
             boardUpdate();
             board1Update();
+            board2Update();
+            board3Update();
             ballUpdate();
            
             base.Update(gameTime);
@@ -100,7 +104,8 @@ namespace rehabGame
         {
             boardDraw(0, boardMovement);
             boardDraw(1, board1Movement);
-            
+            boardDraw(2, board2Movement);
+            boardDraw(3, board3Movement);
             ballDraw();
 
             base.Draw(gameTime);
@@ -177,6 +182,62 @@ namespace rehabGame
 
             //Move model
             board1Movement = Matrix.CreateTranslation(board1Position);
+
+            //Rotate model
+            boardRotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
+        }
+
+        public void board2Update()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                yawAngle += 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                yawAngle -= 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                pitchAngle += 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                pitchAngle -= 0.01F;
+            if (yawAngle >= 0.05F)
+                yawAngle = 0.05F;
+            if (yawAngle <= -0.05F)
+                yawAngle = -0.05F;
+            if (pitchAngle >= 0.05F)
+                pitchAngle = 0.05F;
+            if (pitchAngle <= -0.05F)
+                pitchAngle = -0.05F;
+
+            boardRotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
+
+            //Move model
+            board2Movement = Matrix.CreateTranslation(board2Position);
+
+            //Rotate model
+            boardRotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
+        }
+
+        public void board3Update()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                yawAngle += 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                yawAngle -= 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                pitchAngle += 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                pitchAngle -= 0.01F;
+            if (yawAngle >= 0.05F)
+                yawAngle = 0.05F;
+            if (yawAngle <= -0.05F)
+                yawAngle = -0.05F;
+            if (pitchAngle >= 0.05F)
+                pitchAngle = 0.05F;
+            if (pitchAngle <= -0.05F)
+                pitchAngle = -0.05F;
+
+            boardRotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
+
+            //Move model
+            board3Movement = Matrix.CreateTranslation(board3Position);
 
             //Rotate model
             boardRotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
