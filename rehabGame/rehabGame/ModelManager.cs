@@ -106,7 +106,7 @@ namespace rehabGame
             Helper.boardDraw(board1Movement, boards[1], boardRotation, projection, view);
             Helper.boardDraw(board2Movement, boards[2], boardRotation, projection, view);
             Helper.boardDraw(board3Movement, boards[3], boardRotation, projection, view);
-            ballDraw();
+            Helper.ballDraw(balls[0], ballWorld, ballRotation, projection, view);
 
             base.Draw(gameTime);
         }
@@ -254,24 +254,6 @@ namespace rehabGame
             ballWorld = Matrix.CreateTranslation(position);
         }
 
-        public void ballDraw()
-        {
-              Matrix[] transforms = new Matrix[balls[0].Bones.Count];
-                balls[0].CopyAbsoluteBoneTransformsTo(transforms);
-
-                foreach (ModelMesh mesh in balls[0].Meshes)
-                {
-                    foreach (BasicEffect be in mesh.Effects)
-                    {
-                        be.EnableDefaultLighting();
-                        be.Projection = projection;
-                        be.View = view;
-                        be.World = Helper.GetBallWorld(ballWorld, ballRotation) * mesh.ParentBone.Transform;
-                    }
-                    mesh.Draw();
-                }
-        }
-        
         public void dropTheBall()
         {
             position += Vector3.Up * 0.6F;

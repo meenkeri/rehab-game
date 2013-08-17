@@ -25,7 +25,25 @@ namespace rehabGame
                     be.EnableDefaultLighting();
                     be.Projection = projection;
                     be.View = view;
-                    be.World = Helper.GetBoardWorld(bRotation, bMovement) * mesh.ParentBone.Transform;
+                    be.World = GetBoardWorld(bRotation, bMovement) * mesh.ParentBone.Transform;
+                }
+                mesh.Draw();
+            }
+        }
+
+        public static void ballDraw(Model ball, Matrix bWorld, Matrix bRotation, Matrix projection, Matrix view)
+        {
+            Matrix[] transforms = new Matrix[ball.Bones.Count];
+            ball.CopyAbsoluteBoneTransformsTo(transforms);
+
+            foreach (ModelMesh mesh in ball.Meshes)
+            {
+                foreach (BasicEffect be in mesh.Effects)
+                {
+                    be.EnableDefaultLighting();
+                    be.Projection = projection;
+                    be.View = view;
+                    be.World = GetBallWorld(bWorld, bRotation) * mesh.ParentBone.Transform;
                 }
                 mesh.Draw();
             }
