@@ -102,10 +102,10 @@ namespace rehabGame
 
         public override void Draw(GameTime gameTime)
         {
-            boardDraw(0, boardMovement);
-            boardDraw(1, board1Movement);
-            boardDraw(2, board2Movement);
-            boardDraw(3, board3Movement);
+            Helper.boardDraw(boardMovement, boards[0], boardRotation, projection, view);
+            Helper.boardDraw(board1Movement, boards[1], boardRotation, projection, view);
+            Helper.boardDraw(board2Movement, boards[2], boardRotation, projection, view);
+            Helper.boardDraw(board3Movement, boards[3], boardRotation, projection, view);
             ballDraw();
 
             base.Draw(gameTime);
@@ -141,23 +141,7 @@ namespace rehabGame
             boardRotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
         }
 
-        public void boardDraw(int boardNum, Matrix boardMovement)
-        {
-            Matrix[] transforms = new Matrix[boards[boardNum].Bones.Count];
-            boards[boardNum].CopyAbsoluteBoneTransformsTo(transforms);
-
-            foreach (ModelMesh mesh in boards[boardNum].Meshes)
-                {
-                    foreach (BasicEffect be in mesh.Effects)
-                    {
-                        be.EnableDefaultLighting();
-                        be.Projection = projection;
-                        be.View = view;
-                        be.World = Helper.GetBoardWorld(boardRotation, boardMovement) * mesh.ParentBone.Transform;
-                    }
-                    mesh.Draw();
-                }
-        }
+       
 
         public void board1Update()
         {

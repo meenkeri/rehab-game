@@ -13,6 +13,24 @@ namespace rehabGame
 {
     class Helper
     {
+        public static void boardDraw(Matrix bMovement, Model board, Matrix bRotation, Matrix projection, Matrix view)
+        {
+            Matrix[] transforms = new Matrix[board.Bones.Count];
+            board.CopyAbsoluteBoneTransformsTo(transforms);
+
+            foreach (ModelMesh mesh in board.Meshes)
+            {
+                foreach (BasicEffect be in mesh.Effects)
+                {
+                    be.EnableDefaultLighting();
+                    be.Projection = projection;
+                    be.View = view;
+                    be.World = Helper.GetBoardWorld(bRotation, bMovement) * mesh.ParentBone.Transform;
+                }
+                mesh.Draw();
+            }
+        }
+
         public static Matrix GetBoardWorld(Matrix rotation, Matrix movement)
         {
             return rotation * movement;
