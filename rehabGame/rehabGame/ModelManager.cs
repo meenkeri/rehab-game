@@ -91,7 +91,7 @@ namespace rehabGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            boardUpdate();
+            BoardHelper.boardUpdate(yawAngle, pitchAngle, rollAngle, boardRotation);
             board1Update();
             board2Update();
             board3Update();
@@ -102,11 +102,11 @@ namespace rehabGame
 
         public override void Draw(GameTime gameTime)
         {
-            Helper.boardDraw(boardMovement, boards[0], boardRotation, projection, view);
-            Helper.boardDraw(board1Movement, boards[1], boardRotation, projection, view);
-            Helper.boardDraw(board2Movement, boards[2], boardRotation, projection, view);
-            Helper.boardDraw(board3Movement, boards[3], boardRotation, projection, view);
-            Helper.ballDraw(balls[0], ballWorld, ballRotation, projection, view);
+            BoardHelper.boardDraw(boardMovement, boards[0], boardRotation, projection, view);
+            BoardHelper.boardDraw(board1Movement, boards[1], boardRotation, projection, view);
+            BoardHelper.boardDraw(board2Movement, boards[2], boardRotation, projection, view);
+            BoardHelper.boardDraw(board3Movement, boards[3], boardRotation, projection, view);
+            BallHelper.ballDraw(balls[0], ballWorld, ballRotation, projection, view);
 
             base.Draw(gameTime);
         }
@@ -115,33 +115,6 @@ namespace rehabGame
         {
             
         }
-
-        public void boardUpdate()
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                yawAngle += 0.01F;
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                yawAngle -= 0.01F;
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                pitchAngle += 0.01F;
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                pitchAngle -= 0.01F;
-            if (yawAngle >= 0.05F)
-                yawAngle = 0.05F;
-            if (yawAngle <= -0.05F)
-                yawAngle = -0.05F;
-            if (pitchAngle >= 0.05F)
-                pitchAngle = 0.05F;
-            if (pitchAngle <= -0.05F)
-                pitchAngle = -0.05F;
-
-            boardRotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
-
-            //Rotate model
-            boardRotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
-        }
-
-       
 
         public void board1Update()
         {
