@@ -37,9 +37,9 @@ namespace rehabGame
         public Matrix projection { get; protected set; }
 
         Vector3 position = new Vector3(0, -4.1F, 0);
-        Vector3 board1Position = new Vector3(0, 0, -100);
-        Vector3 board2Position = new Vector3(0, 0, -200);
-        Vector3 board3Position = new Vector3(0, 0, -300);
+        Vector3 board1Position = new Vector3(0, 0, -200);
+        Vector3 board2Position = new Vector3(0, 0, -400);
+        Vector3 board3Position = new Vector3(0, 0, -800);
         
         public Matrix boardWorld = Matrix.Identity;
         public Matrix ballWorld = Matrix.Identity;
