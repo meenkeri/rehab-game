@@ -36,7 +36,7 @@ namespace rehabGame
         public Matrix view { get; protected set; }
         public Matrix projection { get; protected set; }
 
-        Vector3 position = new Vector3(0, -4.1F, 0);
+        Vector3 ballPosition = new Vector3(0, -4.1F, 0);
         Vector3 board1Position = new Vector3(0, 0, -200);
         Vector3 board2Position = new Vector3(0, 0, -400);
         Vector3 board3Position = new Vector3(0, 0, -800);
@@ -203,38 +203,53 @@ namespace rehabGame
         public void ballUpdate()
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                position += Vector3.Left * 0.2F;
+                ballPosition += Vector3.Left * 0.2F;
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                position += Vector3.Right * 0.2F;
+                ballPosition += Vector3.Right * 0.2F;
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                position += Vector3.Forward * 0.2F;
+                ballPosition += Vector3.Forward * 0.2F;
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                position += Vector3.Backward * 0.2F;
+                ballPosition += Vector3.Backward * 0.2F;
             
-            if (position.X < -24)
-                position.X = -24;
-            if (position.X > 24)
-                position.X = 24;
-            if (position.Z < -18)
-                position.Z = -18;
-            if (position.Z > 17)
-                position.Z = 17;
+            if (ballPosition.X < -24)
+                ballPosition.X = -24;
+            if (ballPosition.X > 24)
+                ballPosition.X = 24;
+            if (ballPosition.Z < -18)
+                ballPosition.Z = -18;
+            if (ballPosition.Z > 17)
+                ballPosition.Z = 17;
 
-            if (position.X > 12 && position.Z < -12)
+            if (ballPosition.X > 12 && ballPosition.Y >= -4.1F && ballPosition.Y < 76 && ballPosition.Z < -12)
                 dropTheBall();
 
+            if (ballPosition.X < 12 && ballPosition.Y >= 76 && ballPosition.Y < 160 && ballPosition.Z < 12)
+                dropTheBall1();
+
             //Move model
-            ballWorld = Matrix.CreateTranslation(position);
+            ballWorld = Matrix.CreateTranslation(ballPosition);
         }
 
         public void dropTheBall()
         {
-            position += Vector3.Up * 0.6F;
-            if (position.Y >= 76)
-                position.Y = 76;
+            ballPosition += Vector3.Up * 0.6F;
+            if (ballPosition.Y >= 76)
+                ballPosition.Y = 76;
             cameraPosition.Z -= 1.5F;
             if (cameraPosition.Z <= -90)
                 cameraPosition.Z = -90;
+            CreateLookAt();
+
+        }
+
+        public void dropTheBall1()
+        {
+            ballPosition += Vector3.Up * 0.6F;
+            if (ballPosition.Y >= 153)
+                ballPosition.Y = 153;
+            cameraPosition.Z -= 1.5F;
+            if (cameraPosition.Z <= -280)
+                cameraPosition.Z = -280;
             CreateLookAt();
 
         }
