@@ -3,7 +3,7 @@
   <Asset Type="Graphics:MeshContent">
     <Name>Box003</Name>
     <Identity>
-      <SourceFilename>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\Models\panel.FBX</SourceFilename>
+      <SourceFilename>C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\Models\panel.FBX</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <OpaqueData>
@@ -29,7 +29,7 @@
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Name>GLASS</Name>
       <Identity>
-        <SourceFilename>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\Models\panel.FBX</SourceFilename>
+        <SourceFilename>C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\Models\panel.FBX</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
     </Resource>
