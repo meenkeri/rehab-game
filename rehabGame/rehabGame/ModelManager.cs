@@ -101,7 +101,6 @@ namespace rehabGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            BoardHelper.boardUpdate(yawAngle, pitchAngle, rollAngle, boardRotation);
             boardUpdate();
             board1Update();
             board2Update();

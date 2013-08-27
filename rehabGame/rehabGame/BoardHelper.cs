@@ -30,30 +30,5 @@ namespace rehabGame
                 mesh.Draw();
             }
         }
-
-        public static void boardUpdate(float yawAngle, float pitchAngle, float rollAngle, Matrix boardRotation)
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                yawAngle += 0.01F;
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                yawAngle -= 0.01F;
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                pitchAngle += 0.01F;
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                pitchAngle -= 0.01F;
-            if (yawAngle >= 0.05F)
-                yawAngle = 0.05F;
-            if (yawAngle <= -0.05F)
-                yawAngle = -0.05F;
-            if (pitchAngle >= 0.05F)
-                pitchAngle = 0.05F;
-            if (pitchAngle <= -0.05F)
-                pitchAngle = -0.05F;
-
-            boardRotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
-
-            //Rotate model
-            boardRotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
-        }
     }
 }
