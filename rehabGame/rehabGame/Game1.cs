@@ -16,6 +16,8 @@ namespace rehabGame
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        public static Boolean blank = false;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public Camera camera { get; protected set; }
@@ -91,8 +93,8 @@ namespace rehabGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            
-            base.Draw(gameTime);
+            if (!blank)
+                base.Draw(gameTime); 
         }
     }
 }
