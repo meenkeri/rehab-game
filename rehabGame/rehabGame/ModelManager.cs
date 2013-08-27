@@ -102,6 +102,7 @@ namespace rehabGame
         public override void Update(GameTime gameTime)
         {
             BoardHelper.boardUpdate(yawAngle, pitchAngle, rollAngle, boardRotation);
+            boardUpdate();
             board1Update();
             board2Update();
             board3Update();
@@ -126,7 +127,7 @@ namespace rehabGame
             
         }
 
-        public void board1Update()
+        public void boardUpdate()
         {
             WiimoteState s = bb.WiimoteState;
             BalanceBoardState bbs = s.BalanceBoardState;
@@ -149,7 +150,10 @@ namespace rehabGame
                 pitchAngle = 0.05F;
             if (pitchAngle <= -0.05F)
                 pitchAngle = -0.05F;
+        }
 
+        public void board1Update()
+        {
             boardRotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
 
             //Move model
@@ -161,28 +165,6 @@ namespace rehabGame
 
         public void board2Update()
         {
-            WiimoteState s = bb.WiimoteState;
-            BalanceBoardState bbs = s.BalanceBoardState;
-            yawAngle -= bbs.CenterOfGravity.X * 0.0009F;
-            pitchAngle -= bbs.CenterOfGravity.Y * 0.0009F;
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                yawAngle += 0.01F;
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                yawAngle -= 0.01F;
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                pitchAngle += 0.01F;
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                pitchAngle -= 0.01F;
-            if (yawAngle >= 0.05F)
-                yawAngle = 0.05F;
-            if (yawAngle <= -0.05F)
-                yawAngle = -0.05F;
-            if (pitchAngle >= 0.05F)
-                pitchAngle = 0.05F;
-            if (pitchAngle <= -0.05F)
-                pitchAngle = -0.05F;
-
             boardRotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
 
             //Move model
@@ -194,28 +176,6 @@ namespace rehabGame
 
         public void board3Update()
         {
-            WiimoteState s = bb.WiimoteState;
-            BalanceBoardState bbs = s.BalanceBoardState;
-            yawAngle -= bbs.CenterOfGravity.X * 0.0009F;
-            pitchAngle -= bbs.CenterOfGravity.Y * 0.0009F;
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                yawAngle += 0.01F;
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                yawAngle -= 0.01F;
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                pitchAngle += 0.01F;
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                pitchAngle -= 0.01F;
-            if (yawAngle >= 0.05F)
-                yawAngle = 0.05F;
-            if (yawAngle <= -0.05F)
-                yawAngle = -0.05F;
-            if (pitchAngle >= 0.05F)
-                pitchAngle = 0.05F;
-            if (pitchAngle <= -0.05F)
-                pitchAngle = -0.05F;
-
             boardRotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
 
             //Move model
