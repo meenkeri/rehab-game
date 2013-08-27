@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using WiimoteLib;
 
 
 namespace rehabGame
@@ -46,6 +47,8 @@ namespace rehabGame
         Model[] balls = new Model[1];
         Model[] boards = new Model[5];
 
+        public Wiimote bb = new Wiimote();
+
         public ModelManager(Game game)
             : base(game)
         {
@@ -70,6 +73,13 @@ namespace rehabGame
                 (float)Game.Window.ClientBounds.Width /
                 (float)Game.Window.ClientBounds.Height,
                 1, 1000);
+
+            try
+            {
+                bb.Connect();
+                bb.SetLEDs(1);
+            }
+            catch { Console.WriteLine("Can't find a BalanceBoard");}
 
             base.Initialize();
         }
@@ -118,6 +128,11 @@ namespace rehabGame
 
         public void board1Update()
         {
+            WiimoteState s = bb.WiimoteState;
+            BalanceBoardState bbs = s.BalanceBoardState;
+            yawAngle -= bbs.CenterOfGravity.X * 0.0009F;
+            pitchAngle -= bbs.CenterOfGravity.Y * 0.0009F;
+
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
                 yawAngle += 0.01F;
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
@@ -146,6 +161,11 @@ namespace rehabGame
 
         public void board2Update()
         {
+            WiimoteState s = bb.WiimoteState;
+            BalanceBoardState bbs = s.BalanceBoardState;
+            yawAngle -= bbs.CenterOfGravity.X * 0.0009F;
+            pitchAngle -= bbs.CenterOfGravity.Y * 0.0009F;
+
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
                 yawAngle += 0.01F;
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
@@ -174,6 +194,11 @@ namespace rehabGame
 
         public void board3Update()
         {
+            WiimoteState s = bb.WiimoteState;
+            BalanceBoardState bbs = s.BalanceBoardState;
+            yawAngle -= bbs.CenterOfGravity.X * 0.0009F;
+            pitchAngle -= bbs.CenterOfGravity.Y * 0.0009F;
+
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
                 yawAngle += 0.01F;
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
@@ -202,6 +227,11 @@ namespace rehabGame
 
         public void ballUpdate()
         {
+            WiimoteState s = bb.WiimoteState;
+            BalanceBoardState bbs = s.BalanceBoardState;
+            ballPosition.X -= bbs.CenterOfGravity.X * 0.05F;
+            ballPosition.Z += bbs.CenterOfGravity.Y * 0.05F;
+
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
                 ballPosition += Vector3.Left * 0.2F;
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
