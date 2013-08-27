@@ -107,6 +107,7 @@ namespace rehabGame
             board2Update();
             board3Update();
             ballUpdate();
+            ballUpdate1();
            
             base.Update(gameTime);
         }
@@ -184,7 +185,6 @@ namespace rehabGame
             //Rotate model
             boardRotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
         }
-
         public void ballUpdate()
         {
             WiimoteState s = bb.WiimoteState;
@@ -200,7 +200,7 @@ namespace rehabGame
                 ballPosition += Vector3.Forward * 0.2F;
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
                 ballPosition += Vector3.Backward * 0.2F;
-            
+
             if (ballPosition.X < -24)
                 ballPosition.X = -24;
             if (ballPosition.X > 24)
@@ -209,7 +209,10 @@ namespace rehabGame
                 ballPosition.Z = -18;
             if (ballPosition.Z > 17)
                 ballPosition.Z = 17;
+        }
 
+        public void ballUpdate1()
+        {
             if (ballPosition.X > 12 && ballPosition.Y >= -4.1F && ballPosition.Y < 76 && ballPosition.Z < -12)
                 dropTheBall();
 
