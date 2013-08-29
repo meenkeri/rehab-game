@@ -3,7 +3,7 @@
   <Asset Type="Graphics:NodeContent">
     <Name>board</Name>
     <Identity>
-      <SourceFilename>C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\Models\board.FBX</SourceFilename>
+      <SourceFilename>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\Models\board.FBX</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <OpaqueData>
@@ -143,21 +143,21 @@
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Name>stanless stell</Name>
       <Identity>
-        <SourceFilename>C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\Models\board.FBX</SourceFilename>
+        <SourceFilename>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\Models\board.FBX</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
     </Resource>
     <Resource ID="#Resource2" Type="Graphics:BasicMaterialContent">
       <Name>GLASS</Name>
       <Identity>
-        <SourceFilename>C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\Models\board.FBX</SourceFilename>
+        <SourceFilename>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\Models\board.FBX</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
     </Resource>
     <Resource ID="#Resource3" Type="Graphics:BasicMaterialContent">
       <Name>dark tudu wood</Name>
       <Identity>
-        <SourceFilename>C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\Models\board.FBX</SourceFilename>
+        <SourceFilename>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\Models\board.FBX</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
     </Resource>
