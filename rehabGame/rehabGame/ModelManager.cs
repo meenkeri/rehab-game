@@ -122,11 +122,6 @@ namespace rehabGame
             base.Draw(gameTime);
         }
 
-        public void draw(Camera camera, Model model)
-        {
-            
-        }
-
         public void boardUpdate()
         {
             WiimoteState s = bb.WiimoteState;
