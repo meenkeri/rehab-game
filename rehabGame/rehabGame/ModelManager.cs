@@ -101,24 +101,28 @@ namespace rehabGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            boardUpdate();
-            board1Update();
-            board2Update();
-            board3Update();
-            ballUpdate();
-            ballUpdate1();
-           
+            if (Game1.currentGameState == Game1.GameState.PLAY)
+            {
+                boardUpdate();
+                board1Update();
+                board2Update();
+                board3Update();
+                ballUpdate();
+                ballUpdate1();
+            }
             base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            BoardHelper.boardDraw(boardMovement, boards[0], boardRotation, projection, view);
-            BoardHelper.boardDraw(board1Movement, boards[1], boardRotation, projection, view);
-            BoardHelper.boardDraw(board2Movement, boards[2], boardRotation, projection, view);
-            BoardHelper.boardDraw(board3Movement, boards[3], boardRotation, projection, view);
-            BallHelper.ballDraw(balls[0], ballWorld, ballRotation, projection, view);
-
+            if (Game1.currentGameState == Game1.GameState.PLAY)
+            {
+                BoardHelper.boardDraw(boardMovement, boards[0], boardRotation, projection, view);
+                BoardHelper.boardDraw(board1Movement, boards[1], boardRotation, projection, view);
+                BoardHelper.boardDraw(board2Movement, boards[2], boardRotation, projection, view);
+                BoardHelper.boardDraw(board3Movement, boards[3], boardRotation, projection, view);
+                BallHelper.ballDraw(balls[0], ballWorld, ballRotation, projection, view);
+            }
             base.Draw(gameTime);
         }
 

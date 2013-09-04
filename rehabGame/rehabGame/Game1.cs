@@ -22,6 +22,10 @@ namespace rehabGame
         SpriteBatch spriteBatch;
         public Camera camera { get; protected set; }
         ModelManager modelManager;
+        public enum GameState { START, PLAY, LEVEL_CHANGE, END }
+        public static GameState currentGameState = GameState.START;
+        SplashScreen splashScreen;
+        int score = 0;
 
         public Game1()
         {
@@ -45,6 +49,14 @@ namespace rehabGame
             //Components.Add(camera);
             modelManager = new ModelManager(this);
             Components.Add(modelManager);
+            modelManager.Enabled = false;
+            modelManager.Visible = false;
+
+            //Splash screen component
+            splashScreen = new SplashScreen(this);
+            Components.Add(splashScreen);
+            splashScreen.SetData("Welcome to Rehab Game", currentGameState);
+
             base.Initialize();
         }
 
@@ -56,8 +68,7 @@ namespace rehabGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+           
         }
 
         /// <summary>
@@ -95,6 +106,31 @@ namespace rehabGame
             GraphicsDevice.Clear(Color.Black);
             if (!blank)
                 base.Draw(gameTime); 
+        }
+
+        public void ChangeGameState(GameState state, int level)
+        {
+            currentGameState = state;
+
+            switch (currentGameState)
+            {
+                case GameState.LEVEL_CHANGE:
+                    //ToDo
+                    break;
+                case GameState.PLAY:
+                    modelManager.Enabled = true;
+                    modelManager.Visible = true;
+                    splashScreen.Enabled = false;
+                    splashScreen.Visible = false;
+                    break;
+                case GameState.END:
+                    splashScreen.SetData("Game Over", GameState.END);
+                    modelManager.Enabled = false;
+                    modelManager.Visible = false;
+                    splashScreen.Enabled = true;
+                    splashScreen.Visible = true;
+                    break;
+            }
         }
     }
 }
