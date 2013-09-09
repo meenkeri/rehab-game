@@ -29,3 +29,4 @@ C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\reh
 C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\obj\x86\Debug\rehabGame.exe
 C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\obj\x86\Debug\rehabGame.pdb
+C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Fonts\ScoreFont.xnb

@@ -79,6 +79,15 @@
       <Output>obj\x86\Debug\Models\ball_0.xml</Output>
       <Time>2013-05-11T23:12:57.4256281-07:00</Time>
     </Item>
+    <Item>
+      <Source>Fonts\ScoreFont.spritefont</Source>
+      <Name>Fonts\ScoreFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Fonts\ScoreFont.xnb</Output>
+      <Time>2013-09-08T20:59:55.7380822-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

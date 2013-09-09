@@ -25,7 +25,8 @@ namespace rehabGame
         public enum GameState { START, PLAY, LEVEL_CHANGE, END }
         public static GameState currentGameState = GameState.START;
         SplashScreen splashScreen;
-        int score = 0;
+        SpriteFont scoreFont;
+        public static int score = 0;
 
         public Game1()
         {
@@ -56,7 +57,7 @@ namespace rehabGame
             splashScreen = new SplashScreen(this);
             Components.Add(splashScreen);
             splashScreen.SetData("Welcome to Rehab Game", currentGameState);
-
+            
             base.Initialize();
         }
 
@@ -68,7 +69,7 @@ namespace rehabGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-           
+            scoreFont = Content.Load<SpriteFont>(@"Fonts\ScoreFont");
         }
 
         /// <summary>
@@ -107,7 +108,12 @@ namespace rehabGame
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             GraphicsDevice.Clear(Color.Black);
             if (!blank)
-                base.Draw(gameTime); 
+                base.Draw(gameTime);
+            spriteBatch.Begin();
+            //Draw the current score
+            string scoreText = "Score: " + score;
+            spriteBatch.DrawString(scoreFont, scoreText, new Vector2(10, 10), Color.Red);
+            spriteBatch.End();
         }
 
         public void ChangeGameState(GameState state, int level)
@@ -133,6 +139,11 @@ namespace rehabGame
                     splashScreen.Visible = true;
                     break;
             }
+        }
+
+        public static void addScore(int points)
+        {
+            score += points;
         }
     }
 }
