@@ -231,16 +231,16 @@ namespace rehabGame
         public void ballUpdate1()
         {
             if (ballPosition.X > 12 && ballPosition.Y >= -4.1F && ballPosition.Y < 76 && ballPosition.Z < -12)
-                dropTheBall();
+                dropTheBall1();
 
             if (ballPosition.X < 12 && ballPosition.Y >= 76 && ballPosition.Y < 160 && ballPosition.Z < 12)
-                dropTheBall1();
+                dropTheBall2();
 
             //Move model
             ballWorld = Matrix.CreateTranslation(ballPosition);
         }
 
-        public void dropTheBall()
+        public void dropTheBall1()
         {
             ballPosition += Vector3.Up * 0.6F;
             if (ballPosition.Y >= 35)
@@ -251,7 +251,7 @@ namespace rehabGame
             CreateLookAt();
         }
 
-        public void dropTheBall1()
+        public void dropTheBall2()
         {
             ballPosition += Vector3.Up * 0.6F;
             if (ballPosition.Y >= 153)
