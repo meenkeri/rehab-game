@@ -110,9 +110,12 @@ namespace rehabGame
             if (!blank)
                 base.Draw(gameTime);
             spriteBatch.Begin();
-            //Draw the current score
-            string scoreText = "Score: " + score;
-            spriteBatch.DrawString(scoreFont, scoreText, new Vector2(10, 10), Color.Red);
+            if (currentGameState == GameState.PLAY)
+            {
+                //Draw the current score
+                string scoreText = "Score: " + score;
+                spriteBatch.DrawString(scoreFont, scoreText, new Vector2(10, 10), Color.Red);
+            }
             spriteBatch.End();
         }
 
