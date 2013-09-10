@@ -19,12 +19,14 @@ namespace rehabGame
     public class ModelManager : DrawableGameComponent
     {
         public Matrix boardRotation = Matrix.Identity;
+        public Matrix ballRotation = Matrix.Identity;
+
+        public Matrix boardMovement = Matrix.Identity;
         public Matrix board1Movement = Matrix.Identity;
         public Matrix board2Movement = Matrix.Identity;
         public Matrix board3Movement = Matrix.Identity;
-        public Matrix ballRotation = Matrix.Identity;
-        public Matrix boardMovement = Matrix.Identity;
-         
+        public Matrix board4Movement = Matrix.Identity;
+
         Vector3 pos = new Vector3(0, 150, 100);
         Vector3 target = Vector3.Zero;
         Vector3 cameraPosition;
@@ -38,9 +40,11 @@ namespace rehabGame
         public Matrix projection { get; protected set; }
 
         Vector3 ballPosition = new Vector3(0, -4.1F, 0);
-        Vector3 board1Position = new Vector3(0, 0, -200);
-        Vector3 board2Position = new Vector3(0, 0, -400);
-        Vector3 board3Position = new Vector3(0, 0, -800);
+        Vector3 board1Position = new Vector3(0, 0, -100);
+        Vector3 board2Position = new Vector3(0, 0, -200);
+        Vector3 board3Position = new Vector3(0, 0, -300);
+        Vector3 board4Position = new Vector3(0, 0, -400);
+        Vector3 board5Position = new Vector3(0, 0, -500);
         
         public Matrix boardWorld = Matrix.Identity;
         public Matrix ballWorld = Matrix.Identity;
@@ -91,6 +95,7 @@ namespace rehabGame
             boards[1] = Game.Content.Load<Model>(@"Models\board");
             boards[2] = Game.Content.Load<Model>(@"Models\board");
             boards[3] = Game.Content.Load<Model>(@"Models\board");
+            boards[4] = Game.Content.Load<Model>(@"Models\board");
             
             base.LoadContent();
         }
@@ -107,6 +112,7 @@ namespace rehabGame
                 board1Update();
                 board2Update();
                 board3Update();
+                board4Update();
                 ballUpdate();
                 ballUpdate1();
             }
@@ -121,6 +127,7 @@ namespace rehabGame
                 BoardHelper.boardDraw(board1Movement, boards[1], boardRotation, projection, view);
                 BoardHelper.boardDraw(board2Movement, boards[2], boardRotation, projection, view);
                 BoardHelper.boardDraw(board3Movement, boards[3], boardRotation, projection, view);
+                BoardHelper.boardDraw(board4Movement, boards[4], boardRotation, projection, view);
                 BallHelper.ballDraw(balls[0], ballWorld, ballRotation, projection, view);
             }
             base.Draw(gameTime);
@@ -183,6 +190,18 @@ namespace rehabGame
             //Rotate model
             boardRotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
         }
+
+        public void board4Update()
+        {
+            boardRotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
+
+            //Move model
+            board4Movement = Matrix.CreateTranslation(board4Position);
+
+            //Rotate model
+            boardRotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
+        }
+
         public void ballUpdate()
         {
             WiimoteState s = bb.WiimoteState;
