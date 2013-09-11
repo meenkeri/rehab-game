@@ -56,7 +56,7 @@ namespace rehabGame
             //Splash screen component
             splashScreen = new SplashScreen(this);
             Components.Add(splashScreen);
-            splashScreen.SetData("Welcome to Rehab Game", currentGameState);
+            splashScreen.SetData(IConstants.TITLE, currentGameState);
             
             base.Initialize();
         }
@@ -113,7 +113,7 @@ namespace rehabGame
             if (currentGameState == GameState.PLAY)
             {
                 //Draw the current score
-                string scoreText = "Score: " + score;
+                string scoreText = IConstants.SCORE + score;
                 spriteBatch.DrawString(scoreFont, scoreText, new Vector2(10, 10), Color.Red);
             }
             spriteBatch.End();
@@ -135,7 +135,7 @@ namespace rehabGame
                     splashScreen.Visible = false;
                     break;
                 case GameState.END:
-                    splashScreen.SetData("Game Over", GameState.END);
+                    splashScreen.SetData(IConstants.GAME_OVER, GameState.END);
                     modelManager.Enabled = false;
                     modelManager.Visible = false;
                     splashScreen.Enabled = true;

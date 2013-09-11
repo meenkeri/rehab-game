@@ -11,8 +11,18 @@ using Microsoft.Xna.Framework.Media;
 
 namespace rehabGame
 {
-    public static class Constants
+    public class IConstants
     {
+        //WBB
         public static string WBB_ERROR = "Can't find a BalanceBoard";
+        
+        //Splash screen
+        public static string TITLE = "Welcome to Rehab Game";
+        public static string SUB_TITLE = "Press Enter To Begin";
+        public static string QUIT = "Press Enter To Quit";
+        public static string GAME_OVER = "Game Over";
+
+        //Score
+        public static string SCORE = "Score: ";
     }
 }

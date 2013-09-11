@@ -99,10 +99,10 @@ namespace rehabGame
             {
                 case Game1.GameState.START:
                 case Game1.GameState.LEVEL_CHANGE:
-                    secondaryTextToDraw = "Press Enter To Begin";
+                    secondaryTextToDraw = IConstants.SUB_TITLE;
                     break;
                 case Game1.GameState.END:
-                    secondaryTextToDraw = "Press Enter To Quit";
+                    secondaryTextToDraw = IConstants.QUIT;
                     break;
             }
         }

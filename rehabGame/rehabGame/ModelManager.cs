@@ -83,7 +83,7 @@ namespace rehabGame
                 bb.Connect();
                 bb.SetLEDs(1);
             }
-            catch { Console.WriteLine(Constants.WBB_ERROR); }
+            catch { Console.WriteLine(IConstants.WBB_ERROR); }
 
             base.Initialize();
         }
