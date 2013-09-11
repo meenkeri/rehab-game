@@ -83,7 +83,7 @@ namespace rehabGame
                 bb.Connect();
                 bb.SetLEDs(1);
             }
-            catch { Console.WriteLine("Can't find a BalanceBoard");}
+            catch { Console.WriteLine(Constants.WBB_ERROR); }
 
             base.Initialize();
         }
@@ -230,6 +230,7 @@ namespace rehabGame
 
         public void ballUpdate1()
         {
+            
             if (ballPosition.X > 12 && ballPosition.Y >= -4.1F && ballPosition.Y < 76 && ballPosition.Z < -12)
                 dropTheBall1();
 
