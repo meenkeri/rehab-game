@@ -53,6 +53,11 @@ namespace rehabGame
 
         public Wiimote bb = new Wiimote();
 
+        public int left = 0;
+        public int right = 0;
+        public int up = 0;
+        public int down = 0;
+
         public ModelManager(Game game)
             : base(game)
         {
@@ -210,13 +215,28 @@ namespace rehabGame
             ballPosition.Z += bbs.CenterOfGravity.Y * 0.05F;
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                ballPosition += Vector3.Left * 0.2F;
+            {
+                ballPosition.X -= (0.005F * right++);
+                left = 0;
+            }
+
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                ballPosition += Vector3.Right * 0.2F;
+            {
+                ballPosition.X += (0.005F * left++);
+                right = 0;
+            }
+
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                ballPosition += Vector3.Forward * 0.2F;
+            {
+                ballPosition.Z -= (0.005F * up++);
+                down = 0;
+            }
+
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                ballPosition += Vector3.Backward * 0.2F;
+            {
+                ballPosition.Z += (0.005F * down++);
+                up = 0;
+            }
 
             if (ballPosition.X < -24)
                 ballPosition.X = -24;
