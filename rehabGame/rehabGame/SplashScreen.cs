@@ -23,6 +23,7 @@ namespace rehabGame
         SpriteFont secondarySpriteFont;
         SpriteBatch spriteBatch;
         Game1.GameState currentGameState;
+        Texture2D background;
 
         public SplashScreen(Game game)
             : base(game)
@@ -46,6 +47,8 @@ namespace rehabGame
             //Load fonts
             spriteFont = Game.Content.Load<SpriteFont>(@"Fonts\SplashScreenFontLarge");
             secondarySpriteFont = Game.Content.Load<SpriteFont>(@"Fonts\SplashScreenFont");
+
+            background = Game.Content.Load<Texture2D>(@"Textures\background");
 
             //Create sprite batch
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
@@ -79,6 +82,9 @@ namespace rehabGame
 
             //Get size of string
             Vector2 TitleSize = spriteFont.MeasureString(textToDraw);
+
+            //Draw the background image
+            spriteBatch.Draw(background, new Rectangle(0, 0, Game.Window.ClientBounds.Width, Game.Window.ClientBounds.Height), Color.Gray);
 
             //Draw main text
             spriteBatch.DrawString(spriteFont, textToDraw, new Vector2(Game.Window.ClientBounds.Width / 2 - TitleSize.X / 2, Game.Window.ClientBounds.Height / 2), Color.Gold);

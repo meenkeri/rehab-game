@@ -4,3 +4,4 @@ Content\Models\ball.xnb
 Content\Fonts\SplashScreenFont.xnb
 Content\Fonts\SplashScreenFontLarge.xnb
 Content\Fonts\ScoreFont.xnb
+Content\Textures\background.xnb

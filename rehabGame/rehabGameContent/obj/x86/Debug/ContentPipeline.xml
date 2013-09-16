@@ -88,6 +88,15 @@
       <Output>obj\x86\Debug\Models\ball_0.xml</Output>
       <Time>2013-08-13T20:22:04.456147-07:00</Time>
     </Item>
+    <Item>
+      <Source>Textures\background.jpg</Source>
+      <Name>Textures\background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Textures\background.xnb</Output>
+      <Time>2013-09-15T16:06:13.9263483-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

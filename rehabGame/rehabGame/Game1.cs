@@ -27,7 +27,7 @@ namespace rehabGame
         SplashScreen splashScreen;
         SpriteFont scoreFont;
         public static int score = 0;
-
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -116,6 +116,7 @@ namespace rehabGame
                 string scoreText = IConstants.SCORE + score;
                 spriteBatch.DrawString(scoreFont, scoreText, new Vector2(10, 10), Color.Red);
             }
+            
             spriteBatch.End();
         }
 
