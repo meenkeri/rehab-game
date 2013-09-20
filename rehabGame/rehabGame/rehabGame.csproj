@@ -110,6 +110,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Backgrounds.cs" />
     <Compile Include="BallHelper.cs" />
     <Compile Include="BoardHelper.cs" />
     <Compile Include="Camera.cs" />

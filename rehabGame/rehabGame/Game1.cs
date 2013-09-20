@@ -25,6 +25,7 @@ namespace rehabGame
         public enum GameState { START, PLAY, LEVEL_CHANGE, END }
         public static GameState currentGameState = GameState.START;
         SplashScreen splashScreen;
+        Backgrounds background;
         SpriteFont scoreFont;
         public static int score = 0;
         
@@ -52,6 +53,12 @@ namespace rehabGame
             Components.Add(modelManager);
             modelManager.Enabled = false;
             modelManager.Visible = false;
+
+            //Background images component
+            background = new Backgrounds(this);
+            Components.Add(background);
+            background.Enabled = true;
+            background.Visible = true;
 
             //Splash screen component
             splashScreen = new SplashScreen(this);
@@ -134,11 +141,16 @@ namespace rehabGame
                     modelManager.Visible = true;
                     splashScreen.Enabled = false;
                     splashScreen.Visible = false;
+                    background.Enabled = false;
+                    background.Visible = false;
+
                     break;
                 case GameState.END:
                     splashScreen.SetData(IConstants.GAME_OVER, GameState.END);
                     modelManager.Enabled = false;
                     modelManager.Visible = false;
+                    background.Enabled = false;
+                    background.Visible = false;
                     splashScreen.Enabled = true;
                     splashScreen.Visible = true;
                     break;
