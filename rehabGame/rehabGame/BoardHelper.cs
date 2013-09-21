@@ -23,7 +23,7 @@ namespace rehabGame
                 foreach (BasicEffect be in mesh.Effects)
                 {
                     be.EnableDefaultLighting();
-                    be.TextureEnabled = true;
+                    //be.TextureEnabled = true;
                     be.Projection = projection;
                     be.View = view;
                     be.World = Helper.GetBoardWorld(bRotation, bMovement) * mesh.ParentBone.Transform;
