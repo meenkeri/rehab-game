@@ -246,19 +246,19 @@ namespace rehabGame
                 ballPosition.Z = -46;
             if (ballPosition.Z > 46)
                 ballPosition.Z = 46;
+
+            //Move model
+            ballWorld = Matrix.CreateTranslation(ballPosition);
         }
 
         public void ballUpdate1()
         {
             
-            if (ballPosition.X > 12 && ballPosition.Y >= -4.1F && ballPosition.Y < 76 && ballPosition.Z < -12)
+            if (ballPosition.X > 12 && ballPosition.Y >= -4.4F && ballPosition.Y < 76 && ballPosition.Z < -12)
                 dropTheBall1();
 
             if (ballPosition.X < 12 && ballPosition.Y >= 76 && ballPosition.Y < 160 && ballPosition.Z < 12)
                 dropTheBall2();
-
-            //Move model
-            ballWorld = Matrix.CreateTranslation(ballPosition);
         }
 
         public void dropTheBall1()
@@ -286,25 +286,6 @@ namespace rehabGame
         private void CreateLookAt()
         {
             view = Matrix.CreateLookAt(cameraPosition, cameraPosition + cameraDirection, Vector3.Down);
-        }
-
-        public bool IsCollision(Model model1, Matrix world1, Model model2, Matrix world2)
-        {
-            for (int meshIndex1 = 0; meshIndex1 < model1.Meshes.Count; meshIndex1++)
-            {
-                BoundingSphere sphere1 = model1.Meshes[meshIndex1].BoundingSphere;
-                sphere1 = sphere1.Transform(world1);
-                
-                for (int meshIndex2 = 0; meshIndex2 < model2.Meshes.Count; meshIndex2++)
-                {
-                    BoundingSphere sphere2 = model2.Meshes[meshIndex2].BoundingSphere;
-                    sphere2 = sphere2.Transform(world2);
-                    
-                    if (sphere1.Intersects(sphere2))
-                        return true;
-                }
-            }
-            return false;
         }
     }
 }
