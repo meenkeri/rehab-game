@@ -56,13 +56,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\ball.FBX">
+    <Compile Include="Models\ball.fbx">
       <Name>ball</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Compile Include="Fonts\SplashScreenFont.spritefont">
       <Name>SplashScreenFont</Name>

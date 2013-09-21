@@ -39,7 +39,7 @@ namespace rehabGame
         public Matrix view { get; protected set; }
         public Matrix projection { get; protected set; }
 
-        Vector3 ballPosition = new Vector3(0, -4.1F, 0);
+        Vector3 ballPosition = new Vector3(0, -4.4F, 0);
         Vector3 board1Position = new Vector3(0, 0, -100);
         Vector3 board2Position = new Vector3(0, 0, -200);
         Vector3 board3Position = new Vector3(0, 0, -300);
@@ -238,14 +238,14 @@ namespace rehabGame
                 up = 0;
             }
 
-            if (ballPosition.X < -24)
-                ballPosition.X = -24;
-            if (ballPosition.X > 24)
-                ballPosition.X = 24;
-            if (ballPosition.Z < -18)
-                ballPosition.Z = -18;
-            if (ballPosition.Z > 17)
-                ballPosition.Z = 17;
+            if (ballPosition.X < -64)
+                ballPosition.X = -64;
+            if (ballPosition.X > 64)
+                ballPosition.X = 64;
+            if (ballPosition.Z < -46)
+                ballPosition.Z = -46;
+            if (ballPosition.Z > 46)
+                ballPosition.Z = 46;
         }
 
         public void ballUpdate1()
