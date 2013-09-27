@@ -285,7 +285,7 @@ namespace rehabGame
 
         private void CreateLookAt()
         {
-            view = Matrix.CreateLookAt(cameraPosition, cameraPosition + cameraDirection, Vector3.Down);
+            view = Matrix.CreateLookAt(cameraPosition, cameraPosition + cameraDirection, Vector3.Up);
         }
     }
 }
