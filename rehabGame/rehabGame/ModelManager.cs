@@ -40,6 +40,7 @@ namespace rehabGame
         public Matrix projection { get; protected set; }
 
         Vector3 ballPosition = new Vector3(0, -4.4F, 0);
+        Vector3 boardPosition = new Vector3(0, 0, 0);
         Vector3 board1Position = new Vector3(0, 0, -100);
         Vector3 board2Position = new Vector3(0, 0, -200);
         Vector3 board3Position = new Vector3(0, 0, -300);
@@ -145,13 +146,13 @@ namespace rehabGame
             yawAngle -= bbs.CenterOfGravity.X * 0.0009F;
             pitchAngle -= bbs.CenterOfGravity.Y * 0.0009F;
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                yawAngle += 0.01F;
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                yawAngle -= 0.01F;
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                pitchAngle += 0.01F;
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                yawAngle += 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                yawAngle -= 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                pitchAngle += 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
                 pitchAngle -= 0.01F;
             if (yawAngle >= 0.05F)
                 yawAngle = 0.05F;
@@ -161,11 +162,19 @@ namespace rehabGame
                 pitchAngle = 0.05F;
             if (pitchAngle <= -0.05F)
                 pitchAngle = -0.05F;
+
+            boardRotation = Matrix.CreateRotationX(MathHelper.Pi / 2);
+            
+            //Move model
+            boardMovement = Matrix.CreateTranslation(boardPosition);
+
+            //Rotate model
+            boardRotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
         }
 
         public void board1Update()
         {
-            boardRotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
+            boardRotation = Matrix.CreateRotationX(MathHelper.Pi / 2);
 
             //Move model
             board1Movement = Matrix.CreateTranslation(board1Position);
@@ -176,7 +185,7 @@ namespace rehabGame
 
         public void board2Update()
         {
-            boardRotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
+            boardRotation = Matrix.CreateRotationX(MathHelper.Pi / 2);
 
             //Move model
             board2Movement = Matrix.CreateTranslation(board2Position);
@@ -187,7 +196,7 @@ namespace rehabGame
 
         public void board3Update()
         {
-            boardRotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
+            boardRotation = Matrix.CreateRotationX(MathHelper.Pi / 2);
 
             //Move model
             board3Movement = Matrix.CreateTranslation(board3Position);
@@ -198,7 +207,7 @@ namespace rehabGame
 
         public void board4Update()
         {
-            boardRotation = Matrix.CreateRotationZ(MathHelper.Pi / 2);
+            boardRotation = Matrix.CreateRotationX(MathHelper.Pi / 2);
 
             //Move model
             board4Movement = Matrix.CreateTranslation(board4Position);
@@ -285,7 +294,7 @@ namespace rehabGame
 
         private void CreateLookAt()
         {
-            view = Matrix.CreateLookAt(cameraPosition, cameraPosition + cameraDirection, Vector3.Up);
+            view = Matrix.CreateLookAt(cameraPosition, cameraPosition + cameraDirection, Vector3.Down);
         }
     }
 }

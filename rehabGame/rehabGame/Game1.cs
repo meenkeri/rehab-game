@@ -113,7 +113,7 @@ namespace rehabGame
         {
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.Gray);
             if (!blank)
                 base.Draw(gameTime);
             spriteBatch.Begin();
