@@ -101,6 +101,9 @@ namespace rehabGame
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+
+            if (currentGameState == GameState.END)
+                ChangeGameState(GameState.END, 0);
             
             base.Update(gameTime);
         }
@@ -123,7 +126,7 @@ namespace rehabGame
                 string scoreText = IConstants.SCORE + score;
                 spriteBatch.DrawString(scoreFont, scoreText, new Vector2(10, 10), Color.Red);
             }
-            
+
             spriteBatch.End();
         }
 
@@ -143,14 +146,13 @@ namespace rehabGame
                     splashScreen.Visible = false;
                     background.Enabled = false;
                     background.Visible = false;
-
                     break;
                 case GameState.END:
                     splashScreen.SetData(IConstants.GAME_OVER, GameState.END);
                     modelManager.Enabled = false;
                     modelManager.Visible = false;
-                    background.Enabled = false;
-                    background.Visible = false;
+                    background.Enabled = true;
+                    background.Visible = true;
                     splashScreen.Enabled = true;
                     splashScreen.Visible = true;
                     break;
