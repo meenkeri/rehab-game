@@ -39,7 +39,7 @@ namespace rehabGame
         public Matrix view { get; protected set; }
         public Matrix projection { get; protected set; }
 
-        Vector3 ballPosition = new Vector3(0, -4.4F, 0);
+        Vector3 ballPosition = new Vector3(0, -8F, 0);
         Vector3 boardPosition = new Vector3(0, 0, 0);
         Vector3 board1Position = new Vector3(0, 0, -100);
         Vector3 board2Position = new Vector3(0, 0, -200);
@@ -226,27 +226,31 @@ namespace rehabGame
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 ballPosition.X -= (0.005F * right++);
+                ballPosition.Y = Helper.adjustBallHeight(ballPosition.X, pitchAngle);
                 left = 0;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 ballPosition.X += (0.005F * left++);
+                ballPosition.Y = Helper.adjustBallHeight(ballPosition.X, pitchAngle);
                 right = 0;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 ballPosition.Z -= (0.005F * up++);
+                ballPosition.Y = Helper.adjustBallHeight(ballPosition.Z, yawAngle);
                 down = 0;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
             {
                 ballPosition.Z += (0.005F * down++);
+                ballPosition.Y = Helper.adjustBallHeight(ballPosition.Z, yawAngle);
                 up = 0;
             }
-
+            
             if (ballPosition.X < -64)
                 ballPosition.X = -64;
             if (ballPosition.X > 64)

@@ -22,5 +22,10 @@ namespace rehabGame
         {
             return ballWorld * ballRotation;
         }
+
+        public static float adjustBallHeight(float adjacent, double angle)
+        {
+            return (float)((Math.Tan(angle) * adjacent) - 8);
+        }
     }
 }
