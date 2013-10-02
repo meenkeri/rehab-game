@@ -37,7 +37,7 @@ namespace rehabGame
             graphics.PreferredBackBufferHeight = 768;
             //Enable Full Screen Mode
             graphics.IsFullScreen = true;
-            new BalanceBoard();
+            new BalanceBoard().setupBalanceBoard();
         }
 
         /// <summary>
@@ -103,9 +103,6 @@ namespace rehabGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            if (currentGameState == GameState.END)
-                ChangeGameState(GameState.END, 0);
-            
             base.Update(gameTime);
         }
 
@@ -138,7 +135,11 @@ namespace rehabGame
             switch (currentGameState)
             {
                 case GameState.LEVEL_CHANGE:
-                    //ToDo
+                    splashScreen.SetData("Level " + (level + 1), GameState.LEVEL_CHANGE);
+                    modelManager.Enabled = false;
+                    modelManager.Visible = false;
+                    splashScreen.Enabled = true;
+                    splashScreen.Visible = true;
                     break;
                 case GameState.PLAY:
                     modelManager.Enabled = true;

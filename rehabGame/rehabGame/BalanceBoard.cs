@@ -16,7 +16,7 @@ namespace rehabGame
     {
         public Wiimote bb = new Wiimote();
 
-        public void BalanceBoard()
+        public void setupBalanceBoard()
         {
             try
             {

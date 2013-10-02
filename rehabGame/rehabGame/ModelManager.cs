@@ -340,6 +340,7 @@ namespace rehabGame
         private void dropTheBall5()
         {
             //next level
+            ((Game1)Game).ChangeGameState(Game1.GameState.END, 0);
         }
 
         private void CreateLookAt()
