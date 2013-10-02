@@ -37,25 +37,9 @@ namespace rehabGame
         Vector3 cameraPosition;
         Vector3 cameraDirection;
         
-        float yawAngle1 = 0; //Left Right
-        float pitchAngle1 = 0; // Up Down
-        float rollAngle1 = 0; //Do nothing
-
-        float yawAngle2 = 0; //Left Right
-        float pitchAngle2 = 0; // Up Down
-        float rollAngle2 = 0; //Do nothing
-
-        float yawAngle3 = 0; //Left Right
-        float pitchAngle3 = 0; // Up Down
-        float rollAngle3 = 0; //Do nothing
-
-        float yawAngle4 = 0; //Left Right
-        float pitchAngle4 = 0; // Up Down
-        float rollAngle4 = 0; //Do nothing
-
-        float yawAngle5 = 0; //Left Right
-        float pitchAngle5 = 0; // Up Down
-        float rollAngle5 = 0; //Do nothing
+        float yawAngle = 0; //Left Right
+        float pitchAngle = 0; // Up Down
+        float rollAngle = 0; //Do nothing
 
         public Matrix view { get; protected set; }
         public Matrix projection { get; protected set; }
@@ -137,7 +121,7 @@ namespace rehabGame
         {
             if (Game1.currentGameState == Game1.GameState.PLAY)
             {
-                drawAllBoards();
+                generalBoardUpdate();
                 board1Update();
                 board2Update();
                 board3Update();
@@ -146,7 +130,7 @@ namespace rehabGame
                 ballUpdate();
                 ballUpdate1();
             }
-
+            
             base.Update(gameTime);
         }
 
@@ -165,7 +149,7 @@ namespace rehabGame
             base.Draw(gameTime);
         }
 
-        public void drawAllBoards()
+        public void generalBoardUpdate()
         {
             board1Rotation = Matrix.CreateRotationX(MathHelper.Pi / 2);
             board1Movement = Matrix.CreateTranslation(boardPosition);
@@ -177,36 +161,36 @@ namespace rehabGame
             board4Movement = Matrix.CreateTranslation(board3Position);
             board5Rotation = Matrix.CreateRotationX(MathHelper.Pi / 2);
             board5Movement = Matrix.CreateTranslation(board4Position);
+
+            WiimoteState s = bb.WiimoteState;
+            BalanceBoardState bbs = s.BalanceBoardState;
+            yawAngle -= bbs.CenterOfGravity.X * 0.0009F;
+            pitchAngle -= bbs.CenterOfGravity.Y * 0.0009F;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                yawAngle += 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                yawAngle -= 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                pitchAngle += 0.01F;
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                pitchAngle -= 0.01F;
+            if (yawAngle >= 0.05F)
+                yawAngle = 0.05F;
+            if (yawAngle <= -0.05F)
+                yawAngle = -0.05F;
+            if (pitchAngle >= 0.05F)
+                pitchAngle = 0.05F;
+            if (pitchAngle <= -0.05F)
+                pitchAngle = -0.05F;
         }
 
         public void board1Update()
         {
             if (ballCurrentlyOn == BallOnBoard.FIRST)
             {
-                WiimoteState s = bb.WiimoteState;
-                BalanceBoardState bbs = s.BalanceBoardState;
-                yawAngle1 -= bbs.CenterOfGravity.X * 0.0009F;
-                pitchAngle1 -= bbs.CenterOfGravity.Y * 0.0009F;
-
-                if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                    yawAngle1 += 0.01F;
-                if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                    yawAngle1 -= 0.01F;
-                if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                    pitchAngle1 += 0.01F;
-                if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                    pitchAngle1 -= 0.01F;
-                if (yawAngle1 >= 0.05F)
-                    yawAngle1 = 0.05F;
-                if (yawAngle1 <= -0.05F)
-                    yawAngle1 = -0.05F;
-                if (pitchAngle1 >= 0.05F)
-                    pitchAngle1 = 0.05F;
-                if (pitchAngle1 <= -0.05F)
-                    pitchAngle1 = -0.05F;
-
                 //Rotate model
-                board1Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle1, pitchAngle1, rollAngle1);
+                board1Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
             }
         }
 
@@ -214,30 +198,8 @@ namespace rehabGame
         {
             if (ballCurrentlyOn == BallOnBoard.SECOND)
             {
-                WiimoteState s = bb.WiimoteState;
-                BalanceBoardState bbs = s.BalanceBoardState;
-                yawAngle2 -= bbs.CenterOfGravity.X * 0.0009F;
-                pitchAngle2 -= bbs.CenterOfGravity.Y * 0.0009F;
-
-                if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                    yawAngle2 += 0.01F;
-                if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                    yawAngle2 -= 0.01F;
-                if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                    pitchAngle2 += 0.01F;
-                if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                    pitchAngle2 -= 0.01F;
-                if (yawAngle2 >= 0.05F)
-                    yawAngle2 = 0.05F;
-                if (yawAngle2 <= -0.05F)
-                    yawAngle2 = -0.05F;
-                if (pitchAngle2 >= 0.05F)
-                    pitchAngle2 = 0.05F;
-                if (pitchAngle2 <= -0.05F)
-                    pitchAngle2 = -0.05F;
-
                 //Rotate model
-                board2Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle2, pitchAngle2, rollAngle2);
+                board2Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
             }
         }
 
@@ -245,30 +207,8 @@ namespace rehabGame
         {
             if (ballCurrentlyOn == BallOnBoard.THIRD)
             {
-                WiimoteState s = bb.WiimoteState;
-                BalanceBoardState bbs = s.BalanceBoardState;
-                yawAngle3 -= bbs.CenterOfGravity.X * 0.0009F;
-                pitchAngle3 -= bbs.CenterOfGravity.Y * 0.0009F;
-
-                if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                    yawAngle3 += 0.01F;
-                if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                    yawAngle3 -= 0.01F;
-                if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                    pitchAngle3 += 0.01F;
-                if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                    pitchAngle3 -= 0.01F;
-                if (yawAngle3 >= 0.05F)
-                    yawAngle3 = 0.05F;
-                if (yawAngle3 <= -0.05F)
-                    yawAngle3 = -0.05F;
-                if (pitchAngle3 >= 0.05F)
-                    pitchAngle3 = 0.05F;
-                if (pitchAngle3 <= -0.05F)
-                    pitchAngle3 = -0.05F;
-
                 //Rotate model
-                board3Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle3, pitchAngle3, rollAngle3);
+                board3Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
             }
         }
 
@@ -276,30 +216,8 @@ namespace rehabGame
         {
             if (ballCurrentlyOn == BallOnBoard.FOURTH)
             {
-                WiimoteState s = bb.WiimoteState;
-                BalanceBoardState bbs = s.BalanceBoardState;
-                yawAngle4 -= bbs.CenterOfGravity.X * 0.0009F;
-                pitchAngle4 -= bbs.CenterOfGravity.Y * 0.0009F;
-
-                if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                    yawAngle4 += 0.01F;
-                if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                    yawAngle4 -= 0.01F;
-                if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                    pitchAngle4 += 0.01F;
-                if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                    pitchAngle4 -= 0.01F;
-                if (yawAngle4 >= 0.05F)
-                    yawAngle4 = 0.05F;
-                if (yawAngle4 <= -0.05F)
-                    yawAngle4 = -0.05F;
-                if (pitchAngle4 >= 0.05F)
-                    pitchAngle4 = 0.05F;
-                if (pitchAngle4 <= -0.05F)
-                    pitchAngle4 = -0.05F;
-
                 //Rotate model
-                board4Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle4, pitchAngle4, rollAngle4);
+                board4Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
             }
         }
 
@@ -307,30 +225,8 @@ namespace rehabGame
         {
             if (ballCurrentlyOn == BallOnBoard.FIFTH)
             {
-                WiimoteState s = bb.WiimoteState;
-                BalanceBoardState bbs = s.BalanceBoardState;
-                yawAngle5 -= bbs.CenterOfGravity.X * 0.0009F;
-                pitchAngle5 -= bbs.CenterOfGravity.Y * 0.0009F;
-
-                if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                    yawAngle5 += 0.01F;
-                if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                    yawAngle5 -= 0.01F;
-                if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                    pitchAngle5 += 0.01F;
-                if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                    pitchAngle5 -= 0.01F;
-                if (yawAngle5 >= 0.05F)
-                    yawAngle5 = 0.05F;
-                if (yawAngle5 <= -0.05F)
-                    yawAngle5 = -0.05F;
-                if (pitchAngle5 >= 0.05F)
-                    pitchAngle5 = 0.05F;
-                if (pitchAngle5 <= -0.05F)
-                    pitchAngle5 = -0.05F;
-
                 //Rotate model
-                board5Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle5, pitchAngle5, rollAngle5);
+                board5Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
             }
         }
 
@@ -344,28 +240,28 @@ namespace rehabGame
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 ballPosition.X -= (0.005F * right++);
-                //ballPosition.Y = Helper.adjustBallHeight(ballPosition.X, pitchAngle);
+                //ballPosition.Y = Helper.adjustBallHeight(ballPosition.X, pitchAngle) * ((int) (ballCurrentlyOn) * 100);
                 left = 0;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 ballPosition.X += (0.005F * left++);
-                //ballPosition.Y = Helper.adjustBallHeight(ballPosition.X, pitchAngle);
+                //ballPosition.Y = Helper.adjustBallHeight(ballPosition.X, pitchAngle) * ((int)(ballCurrentlyOn) * 100);
                 right = 0;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 ballPosition.Z -= (0.005F * up++);
-                //ballPosition.Y = Helper.adjustBallHeight(ballPosition.Z, yawAngle);
+                //ballPosition.Y = Helper.adjustBallHeight(ballPosition.Z, yawAngle) * ((int)(ballCurrentlyOn) * 100);
                 down = 0;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
             {
                 ballPosition.Z += (0.005F * down++);
-                //ballPosition.Y = Helper.adjustBallHeight(ballPosition.Z, yawAngle);
+                //ballPosition.Y = Helper.adjustBallHeight(ballPosition.Z, yawAngle) * ((int)(ballCurrentlyOn) * 100);
                 up = 0;
             }
             
