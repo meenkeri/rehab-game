@@ -21,9 +21,12 @@ namespace rehabGame
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public Camera camera { get; protected set; }
-        ModelManager modelManager;
+        Level1 level1;
+        Level2 level2;
         public enum GameState { START, PLAY, LEVEL_CHANGE, END }
         public static GameState currentGameState = GameState.START;
+        public enum Level { ONE, TWO, THREE }
+        public static Level currentLevel = Level.ONE;
         SplashScreen splashScreen;
         Backgrounds background;
         SpriteFont scoreFont;
@@ -50,10 +53,15 @@ namespace rehabGame
         {
             //camera = new Camera(this, new Vector3(0, 150, 120), Vector3.Zero, Vector3.Down);
             //Components.Add(camera);
-            modelManager = new ModelManager(this);
-            Components.Add(modelManager);
-            modelManager.Enabled = false;
-            modelManager.Visible = false;
+            level1 = new Level1(this);
+            Components.Add(level1);
+            level1.Enabled = false;
+            level1.Visible = false;
+
+            level2 = new Level2(this);
+            Components.Add(level2);
+            level2.Enabled = false;
+            level2.Visible = false;
 
             //Background images component
             background = new Backgrounds(this);
@@ -136,14 +144,26 @@ namespace rehabGame
             {
                 case GameState.LEVEL_CHANGE:
                     splashScreen.SetData("Level " + (level + 1), GameState.LEVEL_CHANGE);
-                    modelManager.Enabled = false;
-                    modelManager.Visible = false;
+                    level1.Enabled = false;
+                    level1.Visible = false;
+                    level2.Enabled = false;
+                    level2.Visible = false;
                     splashScreen.Enabled = true;
                     splashScreen.Visible = true;
                     break;
                 case GameState.PLAY:
-                    modelManager.Enabled = true;
-                    modelManager.Visible = true;
+                    switch (currentLevel)
+                    {
+                        case Level.ONE:
+                        level1.Enabled = true;
+                        level1.Visible = true;
+                        break;
+
+                        case Level.TWO:
+                        level2.Enabled = true;
+                        level2.Visible = true;
+                        break;
+                    }
                     splashScreen.Enabled = false;
                     splashScreen.Visible = false;
                     background.Enabled = false;
@@ -151,8 +171,10 @@ namespace rehabGame
                     break;
                 case GameState.END:
                     splashScreen.SetData(IConstants.GAME_OVER, GameState.END);
-                    modelManager.Enabled = false;
-                    modelManager.Visible = false;
+                    level1.Enabled = false;
+                    level1.Visible = false;
+                    level2.Enabled = false;
+                    level2.Visible = false;
                     background.Enabled = true;
                     background.Visible = true;
                     splashScreen.Enabled = true;

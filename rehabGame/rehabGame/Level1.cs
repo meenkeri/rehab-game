@@ -16,7 +16,7 @@ namespace rehabGame
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class ModelManager : DrawableGameComponent
+    public class Level1 : DrawableGameComponent
     {
         public Matrix board1Rotation = Matrix.Identity;
         public Matrix board2Rotation = Matrix.Identity;
@@ -66,7 +66,7 @@ namespace rehabGame
         public int up = 0;
         public int down = 0;
 
-        public ModelManager(Game game)
+        public Level1(Game game)
             : base(game)
         {
             // TODO: Construct any child components here
@@ -339,7 +339,7 @@ namespace rehabGame
 
         private void dropTheBall5()
         {
-            //next level
+            Game1.currentLevel = Game1.Level.TWO;
             ((Game1)Game).ChangeGameState(Game1.GameState.LEVEL_CHANGE, 1);
         }
 
