@@ -37,6 +37,7 @@ namespace rehabGame
             graphics.PreferredBackBufferHeight = 768;
             //Enable Full Screen Mode
             graphics.IsFullScreen = true;
+            new BalanceBoard();
         }
 
         /// <summary>

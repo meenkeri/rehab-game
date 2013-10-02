@@ -91,13 +91,6 @@ namespace rehabGame
                 (float)Game.Window.ClientBounds.Height,
                 1, 1000);
 
-            try
-            {
-                bb.Connect();
-                bb.SetLEDs(1);
-            }
-            catch { Console.WriteLine(IConstants.WBB_ERROR); }
-
             base.Initialize();
         }
 
