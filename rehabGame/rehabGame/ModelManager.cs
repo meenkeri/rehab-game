@@ -226,28 +226,28 @@ namespace rehabGame
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 ballPosition.X -= (0.005F * right++);
-                ballPosition.Y = Helper.adjustBallHeight(ballPosition.X, pitchAngle);
+                //ballPosition.Y = Helper.adjustBallHeight(ballPosition.X, pitchAngle);
                 left = 0;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 ballPosition.X += (0.005F * left++);
-                ballPosition.Y = Helper.adjustBallHeight(ballPosition.X, pitchAngle);
+                //ballPosition.Y = Helper.adjustBallHeight(ballPosition.X, pitchAngle);
                 right = 0;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 ballPosition.Z -= (0.005F * up++);
-                ballPosition.Y = Helper.adjustBallHeight(ballPosition.Z, yawAngle);
+                //ballPosition.Y = Helper.adjustBallHeight(ballPosition.Z, yawAngle);
                 down = 0;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
             {
                 ballPosition.Z += (0.005F * down++);
-                ballPosition.Y = Helper.adjustBallHeight(ballPosition.Z, yawAngle);
+                //ballPosition.Y = Helper.adjustBallHeight(ballPosition.Z, yawAngle);
                 up = 0;
             }
             
@@ -267,33 +267,69 @@ namespace rehabGame
         public void ballUpdate1()
         {
             
-            if (ballPosition.X > 12 && ballPosition.Y >= -4.4F && ballPosition.Y < 76 && ballPosition.Z < -12)
+            if (ballPosition.X > 12 && ballPosition.Y >= -8F && ballPosition.Y < 90 && ballPosition.Z < -12)
                 dropTheBall1();
 
-            if (ballPosition.X < 12 && ballPosition.Y >= 76 && ballPosition.Y < 160 && ballPosition.Z < 12)
+            if (ballPosition.X < 12 && ballPosition.Y >= 90 && ballPosition.Y < 190 && ballPosition.Z < 12)
                 dropTheBall2();
+
+            if (ballPosition.X > 12 && ballPosition.Y >= 190 && ballPosition.Y < 290 && ballPosition.Z < -12)
+                dropTheBall3();
+
+            if (ballPosition.X < 12 && ballPosition.Y >= 290 && ballPosition.Y < 390 && ballPosition.Z < 12)
+                dropTheBall4();
+
+            if (ballPosition.X > 12 && ballPosition.Y >= 390 && ballPosition.Z < -12)
+                dropTheBall5();
         }
 
-        public void dropTheBall1()
+        private void dropTheBall1()
         {
             ballPosition += Vector3.Up * 0.6F;
-            if (ballPosition.Y >= 35)
-                ballPosition.Y = 35;
+            if (ballPosition.Y >= 90)
+                ballPosition.Y = 90;
             cameraPosition.Z -= 1.5F;
             if (cameraPosition.Z <= 0)
                 cameraPosition.Z = 0;
             CreateLookAt();
         }
 
-        public void dropTheBall2()
+        private void dropTheBall2()
         {
             ballPosition += Vector3.Up * 0.6F;
-            if (ballPosition.Y >= 153)
-                ballPosition.Y = 153;
+            if (ballPosition.Y >= 190)
+                ballPosition.Y = 190;
             cameraPosition.Z -= 1.5F;
-            if (cameraPosition.Z <= -280)
-                cameraPosition.Z = -280;
+            if (cameraPosition.Z <= -100)
+                cameraPosition.Z = -100;
             CreateLookAt();
+        }
+
+        private void dropTheBall3()
+        {
+            ballPosition += Vector3.Up * 0.6F;
+            if (ballPosition.Y >= 290)
+                ballPosition.Y = 290;
+            cameraPosition.Z -= 1.5F;
+            if (cameraPosition.Z <= -200)
+                cameraPosition.Z = -200;
+            CreateLookAt();
+        }
+
+        private void dropTheBall4()
+        {
+            ballPosition += Vector3.Up * 0.6F;
+            if (ballPosition.Y >= 390)
+                ballPosition.Y = 390;
+            cameraPosition.Z -= 1.5F;
+            if (cameraPosition.Z <= -300)
+                cameraPosition.Z = -300;
+            CreateLookAt();
+        }
+
+        private void dropTheBall5()
+        {
+            //next level
         }
 
         private void CreateLookAt()
