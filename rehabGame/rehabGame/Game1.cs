@@ -17,21 +17,27 @@ namespace rehabGame
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         public static Boolean blank = false;
-
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        public Camera camera { get; protected set; }
+        
         Level1 level1;
         Level2 level2;
+
         public enum GameState { START, PLAY, LEVEL_CHANGE, END }
         public static GameState currentGameState = GameState.START;
         public enum Level { ONE, TWO, THREE }
         public static Level currentLevel = Level.ONE;
+
         SplashScreen splashScreen;
         Backgrounds background;
         SpriteFont scoreFont;
         public static int score = 0;
-        
+
+        AudioEngine audioEngine;
+        WaveBank waveBank;
+        SoundBank soundBank;
+        Cue backgroundCue;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -86,6 +92,11 @@ namespace rehabGame
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scoreFont = Content.Load<SpriteFont>(@"Fonts\ScoreFont");
+
+            audioEngine = new AudioEngine(@"Content\Audio\GameAudio.xgs");
+            waveBank = new WaveBank(audioEngine, @"Content\Audio\Wave Bank.xwb");
+            soundBank = new SoundBank(audioEngine, @"Content\Audio\Sound Bank.xsb");
+            backgroundCue = soundBank.GetCue("background");
         }
 
         /// <summary>
@@ -150,6 +161,7 @@ namespace rehabGame
                     level2.Visible = false;
                     splashScreen.Enabled = true;
                     splashScreen.Visible = true;
+
                     break;
                 case GameState.PLAY:
                     switch (currentLevel)
@@ -168,6 +180,7 @@ namespace rehabGame
                     splashScreen.Visible = false;
                     background.Enabled = false;
                     background.Visible = false;
+                    backgroundCue.Play();
                     break;
                 case GameState.END:
                     splashScreen.SetData(IConstants.GAME_OVER, GameState.END);

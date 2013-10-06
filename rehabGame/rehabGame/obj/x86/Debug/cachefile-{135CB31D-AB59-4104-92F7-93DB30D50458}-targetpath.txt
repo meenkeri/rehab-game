@@ -5,3 +5,6 @@ Content\Fonts\SplashScreenFont.xnb
 Content\Fonts\SplashScreenFontLarge.xnb
 Content\Fonts\ScoreFont.xnb
 Content\Textures\background.xnb
+Content\Audio\GameAudio.xgs
+Content\Audio\Wave Bank.xwb
+Content\Audio\Sound Bank.xsb
