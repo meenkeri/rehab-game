@@ -37,6 +37,7 @@ namespace rehabGame
         WaveBank waveBank;
         SoundBank soundBank;
         Cue backgroundCue;
+        Cue levelUpCue;
 
         public Game1()
         {
@@ -162,6 +163,8 @@ namespace rehabGame
                     splashScreen.Enabled = true;
                     splashScreen.Visible = true;
                     backgroundCue.Stop(AudioStopOptions.Immediate);
+                    levelUpCue = soundBank.GetCue("levelUp");
+                    levelUpCue.Play();
                     break;
                 case GameState.PLAY:
                     switch (currentLevel)
