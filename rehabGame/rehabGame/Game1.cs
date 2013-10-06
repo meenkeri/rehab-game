@@ -161,7 +161,7 @@ namespace rehabGame
                     level2.Visible = false;
                     splashScreen.Enabled = true;
                     splashScreen.Visible = true;
-
+                    backgroundCue.Stop(AudioStopOptions.Immediate);
                     break;
                 case GameState.PLAY:
                     switch (currentLevel)
@@ -180,6 +180,9 @@ namespace rehabGame
                     splashScreen.Visible = false;
                     background.Enabled = false;
                     background.Visible = false;
+                    if (backgroundCue.IsPlaying)
+                        backgroundCue.Stop(AudioStopOptions.Immediate);
+                    backgroundCue = soundBank.GetCue("background");
                     backgroundCue.Play();
                     break;
                 case GameState.END:
@@ -192,6 +195,7 @@ namespace rehabGame
                     background.Visible = true;
                     splashScreen.Enabled = true;
                     splashScreen.Visible = true;
+                    backgroundCue.Stop(AudioStopOptions.Immediate);
                     break;
             }
         }
