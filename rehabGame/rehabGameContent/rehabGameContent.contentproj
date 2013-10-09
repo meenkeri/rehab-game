@@ -90,7 +90,6 @@
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Compile Include="Audio\GameAudio.xap">
       <Name>GameAudio</Name>

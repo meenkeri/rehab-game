@@ -67,7 +67,7 @@
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>
-        <Data Key="DiffuseColor" Type="Framework:Vector3">0.4 0.4 0.4</Data>
+        <Data Key="DiffuseColor" Type="Framework:Vector3">0.16384 0.8 0.21424</Data>
         <Data Key="EmissiveColor" Type="Framework:Vector3">0 0 0</Data>
         <Data Key="Alpha" Type="float">1</Data>
         <Data Key="SpecularColor" Type="Framework:Vector3">0 0 0</Data>
