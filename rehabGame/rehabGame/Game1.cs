@@ -134,7 +134,7 @@ namespace rehabGame
         {
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-            GraphicsDevice.Clear(Color.Tomato);
+            GraphicsDevice.Clear(Color.Black);
             if (!blank)
                 base.Draw(gameTime);
             spriteBatch.Begin();
@@ -142,7 +142,7 @@ namespace rehabGame
             {
                 //Draw the current score
                 string scoreText = IConstants.SCORE + score;
-                spriteBatch.DrawString(scoreFont, scoreText, new Vector2(10, 10), Color.Black);
+                spriteBatch.DrawString(scoreFont, scoreText, new Vector2(10, 10), Color.White);
             }
 
             spriteBatch.End();
