@@ -60,7 +60,7 @@ namespace rehabGame
             if (Game1.currentGameState == Game1.GameState.START)
             {
                 //Draw the start screen background image
-                spriteBatch.Draw(startBackground, new Rectangle(0, 0, Game.Window.ClientBounds.Width, Game.Window.ClientBounds.Height), Color.Gray);
+                spriteBatch.Draw(startBackground, new Rectangle(0, 0, Game.Window.ClientBounds.Width, Game.Window.ClientBounds.Height), Color.Khaki);
             }
             spriteBatch.End();
 

@@ -142,7 +142,7 @@ namespace rehabGame
             {
                 //Draw the current score
                 string scoreText = IConstants.SCORE + score;
-                spriteBatch.DrawString(scoreFont, scoreText, new Vector2(10, 10), Color.Red);
+                spriteBatch.DrawString(scoreFont, scoreText, new Vector2(10, 10), Color.Black);
             }
 
             spriteBatch.End();
