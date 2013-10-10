@@ -1,73 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:Graphics="Microsoft.Xna.Framework.Content.Pipeline.Graphics" xmlns:Framework="Microsoft.Xna.Framework">
-  <Asset Type="Graphics:NodeContent">
-    <Name>RootNode</Name>
+  <Asset Type="Graphics:MeshContent">
+    <Name>Box002</Name>
     <Identity>
       <SourceFilename>C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\Models\board.FBX</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
-    <Transform>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</Transform>
-    <Children>
-      <Child Type="Graphics:MeshContent">
-        <Name>Rectangle001</Name>
-        <Transform>7.54979E-08 1 1.62920685E-07 0 -1 7.54979E-08 1.2E-14 0 0 -1.62920685E-07 1 0 -1.27513456 1.31917119 1.2609421 1</Transform>
-        <Positions>54.39445 -3.8 -74.3943939 -54.3944435 -3.8 -74.39444 -54.3944435 3.8 -74.39444 54.39445 3.8 -74.3943939 -54.3944435 -3.8 74.3943939 -54.3944435 3.8 74.3943939 54.39445 -3.8 74.39443 54.39445 3.8 74.39443 49.6297264 -3.8 69.62971 -49.629734 -3.8 69.6297 -49.629734 3.8 69.6297 49.6297264 3.8 69.62971 -49.629734 -3.8 -69.6297 -49.629734 3.8 -69.6297 49.6297264 -3.8 -69.6297 49.6297264 3.8 -69.6297</Positions>
-        <Geometry>
-          <Batch>
-            <Material>#Resource1</Material>
-            <Indices>2 1 0 3 2 0 5 4 1 2 5 1 7 6 4 5 7 4 9 8 6 7 9 6 12 11 10 13 12 10 15 14 11 12 15 11 17 16 14 15 17 14 19 18 16 17 19 16 22 21 20 23 21 22 20 21 24 20 24 25 23 22 26 22 27 26 24 26 25 25 26 27 9 29 28 29 9 30 31 9 28 31 28 32 29 30 33 34 29 33 33 31 32 33 32 34</Indices>
-            <Vertices>
-              <PositionIndices>0 1 2 3 4 5 6 7 0 3 8 9 10 11 12 13 14 15 8 11 14 0 8 6 1 12 4 9 15 11 7 2 13 5 10</PositionIndices>
-              <Channels>
-                <VertexChannel Name="Normal0" ElementType="Framework:Vector3">0.5773492 -0.5773492 -0.5773492 -0.5773492 -0.5773492 -0.5773492 -0.5773492 0.5773492 -0.5773492 0.5773492 0.5773492 -0.5773492 -0.5773492 -0.5773492 0.5773492 -0.5773492 0.5773492 0.5773492 0.5773492 -0.5773492 0.5773492 0.5773492 0.5773492 0.5773492 0.5773492 -0.5773492 -0.5773492 0.5773492 0.5773492 -0.5773492 -0.301492363 -0.9045076 -0.301492363 0.301492363 -0.9045076 -0.301492363 0.301492363 0.9045076 -0.301492363 -0.301492363 0.9045076 -0.301492363 0.301492363 -0.9045076 0.301492363 0.301492363 0.9045076 0.301492363 -0.301492363 -0.9045076 0.301492363 -0.301492363 0.9045076 0.301492363 -0.301492363 -0.9045076 -0.301492363 -0.301492363 0.9045076 -0.301492363 -0.301492363 -0.9045076 0.301492363 0.5773492 -0.5773492 -0.5773492 -0.301492363 -0.9045076 -0.301492363 0.5773492 -0.5773492 0.5773492 -0.5773492 -0.5773492 -0.5773492 0.301492363 -0.9045076 0.301492363 -0.5773492 -0.5773492 0.5773492 0.301492363 -0.9045076 -0.301492363 -0.301492363 0.9045076 0.301492363 -0.301492363 0.9045076 -0.301492363 0.5773492 0.5773492 0.5773492 -0.5773492 0.5773492 -0.5773492 0.301492363 0.9045076 0.301492363 -0.5773492 0.5773492 0.5773492 0.301492363 0.9045076 -0.301492363</VertexChannel>
-                <VertexChannel Name="TextureCoordinate0" ElementType="Framework:Vector2">0 1 0.211177 1 0.211177 0 0 0 0.5 1 0.5 0 0.711177 1 0.711177 0 1 1 1 0 0 1 0.208075 1 0.208075 0 0 0 0.5 1 0.5 0 0.708075 1 0.708075 0 1 1 1 0 0.956202 0.032023 1 0 0.956202 0.967977 1 1 0 0 0.043798 0.032023 0 1 0.043798 0.967977 0.956202 0.032023 0.956202 0.967977 1 1 0 0 0.043798 0.032023 0 1 0.043798 0.967977</VertexChannel>
-              </Channels>
-            </Vertices>
-          </Batch>
-        </Geometry>
-      </Child>
-      <Child Type="Graphics:MeshContent">
-        <Name>Box002</Name>
-        <Transform>7.54979E-08 1 1.62920685E-07 0 -1 7.54979E-08 1.2E-14 0 0 -1.62920685E-07 1 0 -0.851810932 -3.63910723 0.6036614 1</Transform>
-        <Positions>-60 -3.9578 80 -60 -3.9578 -80 60 -3.9578 -80 60 -3.9578 80 -60 3.9578 80 60 3.9578 80 60 3.9578 -80 -60 3.9578 -80</Positions>
-        <Geometry>
-          <Batch>
-            <Material>#Resource2</Material>
-            <Indices>2 1 0 2 0 3 6 5 4 4 7 6 10 9 8 10 8 11 6 12 3 3 13 6 16 15 14 14 17 16 19 0 18 18 7 19</Indices>
-            <Vertices>
-              <PositionIndices>0 1 2 3 4 5 6 7 0 3 5 4 2 5 2 1 7 6 1 4</PositionIndices>
-              <Channels>
-                <VertexChannel Name="Normal0" ElementType="Framework:Vector3">-0.5773492 -0.5773492 0.5773492 -0.5773492 -0.5773492 -0.5773492 0.5773492 -0.5773492 -0.5773492 0.5773492 -0.5773492 0.5773492 -0.5773492 0.5773492 0.5773492 0.5773492 0.5773492 0.5773492 0.5773492 0.5773492 -0.5773492 -0.5773492 0.5773492 -0.5773492 -0.5773492 -0.5773492 0.5773492 0.5773492 -0.5773492 0.5773492 0.5773492 0.5773492 0.5773492 -0.5773492 0.5773492 0.5773492 0.5773492 -0.5773492 -0.5773492 0.5773492 0.5773492 0.5773492 0.5773492 -0.5773492 -0.5773492 -0.5773492 -0.5773492 -0.5773492 -0.5773492 0.5773492 -0.5773492 0.5773492 0.5773492 -0.5773492 -0.5773492 -0.5773492 -0.5773492 -0.5773492 0.5773492 0.5773492</VertexChannel>
-                <VertexChannel Name="TextureCoordinate0" ElementType="Framework:Vector2">1 1 1 0 0 0 0 1 0 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 1 1 0 0 0 1 1 1 1 0 0 0 0 1 1 0</VertexChannel>
-              </Channels>
-            </Vertices>
-          </Batch>
-        </Geometry>
-      </Child>
-    </Children>
+    <Transform>7.54979E-08 1 1.62920685E-07 0 -1 7.54979E-08 1.2E-14 0 0 -1.62920685E-07 1 0 0 0 0 1</Transform>
+    <Positions>-60.85181 -7.59692 80.60366 -60.85181 -7.596894 -79.39634 59.14819 -7.596894 -79.39634 59.14819 -7.59692 80.60366 -60.85181 0.31868 80.60366 59.14819 0.31868 80.60366 59.14819 0.318706 -79.39634 -60.85181 0.318706 -79.39634</Positions>
+    <Geometry>
+      <Batch>
+        <Material>#Resource1</Material>
+        <Indices>2 1 0 2 0 3 6 5 4 4 7 6 10 9 8 10 8 11 6 12 3 3 13 6 16 15 14 14 17 16 19 0 18 18 7 19</Indices>
+        <Vertices>
+          <PositionIndices>0 1 2 3 4 5 6 7 0 3 5 4 2 5 2 1 7 6 1 4</PositionIndices>
+          <Channels>
+            <VertexChannel Name="Normal0" ElementType="Framework:Vector3">-0.5773492 -0.5773492 0.5773492 -0.5773492 -0.5773492 -0.5773492 0.5773492 -0.5773492 -0.5773492 0.5773492 -0.5773492 0.5773492 -0.5773492 0.5773492 0.5773492 0.5773492 0.5773492 0.5773492 0.5773492 0.5773492 -0.5773492 -0.5773492 0.5773492 -0.5773492 -0.5773492 -0.5773492 0.5773492 0.5773492 -0.5773492 0.5773492 0.5773492 0.5773492 0.5773492 -0.5773492 0.5773492 0.5773492 0.5773492 -0.5773492 -0.5773492 0.5773492 0.5773492 0.5773492 0.5773492 -0.5773492 -0.5773492 -0.5773492 -0.5773492 -0.5773492 -0.5773492 0.5773492 -0.5773492 0.5773492 0.5773492 -0.5773492 -0.5773492 -0.5773492 -0.5773492 -0.5773492 0.5773492 0.5773492</VertexChannel>
+            <VertexChannel Name="TextureCoordinate0" ElementType="Framework:Vector2">1 1 1 0 0 0 0 1 0 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 1 1 0 0 0 1 1 1 1 0 0 0 0 1 1 0</VertexChannel>
+          </Channels>
+        </Vertices>
+      </Batch>
+    </Geometry>
   </Asset>
   <Resources>
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
-      <Name>GLASS</Name>
-      <Identity>
-        <SourceFilename>C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\Models\board.FBX</SourceFilename>
-        <SourceTool>FbxImporter</SourceTool>
-      </Identity>
-      <OpaqueData>
-        <Data Key="DiffuseColor" Type="Framework:Vector3">0.39528 0.558400035 0.6996</Data>
-        <Data Key="EmissiveColor" Type="Framework:Vector3">0 0 0</Data>
-        <Data Key="Alpha" Type="float">1</Data>
-        <Data Key="SpecularColor" Type="Framework:Vector3">0 0 0</Data>
-      </OpaqueData>
-    </Resource>
-    <Resource ID="#Resource2" Type="Graphics:BasicMaterialContent">
       <Name>dark_tudu_wood</Name>
       <Identity>
         <SourceFilename>C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGameContent\Models\board.FBX</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>
-        <Data Key="DiffuseColor" Type="Framework:Vector3">0.0153600005 0.4 0.111520007</Data>
+        <Data Key="DiffuseColor" Type="Framework:Vector3">0.01232 0.320000023 0.0892000049</Data>
         <Data Key="EmissiveColor" Type="Framework:Vector3">0 0 0</Data>
         <Data Key="Alpha" Type="float">1</Data>
         <Data Key="SpecularColor" Type="Framework:Vector3">0 0 0</Data>
