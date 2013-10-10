@@ -13,7 +13,7 @@ namespace rehabGame
 {
     class Collision
     {
-        public static bool IsCollision(Model model1, Matrix world1, Model model2, Matrix world2)
+        public static bool SphereSphereCollision(Model model1, Matrix world1, Model model2, Matrix world2)
         {
             for (int meshIndex1 = 0; meshIndex1 < model1.Meshes.Count; meshIndex1++)
             {
