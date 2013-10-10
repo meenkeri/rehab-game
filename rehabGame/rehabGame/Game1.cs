@@ -165,6 +165,7 @@ namespace rehabGame
                     backgroundCue.Stop(AudioStopOptions.Immediate);
                     levelUpCue = soundBank.GetCue("levelUp");
                     levelUpCue.Play();
+                    addScore(50);
                     break;
                 case GameState.PLAY:
                     switch (currentLevel)
