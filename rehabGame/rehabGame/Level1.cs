@@ -26,6 +26,8 @@ namespace rehabGame
 
         public Matrix ballRotation = Matrix.Identity;
 
+        public Matrix wallRotation = Matrix.Identity;
+
         public Matrix board1Movement = Matrix.Identity;
         public Matrix board2Movement = Matrix.Identity;
         public Matrix board3Movement = Matrix.Identity;
@@ -45,17 +47,23 @@ namespace rehabGame
         public Matrix projection { get; protected set; }
 
         Vector3 ballPosition = new Vector3(0, -8F, 0);
+        
         Vector3 boardPosition = new Vector3(0, 0, 0);
         Vector3 board1Position = new Vector3(0, 0, -100);
         Vector3 board2Position = new Vector3(0, 0, -200);
         Vector3 board3Position = new Vector3(0, 0, -300);
         Vector3 board4Position = new Vector3(0, 0, -400);
         Vector3 board5Position = new Vector3(0, 0, -500);
-        
+
+        Vector3 wallPosition = new Vector3(-25, 0, 0);
+
         public Matrix boardWorld = Matrix.Identity;
         public Matrix ballWorld = Matrix.Identity;
+        public Matrix wallWorld = Matrix.Identity;
+
         Model[] balls = new Model[1];
         Model[] boards = new Model[5];
+        Model[] walls = new Model[5];
 
         public Wiimote bb = new Wiimote();
         public enum BallOnBoard { FIRST, SECOND, THIRD, FOURTH, FIFTH }
@@ -97,6 +105,7 @@ namespace rehabGame
         protected override void LoadContent()
         {
             balls[0] = Game.Content.Load<Model>(@"Models\ball");
+            walls[0] = Game.Content.Load<Model>(@"Models\wall");
             boards[0] = Game.Content.Load<Model>(@"Models\board");
             boards[1] = Game.Content.Load<Model>(@"Models\board");
             boards[2] = Game.Content.Load<Model>(@"Models\board");
@@ -137,6 +146,7 @@ namespace rehabGame
                 BoardHelper.boardDraw(board4Movement, boards[3], board4Rotation, projection, view);
                 BoardHelper.boardDraw(board5Movement, boards[4], board5Rotation, projection, view);
                 BallHelper.ballDraw(balls[0], ballWorld, ballRotation, projection, view);
+                WallHelper.wallDraw(walls[0], wallWorld, wallRotation, projection, view);
             }
 
             base.Draw(gameTime);
@@ -269,6 +279,7 @@ namespace rehabGame
 
             //Move model
             ballWorld = Matrix.CreateTranslation(ballPosition);
+            wallWorld = Matrix.CreateTranslation(wallPosition);
         }
 
         public void ballUpdate1()
