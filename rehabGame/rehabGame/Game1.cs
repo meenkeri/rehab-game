@@ -48,6 +48,7 @@ namespace rehabGame
             //Enable Full Screen Mode
             graphics.IsFullScreen = true;
             new BalanceBoard().setupBalanceBoard();
+            new Log();
         }
 
         /// <summary>
