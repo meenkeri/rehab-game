@@ -23,7 +23,7 @@ namespace rehabGame
         public Backgrounds(Game game)
             : base(game)
         {
-            // TODO: Construct any child components here
+            Log.logger.Info("Loading Backgrounds constructor");
         }
 
         /// <summary>
@@ -32,11 +32,13 @@ namespace rehabGame
         /// </summary>
         public override void Initialize()
         {
+            Log.logger.Info("Initializing the Background");
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
+            Log.logger.Info("Loading the Background content");
             //Create sprite batch
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
             startBackground = Game.Content.Load<Texture2D>(@"Textures\background");

@@ -77,7 +77,7 @@ namespace rehabGame
         public Level1(Game game)
             : base(game)
         {
-            // TODO: Construct any child components here
+            Log.logger.Info("Loading Level1 constructor");
         }
 
         /// <summary>
@@ -86,6 +86,7 @@ namespace rehabGame
         /// </summary>
         public override void Initialize()
         {
+            Log.logger.Info("Initializing level1");
             //Build camera view matrix
             cameraPosition = pos;
             cameraDirection = target - pos;
@@ -104,6 +105,7 @@ namespace rehabGame
 
         protected override void LoadContent()
         {
+            Log.logger.Info("Loading level1 content");
             balls[0] = Game.Content.Load<Model>(@"Models\ball");
             walls[0] = Game.Content.Load<Model>(@"Models\wall");
             boards[0] = Game.Content.Load<Model>(@"Models\board");

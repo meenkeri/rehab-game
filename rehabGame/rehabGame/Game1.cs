@@ -41,6 +41,7 @@ namespace rehabGame
 
         public Game1()
         {
+            Log.logger.Info("Loading the game1 constructor");
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1366;
@@ -59,8 +60,10 @@ namespace rehabGame
         /// </summary>
         protected override void Initialize()
         {
+            Log.logger.Info("Initializing the game1");
             //camera = new Camera(this, new Vector3(0, 150, 120), Vector3.Zero, Vector3.Down);
             //Components.Add(camera);
+            
             level1 = new Level1(this);
             Components.Add(level1);
             level1.Enabled = false;
@@ -91,6 +94,7 @@ namespace rehabGame
         /// </summary>
         protected override void LoadContent()
         {
+            Log.logger.Info("Loading the game1 content");
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scoreFont = Content.Load<SpriteFont>(@"Fonts\ScoreFont");
@@ -157,6 +161,7 @@ namespace rehabGame
             {
                 case GameState.LEVEL_CHANGE:
                     splashScreen.SetData("Level " + (level + 1), GameState.LEVEL_CHANGE);
+                    Log.logger.Info("Level changed to " + level);
                     level1.Enabled = false;
                     level1.Visible = false;
                     level2.Enabled = false;
@@ -192,6 +197,7 @@ namespace rehabGame
                     break;
                 case GameState.END:
                     splashScreen.SetData(IConstants.GAME_OVER, GameState.END);
+                    Log.logger.Info("Game ended");
                     level1.Enabled = false;
                     level1.Visible = false;
                     level2.Enabled = false;

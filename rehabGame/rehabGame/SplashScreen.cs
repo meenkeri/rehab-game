@@ -27,7 +27,7 @@ namespace rehabGame
         public SplashScreen(Game game)
             : base(game)
         {
-            // TODO: Construct any child components here
+            Log.logger.Info("Loading SplashScreen constructor");
         }
 
         /// <summary>
@@ -36,13 +36,14 @@ namespace rehabGame
         /// </summary>
         public override void Initialize()
         {
-            // TODO: Add your initialization code here
+            Log.logger.Info("Initializing the SplashScreen");
 
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
+            Log.logger.Info("Loading the SplashScreen content");
             //Load fonts
             spriteFont = Game.Content.Load<SpriteFont>(@"Fonts\SplashScreenFontLarge");
             secondarySpriteFont = Game.Content.Load<SpriteFont>(@"Fonts\SplashScreenFont");
