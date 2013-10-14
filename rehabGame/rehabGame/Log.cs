@@ -19,7 +19,7 @@ namespace rehabGame
 
         public Log()
         {
-            BasicConfigurator.Configure();
+            XmlConfigurator.Configure();
         }
     }
 }
