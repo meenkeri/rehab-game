@@ -74,6 +74,9 @@ namespace rehabGame
         public int up = 0;
         public int down = 0;
 
+        public float LRHeight;
+        public float UDHeight;
+
         public Level1(Game game)
             : base(game)
         {
@@ -242,31 +245,34 @@ namespace rehabGame
             ballPosition.X -= bbs.CenterOfGravity.X * 0.05F;
             ballPosition.Z += bbs.CenterOfGravity.Y * 0.05F;
 
+            LRHeight = Helper.adjustBallHeight(ballPosition.X, pitchAngle);
+            UDHeight = Helper.adjustBallHeight(ballPosition.Z, yawAngle);
+
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 ballPosition.X -= (0.005F * right++);
-                //ballPosition.Y = Helper.adjustBallHeight(ballPosition.X, pitchAngle) * ((int) (ballCurrentlyOn) * 100);
+                ballPosition.Y = LRHeight + UDHeight;
                 left = 0;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 ballPosition.X += (0.005F * left++);
-                //ballPosition.Y = Helper.adjustBallHeight(ballPosition.X, pitchAngle) * ((int)(ballCurrentlyOn) * 100);
+                ballPosition.Y = LRHeight + UDHeight;
                 right = 0;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 ballPosition.Z -= (0.005F * up++);
-                //ballPosition.Y = Helper.adjustBallHeight(ballPosition.Z, yawAngle) * ((int)(ballCurrentlyOn) * 100);
+                ballPosition.Y = LRHeight + UDHeight;
                 down = 0;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
             {
                 ballPosition.Z += (0.005F * down++);
-                //ballPosition.Y = Helper.adjustBallHeight(ballPosition.Z, yawAngle) * ((int)(ballCurrentlyOn) * 100);
+                ballPosition.Y = LRHeight + UDHeight;
                 up = 0;
             }
             

@@ -30,7 +30,7 @@ namespace rehabGame
 
         public static float adjustBallHeight(float adjacent, double angle)
         {
-            return (float)((Math.Tan(angle) * adjacent) - 8);
+            return (float)((Math.Tan(angle) * adjacent) - 4);
         }
     }
 }
