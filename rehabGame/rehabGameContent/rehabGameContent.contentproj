@@ -91,15 +91,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\board.fbx">
-      <Name>board</Name>
+    <Compile Include="Models\wall.fbx">
+      <Name>wall</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\wall.fbx">
-      <Name>wall</Name>
+    <Compile Include="Models\board.fbx">
+      <Name>board</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
