@@ -23,11 +23,6 @@ namespace rehabGame
             return ballWorld * ballRotation;
         }
 
-        public static Matrix GetWallWorld(Matrix wallWorld, Matrix wallRotation)
-        {
-            return wallWorld * wallRotation;
-        }
-
         public static float adjustBallHeight(float adjacent, double angle)
         {
             return (float)((Math.Tan(angle) * adjacent) - 4);

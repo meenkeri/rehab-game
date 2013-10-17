@@ -17,7 +17,6 @@ C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\reha
 C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\obj\x86\Debug\rehabGame.exe
 C:\Users\shankara.meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\obj\x86\Debug\rehabGame.pdb
-C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Models\panel.xnb
 C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Models\board.xnb
 C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Models\ball.xnb
 C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Fonts\SplashScreenFont.xnb
@@ -38,7 +37,6 @@ C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\reh
 C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Audio\GameAudio.xgs
 C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Audio\Wave Bank.xwb
 C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Audio\Sound Bank.xsb
-C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Models\wall.xnb
 C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\log4net.dll
 C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\log4net.xml
 C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\rehabGame.exe.config
