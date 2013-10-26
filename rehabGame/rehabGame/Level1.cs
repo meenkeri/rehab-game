@@ -306,8 +306,8 @@ namespace rehabGame
         private void dropTheBall1()
         {
             ballPosition += Vector3.Up * 0.6F;
-            if (ballPosition.Y >= 90)
-                ballPosition.Y = 90;
+            if (ballPosition.Y >= 110)
+                ballPosition.Y = 110;
             cameraPosition.Z -= 1.5F;
             if (cameraPosition.Z <= 0)
                 cameraPosition.Z = 0;
