@@ -108,11 +108,11 @@ namespace rehabGame
         {
             Log.logger.Info("Loading level1 content");
             balls[0] = Game.Content.Load<Model>(@"Models\ball");
-            boards[0] = Game.Content.Load<Model>(@"Models\board");
-            boards[1] = Game.Content.Load<Model>(@"Models\board");
-            boards[2] = Game.Content.Load<Model>(@"Models\board");
-            boards[3] = Game.Content.Load<Model>(@"Models\board");
-            boards[4] = Game.Content.Load<Model>(@"Models\board");
+            boards[0] = Game.Content.Load<Model>(@"Models\board1");
+            boards[1] = Game.Content.Load<Model>(@"Models\board1");
+            boards[2] = Game.Content.Load<Model>(@"Models\board1");
+            boards[3] = Game.Content.Load<Model>(@"Models\board1");
+            boards[4] = Game.Content.Load<Model>(@"Models\board1");
             
             base.LoadContent();
         }

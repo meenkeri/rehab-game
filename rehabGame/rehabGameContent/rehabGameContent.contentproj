@@ -84,8 +84,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\board.fbx">
-      <Name>board</Name>
+    <Compile Include="Models\board1.fbx">
+      <Name>board1</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
