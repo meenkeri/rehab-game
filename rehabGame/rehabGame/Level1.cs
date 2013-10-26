@@ -279,13 +279,17 @@ namespace rehabGame
 
             //Move model
             ballWorld = Matrix.CreateTranslation(ballPosition);
+            hole();
+        }
+
+        public void hole()
+        {
+            if (ballPosition.X > 62 && ballPosition.X < 64 && ballPosition.Z < -40 && ballPosition.Z > -44)
+                dropTheBall1();
         }
 
         public void ballUpdate1()
         {
-            if (ballPosition.X > 12 && ballPosition.Y >= -8F && ballPosition.Y < 90 && ballPosition.Z < -12)
-                dropTheBall1();
-
             if (ballPosition.X < 12 && ballPosition.Y >= 90 && ballPosition.Y < 190 && ballPosition.Z < 12)
                 dropTheBall2();
 
