@@ -268,14 +268,14 @@ namespace rehabGame
                 up = 0;
             }
             
-            if (ballPosition.X < -64)
-                ballPosition.X = -64;
-            if (ballPosition.X > 64)
-                ballPosition.X = 64;
-            if (ballPosition.Z < -46)
-                ballPosition.Z = -46;
-            if (ballPosition.Z > 46)
-                ballPosition.Z = 46;
+            if (ballPosition.X < -75)
+                ballPosition.X = -75;
+            if (ballPosition.X > 75)
+                ballPosition.X = 75;
+            if (ballPosition.Z < -56)
+                ballPosition.Z = -56;
+            if (ballPosition.Z > 56)
+                ballPosition.Z = 56;
 
             //Move model
             ballWorld = Matrix.CreateTranslation(ballPosition);
