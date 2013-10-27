@@ -45,7 +45,7 @@ namespace rehabGame
         public Matrix projection { get; protected set; }
 
         Vector3 ballPosition = new Vector3(0, -8F, 0);
-        
+        Vector3 previousBallPosition;
         Vector3 boardPosition = new Vector3(0, 0, 0);
         Vector3 board1Position = new Vector3(0, 0, -100);
         Vector3 board2Position = new Vector3(0, 0, -200);
@@ -243,6 +243,8 @@ namespace rehabGame
             ballPosition.X -= bbs.CenterOfGravity.X * 0.05F;
             ballPosition.Z += bbs.CenterOfGravity.Y * 0.05F;
 
+            previousBallPosition = ballPosition;
+
             LRHeight = Helper.adjustBallHeight(ballPosition.X, pitchAngle);
             UDHeight = Helper.adjustBallHeight(ballPosition.Z, yawAngle);
             ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
@@ -284,16 +286,23 @@ namespace rehabGame
 
             //Move model
             ballWorld = Matrix.CreateTranslation(ballPosition);
-            hole();
+            isHole();
+            isHurdle();
         }
 
-        public void hole()
+        public void isHole()
         {
             if (ballPosition.X > 62 && ballPosition.X < 64 && ballPosition.Z < -40 && ballPosition.Z > -44)
             {
                 drop = true;
                 dropTheBall1();
             }
+        }
+
+        public void isHurdle()
+        {
+            if (ballPosition.X < -5 && ballPosition.X > -68 && ballPosition.Z > 2 && ballPosition.Z < 11)
+                ballPosition = previousBallPosition;
         }
 
         public void ballUpdate1()
