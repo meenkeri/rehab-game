@@ -303,13 +303,17 @@ namespace rehabGame
         {
             if (ballPosition.X < -5 && ballPosition.X > -68 && ballPosition.Z > 2 && ballPosition.Z < 11)
                 ballPosition = previousBallPosition;
+            if (ballPosition.X > 30 && ballPosition.X < 39 && ballPosition.Z > -23 && ballPosition.Z < 40)
+                ballPosition = previousBallPosition;
+            if (ballPosition.X > -44 && ballPosition.X < 46 && ballPosition.Z < -35 && ballPosition.Z > -44)
+                ballPosition = previousBallPosition;
         }
 
         public void ballUpdate1()
         {
             //if (ballPosition.X < 12 && ballPosition.Y >= 100 && ballPosition.Y < 220 && ballPosition.Z < 12)
             //    dropTheBall2();
-            Game1.score = (int) ballPosition.Y;
+            
             //if (ballPosition.X > 12 && ballPosition.Y >= 190 && ballPosition.Y < 290 && ballPosition.Z < -12)
             //    dropTheBall3();
 
