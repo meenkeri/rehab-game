@@ -247,30 +247,34 @@ namespace rehabGame
 
             LRHeight = Helper.adjustBallHeight(ballPosition.X, pitchAngle);
             UDHeight = Helper.adjustBallHeight(ballPosition.Z, yawAngle);
-            ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
+
             if (!drop)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.Right))
                 {
                     ballPosition.X -= (0.005F * right++);
+                    ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
                     left = 0;
                 }
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Left))
                 {
                     ballPosition.X += (0.005F * left++);
+                    ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
                     right = 0;
                 }
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Up))
                 {
                     ballPosition.Z -= (0.005F * up++);
+                    ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
                     down = 0;
                 }
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Down))
                 {
                     ballPosition.Z += (0.005F * down++);
+                    ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
                     up = 0;
                 }
             }
