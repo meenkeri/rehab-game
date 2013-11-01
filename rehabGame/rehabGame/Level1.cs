@@ -102,7 +102,7 @@ namespace rehabGame
                 (float)Game.Window.ClientBounds.Width /
                 (float)Game.Window.ClientBounds.Height,
                 1, 1000);
-
+            
             base.Initialize();
         }
 
@@ -168,7 +168,7 @@ namespace rehabGame
             board5Rotation = Matrix.CreateRotationX(MathHelper.Pi / 2);
             board5Movement = Matrix.CreateTranslation(board4Position);
 
-            WiimoteState s = bb.WiimoteState;
+            WiimoteState s = BalanceBoard.getBalanceBoard().WiimoteState;
             BalanceBoardState bbs = s.BalanceBoardState;
             yawAngle -= bbs.CenterOfGravity.X * 0.0009F;
             pitchAngle -= bbs.CenterOfGravity.Y * 0.0009F;
@@ -238,7 +238,7 @@ namespace rehabGame
 
         public void ballUpdate()
         {
-            WiimoteState s = bb.WiimoteState;
+            WiimoteState s = BalanceBoard.getBalanceBoard().WiimoteState;
             BalanceBoardState bbs = s.BalanceBoardState;
             ballPosition.X -= bbs.CenterOfGravity.X * 0.05F;
             ballPosition.Z += bbs.CenterOfGravity.Y * 0.05F;

@@ -14,9 +14,9 @@ namespace rehabGame
 {
     class BalanceBoard
     {
-        public Wiimote bb = new Wiimote();
+        public static Wiimote bb = new Wiimote();
 
-        public void setupBalanceBoard()
+        public BalanceBoard()
         {
             try
             {
@@ -24,6 +24,11 @@ namespace rehabGame
                 bb.SetLEDs(1);
             }
             catch { Console.WriteLine(IConstants.WBB_ERROR); }
+        }
+
+        public static Wiimote getBalanceBoard()
+        {
+            return bb;
         }
     }
 }
