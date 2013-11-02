@@ -287,25 +287,30 @@ namespace rehabGame
 
         public void isHole()
         {
-            if (ballPosition.X > 62 && ballPosition.X < 64 && ballPosition.Z < -40 && ballPosition.Z > -44)
+            switch (ballCurrentlyOn)
             {
-                drop = true;
-                dropTheBall1();
+                case BallOnBoard.FIRST:
+                    if (ballPosition.X > 62 && ballPosition.X < 64 && ballPosition.Z < -40 && ballPosition.Z > -44)
+                    {
+                        drop = true;
+                        dropTheBall(110, 0, BallOnBoard.SECOND);
+                    }
+                    break;
             }
         }
 
-        private void dropTheBall1()
+        private void dropTheBall(int ballHeight, int cameraHeight, BallOnBoard next)
         {
             ballPosition += Vector3.Up * 0.6F;
-            if (ballPosition.Y >= 110)
+            if (ballPosition.Y >= ballHeight)
             {
-                ballPosition.Y = 110;
-                ballCurrentlyOn = BallOnBoard.SECOND;
+                ballPosition.Y = ballHeight;
+                ballCurrentlyOn = next;
                 drop = false;
             }
             cameraPosition.Z -= 1.5F;
-            if (cameraPosition.Z <= 0)
-                cameraPosition.Z = 0;
+            if (cameraPosition.Z <= cameraHeight)
+                cameraPosition.Z = cameraHeight;
             CreateLookAt();
         }
 
