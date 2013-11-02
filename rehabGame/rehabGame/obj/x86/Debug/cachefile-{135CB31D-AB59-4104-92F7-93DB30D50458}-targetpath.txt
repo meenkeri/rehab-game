@@ -8,6 +8,10 @@ Content\Models\board5.xnb
 Content\Models\board2.xnb
 Content\Models\board3.xnb
 Content\Models\board4.xnb
+Content\Models\Level11.xnb
+Content\Models\Level12.xnb
+Content\Models\Level13.xnb
+Content\Models\Level14.xnb
 Content\Audio\GameAudio.xgs
 Content\Audio\Wave Bank.xwb
 Content\Audio\Sound Bank.xsb
