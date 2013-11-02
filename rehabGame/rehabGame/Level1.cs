@@ -300,13 +300,13 @@ namespace rehabGame
             if (ballPosition.Y >= 110)
             {
                 ballPosition.Y = 110;
+                ballCurrentlyOn = BallOnBoard.SECOND;
                 drop = false;
             }
             cameraPosition.Z -= 1.5F;
             if (cameraPosition.Z <= 0)
                 cameraPosition.Z = 0;
             CreateLookAt();
-            ballCurrentlyOn = BallOnBoard.SECOND;
         }
 
         private void CreateLookAt()
