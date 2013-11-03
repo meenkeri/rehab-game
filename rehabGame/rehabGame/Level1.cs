@@ -56,10 +56,9 @@ namespace rehabGame
         public enum BallOnBoard
         {
             FIRST = 0,
-            SECOND = 110,
-            THIRD = 220,
-            FOURTH,
-            FIFTH
+            SECOND = 112,
+            THIRD = 224,
+            FOURTH = 336
         }
         public BallOnBoard ballCurrentlyOn = BallOnBoard.FIRST;
 
@@ -276,8 +275,8 @@ namespace rehabGame
                 ballPosition.X = -75;
             if (ballPosition.X > 75)
                 ballPosition.X = 75;
-            if (ballPosition.Z < -56)
-                ballPosition.Z = -56;
+            if (ballPosition.Z < -54)
+                ballPosition.Z = -54;
             if (ballPosition.Z > 56)
                 ballPosition.Z = 56;
 
@@ -287,14 +286,43 @@ namespace rehabGame
 
         public void isHole()
         {
+            Game1.score = (int) ballPosition.X;
             switch (ballCurrentlyOn)
             {
                 case BallOnBoard.FIRST:
-                    if (ballPosition.X > 62 && ballPosition.X < 64 && ballPosition.Z < -40 && ballPosition.Z > -44)
+                    if (ballPosition.X > 33 && ballPosition.X < 41 && ballPosition.Z < -28 && ballPosition.Z > -36)
                     {
                         drop = true;
-                        dropTheBall(110, 0, BallOnBoard.SECOND);
+                        dropTheBall(104, 12, BallOnBoard.SECOND);
                     }
+                    break;
+
+                case BallOnBoard.SECOND:
+                    if (ballPosition.X < -47 && ballPosition.X > -55 && ballPosition.Z < -26 && ballPosition.Z > -33)
+                    {
+                        drop = true;
+                        dropTheBall(216, 124, BallOnBoard.THIRD);
+                    }
+                    break;
+
+                case BallOnBoard.THIRD:
+                    if (ballPosition.X < -39 && ballPosition.X > -49 && ballPosition.Z > 17 && ballPosition.Z < 26)
+                    {
+                        drop = true;
+                        dropTheBall(328, 236, BallOnBoard.FOURTH);
+                    }
+                    break;
+
+                case BallOnBoard.FOURTH:
+                    if (ballPosition.X > 32 && ballPosition.X < 41 && ballPosition.Z > 21 && ballPosition.Z < 30)
+                    {
+                        Game1.currentLevel = Game1.Level.TWO;
+                        ((Game1)Game).ChangeGameState(Game1.GameState.LEVEL_CHANGE, 1);
+                    }
+                    break;
+
+                default:
+                    Log.logger.Info("Does not match the value " + ballCurrentlyOn + " any cases inside switch");
                     break;
             }
         }
@@ -306,11 +334,12 @@ namespace rehabGame
             {
                 ballPosition.Y = ballHeight;
                 ballCurrentlyOn = next;
+                yawAngle = pitchAngle = 0;
                 drop = false;
             }
             cameraPosition.Z -= 1.5F;
-            if (cameraPosition.Z <= cameraHeight)
-                cameraPosition.Z = cameraHeight;
+            if (cameraPosition.Z <= -cameraHeight)
+                cameraPosition.Z = -cameraHeight;
             CreateLookAt();
         }
 
