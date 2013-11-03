@@ -133,10 +133,6 @@ namespace rehabGame
             if (Game1.currentGameState == Game1.GameState.PLAY)
             {
                 generalBoardUpdate();
-                board1Update();
-                board2Update();
-                board3Update();
-                board4Update();
                 generalBallUpdate();
                 isHole();
             }
@@ -190,41 +186,28 @@ namespace rehabGame
                 pitchAngle = 0.05F;
             if (pitchAngle <= -0.05F)
                 pitchAngle = -0.05F;
-        }
 
-        public void board1Update()
-        {
-            if (ballCurrentlyOn == BallOnBoard.FIRST)
+            switch (ballCurrentlyOn)
             {
-                //Rotate model
-                board1Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
-            }
-        }
+                case BallOnBoard.FIRST:
+                    board1Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
+                    break;
 
-        public void board2Update()
-        {
-            if (ballCurrentlyOn == BallOnBoard.SECOND)
-            {
-                //Rotate model
-                board2Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
-            }
-        }
+                case BallOnBoard.SECOND:
+                    board2Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
+                    break;
 
-        public void board3Update()
-        {
-            if (ballCurrentlyOn == BallOnBoard.THIRD)
-            {
-                //Rotate model
-                board3Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
-            }
-        }
+                case BallOnBoard.THIRD:
+                    board3Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
+                    break;
 
-        public void board4Update()
-        {
-            if (ballCurrentlyOn == BallOnBoard.FOURTH)
-            {
-                //Rotate model
-                board4Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
+                case BallOnBoard.FOURTH:
+                    board4Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
+                    break;
+
+                default:
+                    Log.logger.Info(ballCurrentlyOn + "No match found inside switch");
+                    break;
             }
         }
 
@@ -318,7 +301,7 @@ namespace rehabGame
                     break;
 
                 default:
-                    Log.logger.Info("Does not match the value " + ballCurrentlyOn + " any cases inside switch");
+                    Log.logger.Info(ballCurrentlyOn + "No match found inside switch");
                     break;
             }
         }
