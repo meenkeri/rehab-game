@@ -287,7 +287,6 @@ namespace rehabGame
 
         public void isHole()
         {
-            Game1.score = (int) ballPosition.X;
             switch (ballCurrentlyOn)
             {
                 case BallOnBoard.FIRST:
