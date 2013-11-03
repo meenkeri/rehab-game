@@ -3,15 +3,14 @@ Content\Fonts\SplashScreenFont.xnb
 Content\Fonts\SplashScreenFontLarge.xnb
 Content\Fonts\ScoreFont.xnb
 Content\Textures\background.xnb
-Content\Models\board1.xnb
-Content\Models\board5.xnb
-Content\Models\board2.xnb
-Content\Models\board3.xnb
-Content\Models\board4.xnb
 Content\Models\Level11.xnb
 Content\Models\Level12.xnb
 Content\Models\Level13.xnb
 Content\Models\Level14.xnb
+Content\Models\Level21.xnb
+Content\Models\Level22.xnb
+Content\Models\Level23.xnb
+Content\Models\Level24.xnb
 Content\Audio\GameAudio.xgs
 Content\Audio\Wave Bank.xwb
 Content\Audio\Sound Bank.xsb

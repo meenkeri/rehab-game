@@ -18,64 +18,70 @@ namespace rehabGame
     /// </summary>
     public class Level2 : DrawableGameComponent
     {
-        public Matrix board1Rotation = Matrix.Identity;
-        public Matrix board2Rotation = Matrix.Identity;
-        public Matrix board3Rotation = Matrix.Identity;
-        public Matrix board4Rotation = Matrix.Identity;
-        public Matrix board5Rotation = Matrix.Identity;
+        //Models declaration
+        Model ball;
+        Model[] boards = new Model[4];
 
-        public Matrix ballRotation = Matrix.Identity;
-
-        public Matrix board1Movement = Matrix.Identity;
-        public Matrix board2Movement = Matrix.Identity;
-        public Matrix board3Movement = Matrix.Identity;
-        public Matrix board4Movement = Matrix.Identity;
-        public Matrix board5Movement = Matrix.Identity;
-
+        //Camera declaration
         Vector3 pos = new Vector3(0, 150, 100);
         Vector3 target = Vector3.Zero;
         Vector3 cameraPosition;
         Vector3 cameraDirection;
-        
+        public Matrix view { get; protected set; }
+        public Matrix projection { get; protected set; }
+
+        //Board Matrix
+        public Matrix board1Movement = Matrix.Identity;
+        public Matrix board2Movement = Matrix.Identity;
+        public Matrix board3Movement = Matrix.Identity;
+        public Matrix board4Movement = Matrix.Identity;
+
+        public Matrix board1Rotation = Matrix.Identity;
+        public Matrix board2Rotation = Matrix.Identity;
+        public Matrix board3Rotation = Matrix.Identity;
+        public Matrix board4Rotation = Matrix.Identity;
+
+        //Board Positions
+        Vector3 board1Position = new Vector3(0, 0, 0);
+        Vector3 board2Position = new Vector3(0, 0, -100);
+        Vector3 board3Position = new Vector3(0, 0, -200);
+        Vector3 board4Position = new Vector3(0, 0, -300);
+
+        //Board Angle
         float yawAngle = 0; //Left Right
         float pitchAngle = 0; // Up Down
         float rollAngle = 0; //Do nothing
 
-        public Matrix view { get; protected set; }
-        public Matrix projection { get; protected set; }
-
-        Vector3 ballPosition = new Vector3(0, -8F, 0);
-        Vector3 previousBallPosition;
-        Vector3 boardPosition = new Vector3(0, 0, 0);
-        Vector3 board1Position = new Vector3(0, 0, -100);
-        Vector3 board2Position = new Vector3(0, 0, -200);
-        Vector3 board3Position = new Vector3(0, 0, -300);
-        Vector3 board4Position = new Vector3(0, 0, -400);
-        Vector3 board5Position = new Vector3(0, 0, -500);
-
-        public Matrix boardWorld = Matrix.Identity;
-        public Matrix ballWorld = Matrix.Identity;
-
-        Model[] balls = new Model[1];
-        Model[] boards = new Model[5];
-
-        public Wiimote bb = new Wiimote();
-        public enum BallOnBoard { FIRST = 0,
-            SECOND = 110,
-            THIRD = 220,
-            FOURTH,
-            FIFTH }
+        //Board Enum
+        public enum BallOnBoard
+        {
+            FIRST = 0,
+            SECOND = 112,
+            THIRD = 224,
+            FOURTH = 336
+        }
         public BallOnBoard ballCurrentlyOn = BallOnBoard.FIRST;
 
+        //Ball Matrix
+        public Matrix ballRotation = Matrix.Identity;
+        public Matrix ballWorld = Matrix.Identity;
+
+        //Ball Position
+        Vector3 ballPosition = new Vector3(0, -8F, 0);
+        Vector3 previousBallPosition;
+
+        //Ball On The Board Height Adjustment Variables
+        public float LRHeight;
+        public float UDHeight;
+
+        //No Ball/Board Movement When The Ball Is Falling
+        public Boolean drop = false;
+
+        //Ball Rolling Effect Variables
         public int left = 0;
         public int right = 0;
         public int up = 0;
         public int down = 0;
-
-        public float LRHeight;
-        public float UDHeight;
-
-        public Boolean drop = false;
 
         public Level2(Game game)
             : base(game)
@@ -109,12 +115,11 @@ namespace rehabGame
         protected override void LoadContent()
         {
             Log.logger.Info("Loading level1 content");
-            balls[0] = Game.Content.Load<Model>(@"Models\ball");
-            boards[0] = Game.Content.Load<Model>(@"Models\board1");
-            boards[1] = Game.Content.Load<Model>(@"Models\board2");
-            boards[2] = Game.Content.Load<Model>(@"Models\board3");
-            boards[3] = Game.Content.Load<Model>(@"Models\board4");
-            boards[4] = Game.Content.Load<Model>(@"Models\board5");
+            ball = Game.Content.Load<Model>(@"Models\ball");
+            boards[0] = Game.Content.Load<Model>(@"Models\Level21");
+            boards[1] = Game.Content.Load<Model>(@"Models\Level22");
+            boards[2] = Game.Content.Load<Model>(@"Models\Level23");
+            boards[3] = Game.Content.Load<Model>(@"Models\Level24");
             
             base.LoadContent();
         }
@@ -132,9 +137,8 @@ namespace rehabGame
                 board2Update();
                 board3Update();
                 board4Update();
-                board5Update();
-                ballUpdate();
-                ballUpdate1();
+                generalBallUpdate();
+                isHole();
             }
             
             base.Update(gameTime);
@@ -148,8 +152,7 @@ namespace rehabGame
                 BoardHelper.boardDraw(board2Movement, boards[1], board2Rotation, projection, view);
                 BoardHelper.boardDraw(board3Movement, boards[2], board3Rotation, projection, view);
                 BoardHelper.boardDraw(board4Movement, boards[3], board4Rotation, projection, view);
-                BoardHelper.boardDraw(board5Movement, boards[4], board5Rotation, projection, view);
-                BallHelper.ballDraw(balls[0], ballWorld, ballRotation, projection, view);
+                BallHelper.ballDraw(ball, ballWorld, ballRotation, projection, view);
             }
 
             base.Draw(gameTime);
@@ -158,20 +161,18 @@ namespace rehabGame
         public void generalBoardUpdate()
         {
             board1Rotation = Matrix.CreateRotationX(MathHelper.Pi / 2);
-            board1Movement = Matrix.CreateTranslation(boardPosition);
+            board1Movement = Matrix.CreateTranslation(board1Position);
             board2Rotation = Matrix.CreateRotationX(MathHelper.Pi / 2);
-            board2Movement = Matrix.CreateTranslation(board1Position);
+            board2Movement = Matrix.CreateTranslation(board2Position);
             board3Rotation = Matrix.CreateRotationX(MathHelper.Pi / 2);
-            board3Movement = Matrix.CreateTranslation(board2Position);
+            board3Movement = Matrix.CreateTranslation(board3Position);
             board4Rotation = Matrix.CreateRotationX(MathHelper.Pi / 2);
-            board4Movement = Matrix.CreateTranslation(board3Position);
-            board5Rotation = Matrix.CreateRotationX(MathHelper.Pi / 2);
-            board5Movement = Matrix.CreateTranslation(board4Position);
+            board4Movement = Matrix.CreateTranslation(board4Position);
 
             WiimoteState s = BalanceBoard.getBalanceBoard().WiimoteState;
             BalanceBoardState bbs = s.BalanceBoardState;
-            yawAngle -= bbs.CenterOfGravity.X * 0.0009F;
-            pitchAngle -= bbs.CenterOfGravity.Y * 0.0009F;
+            pitchAngle -= bbs.CenterOfGravity.X * 0.0009F;
+            yawAngle += bbs.CenterOfGravity.Y * 0.0009F;
 
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
                 yawAngle += 0.01F;
@@ -227,22 +228,8 @@ namespace rehabGame
             }
         }
 
-        public void board5Update()
+        public void generalBallUpdate()
         {
-            if (ballCurrentlyOn == BallOnBoard.FIFTH)
-            {
-                //Rotate model
-                board5Rotation *= Matrix.CreateFromYawPitchRoll(yawAngle, pitchAngle, rollAngle);
-            }
-        }
-
-        public void ballUpdate()
-        {
-            WiimoteState s = BalanceBoard.getBalanceBoard().WiimoteState;
-            BalanceBoardState bbs = s.BalanceBoardState;
-            ballPosition.X -= bbs.CenterOfGravity.X * 0.05F;
-            ballPosition.Z += bbs.CenterOfGravity.Y * 0.05F;
-
             previousBallPosition = ballPosition;
 
             LRHeight = Helper.adjustBallHeight(ballPosition.X, pitchAngle);
@@ -250,31 +237,33 @@ namespace rehabGame
 
             if (!drop)
             {
+                WiimoteState s = BalanceBoard.getBalanceBoard().WiimoteState;
+                BalanceBoardState bbs = s.BalanceBoardState;
+                ballPosition.X -= bbs.CenterOfGravity.X * 0.05F;
+                ballPosition.Z += bbs.CenterOfGravity.Y * 0.05F;
+                ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
+
                 if (Keyboard.GetState().IsKeyDown(Keys.Right))
                 {
                     ballPosition.X -= (0.005F * right++);
-                    ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
                     left = 0;
                 }
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Left))
                 {
                     ballPosition.X += (0.005F * left++);
-                    ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
                     right = 0;
                 }
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Up))
                 {
                     ballPosition.Z -= (0.005F * up++);
-                    ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
                     down = 0;
                 }
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Down))
                 {
                     ballPosition.Z += (0.005F * down++);
-                    ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
                     up = 0;
                 }
             }
@@ -283,106 +272,71 @@ namespace rehabGame
                 ballPosition.X = -75;
             if (ballPosition.X > 75)
                 ballPosition.X = 75;
-            if (ballPosition.Z < -56)
-                ballPosition.Z = -56;
+            if (ballPosition.Z < -54)
+                ballPosition.Z = -54;
             if (ballPosition.Z > 56)
                 ballPosition.Z = 56;
 
             //Move model
             ballWorld = Matrix.CreateTranslation(ballPosition);
-            isHole();
-            isHurdle();
         }
 
         public void isHole()
         {
-            if (ballPosition.X > 62 && ballPosition.X < 64 && ballPosition.Z < -40 && ballPosition.Z > -44)
+            switch (ballCurrentlyOn)
             {
-                drop = true;
-                dropTheBall1();
+                case BallOnBoard.FIRST:
+                    if (ballPosition.X < -50 && ballPosition.X > -60 && ballPosition.Z < -36 && ballPosition.Z > -45)
+                    {
+                        drop = true;
+                        dropTheBall(104, 12, BallOnBoard.SECOND);
+                    }
+                    break;
+
+                case BallOnBoard.SECOND:
+                    if (ballPosition.X > 55 && ballPosition.X < 65 && ballPosition.Z < -34 && ballPosition.Z > -40)
+                    {
+                        drop = true;
+                        dropTheBall(216, 124, BallOnBoard.THIRD);
+                    }
+                    break;
+
+                case BallOnBoard.THIRD:
+                    if (ballPosition.X < -56 && ballPosition.X > -66 && ballPosition.Z > 26 && ballPosition.Z < 36)
+                    {
+                        drop = true;
+                        dropTheBall(328, 236, BallOnBoard.FOURTH);
+                    }
+                    break;
+
+                case BallOnBoard.FOURTH:
+                    if (ballPosition.X > 54 && ballPosition.X < 64 && ballPosition.Z > 28 && ballPosition.Z < 36)
+                    {
+                        Game1.currentLevel = Game1.Level.TWO;
+                        ((Game1)Game).ChangeGameState(Game1.GameState.LEVEL_CHANGE, 1);
+                    }
+                    break;
+
+                default:
+                    Log.logger.Info("Does not match the value " + ballCurrentlyOn + " any cases inside switch");
+                    break;
             }
         }
 
-        public void isHurdle()
-        {
-            if (ballPosition.X < -5 && ballPosition.X > -68 && ballPosition.Z > 2 && ballPosition.Z < 11)
-                ballPosition = previousBallPosition;
-            if (ballPosition.X > 30 && ballPosition.X < 39 && ballPosition.Z > -23 && ballPosition.Z < 40)
-                ballPosition = previousBallPosition;
-            if (ballPosition.X > -44 && ballPosition.X < 46 && ballPosition.Z < -35 && ballPosition.Z > -44)
-                ballPosition = previousBallPosition;
-        }
-
-        public void ballUpdate1()
-        {
-            //if (ballPosition.X < 12 && ballPosition.Y >= 100 && ballPosition.Y < 220 && ballPosition.Z < 12)
-            //    dropTheBall2();
-            
-            //if (ballPosition.X > 12 && ballPosition.Y >= 190 && ballPosition.Y < 290 && ballPosition.Z < -12)
-            //    dropTheBall3();
-
-            if (ballPosition.X < 12 && ballPosition.Y >= 290 && ballPosition.Y < 390 && ballPosition.Z < 12)
-                dropTheBall4();
-
-            if (ballPosition.X > 12 && ballPosition.Y >= 390 && ballPosition.Z < -12)
-                dropTheBall5();
-        }
-
-        private void dropTheBall1()
+        private void dropTheBall(int ballHeight, int cameraHeight, BallOnBoard next)
         {
             ballPosition += Vector3.Up * 0.6F;
-            if (ballPosition.Y >= 110)
+            if (ballPosition.Y >= ballHeight)
             {
-                ballPosition.Y = 110;
+                ballPosition.Y = ballHeight;
+                ballCurrentlyOn = next;
+                yawAngle = pitchAngle = 0;
                 drop = false;
             }
             cameraPosition.Z -= 1.5F;
-            if (cameraPosition.Z <= 0)
-                cameraPosition.Z = 0;
+            if (cameraPosition.Z <= -cameraHeight)
+                cameraPosition.Z = -cameraHeight;
             CreateLookAt();
-            ballCurrentlyOn = BallOnBoard.SECOND;
-        }
-
-        private void dropTheBall2()
-        {
-            ballPosition += Vector3.Up * 0.6F;
-            if (ballPosition.Y >= 220)
-                ballPosition.Y = 220;
-            cameraPosition.Z -= 1.5F;
-            if (cameraPosition.Z <= -100)
-                cameraPosition.Z = -100;
-            CreateLookAt();
-            ballCurrentlyOn = BallOnBoard.THIRD;
-        }
-
-        private void dropTheBall3()
-        {
-            ballPosition += Vector3.Up * 0.6F;
-            if (ballPosition.Y >= 290)
-                ballPosition.Y = 290;
-            cameraPosition.Z -= 1.5F;
-            if (cameraPosition.Z <= -200)
-                cameraPosition.Z = -200;
-            CreateLookAt();
-            ballCurrentlyOn = BallOnBoard.FOURTH;
-        }
-
-        private void dropTheBall4()
-        {
-            ballPosition += Vector3.Up * 0.6F;
-            if (ballPosition.Y >= 390)
-                ballPosition.Y = 390;
-            cameraPosition.Z -= 1.5F;
-            if (cameraPosition.Z <= -300)
-                cameraPosition.Z = -300;
-            CreateLookAt();
-            ballCurrentlyOn = BallOnBoard.FIFTH;
-        }
-
-        private void dropTheBall5()
-        {
-            Game1.currentLevel = Game1.Level.TWO;
-            ((Game1)Game).ChangeGameState(Game1.GameState.LEVEL_CHANGE, 1);
         }
 
         private void CreateLookAt()
