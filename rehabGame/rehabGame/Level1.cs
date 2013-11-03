@@ -171,8 +171,8 @@ namespace rehabGame
 
             WiimoteState s = BalanceBoard.getBalanceBoard().WiimoteState;
             BalanceBoardState bbs = s.BalanceBoardState;
-            yawAngle -= bbs.CenterOfGravity.X * 0.0009F;
-            pitchAngle -= bbs.CenterOfGravity.Y * 0.0009F;
+            pitchAngle -= bbs.CenterOfGravity.X * 0.0009F;
+            yawAngle += bbs.CenterOfGravity.Y * 0.0009F;
 
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
                 yawAngle += 0.01F;
@@ -230,11 +230,6 @@ namespace rehabGame
 
         public void generalBallUpdate()
         {
-            WiimoteState s = BalanceBoard.getBalanceBoard().WiimoteState;
-            BalanceBoardState bbs = s.BalanceBoardState;
-            ballPosition.X -= bbs.CenterOfGravity.X * 0.05F;
-            ballPosition.Z += bbs.CenterOfGravity.Y * 0.05F;
-
             previousBallPosition = ballPosition;
 
             LRHeight = Helper.adjustBallHeight(ballPosition.X, pitchAngle);
@@ -242,6 +237,12 @@ namespace rehabGame
 
             if (!drop)
             {
+                WiimoteState s = BalanceBoard.getBalanceBoard().WiimoteState;
+                BalanceBoardState bbs = s.BalanceBoardState;
+                ballPosition.X -= bbs.CenterOfGravity.X * 0.05F;
+                ballPosition.Z += bbs.CenterOfGravity.Y * 0.05F;
+                ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
+
                 if (Keyboard.GetState().IsKeyDown(Keys.Right))
                 {
                     ballPosition.X -= (0.005F * right++);
