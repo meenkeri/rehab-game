@@ -135,6 +135,7 @@ namespace rehabGame
                 generalBoardUpdate();
                 generalBallUpdate();
                 isHole();
+                isHurdle();
             }
             
             base.Update(gameTime);
@@ -220,36 +221,36 @@ namespace rehabGame
 
             if (!drop)
             {
-                WiimoteState s = BalanceBoard.getBalanceBoard().WiimoteState;
-                BalanceBoardState bbs = s.BalanceBoardState;
-                ballPosition.X -= bbs.CenterOfGravity.X * 0.05F;
-                ballPosition.Z += bbs.CenterOfGravity.Y * 0.05F;
-                ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
+                    WiimoteState s = BalanceBoard.getBalanceBoard().WiimoteState;
+                    BalanceBoardState bbs = s.BalanceBoardState;
+                    ballPosition.X -= bbs.CenterOfGravity.X * 0.05F;
+                    ballPosition.Z += bbs.CenterOfGravity.Y * 0.05F;
+                    ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
 
-                if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                {
-                    ballPosition.X -= (0.005F * right++);
-                    left = 0;
-                }
+                    if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                    {
+                        ballPosition.X -= (0.005F * right++);
+                        left = 0;
+                    }
 
-                if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                {
-                    ballPosition.X += (0.005F * left++);
-                    right = 0;
-                }
+                    if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                    {
+                        ballPosition.X += (0.005F * left++);
+                        right = 0;
+                    }
 
-                if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                {
-                    ballPosition.Z -= (0.005F * up++);
-                    down = 0;
-                }
+                    if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                    {
+                        ballPosition.Z -= (0.005F * up++);
+                        down = 0;
+                    }
 
-                if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                {
-                    ballPosition.Z += (0.005F * down++);
-                    up = 0;
+                    if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                    {
+                        ballPosition.Z += (0.005F * down++);
+                        up = 0;
+                    }
                 }
-            }
 
             if (ballPosition.X < -75)
                 ballPosition.X = -75;
@@ -297,6 +298,62 @@ namespace rehabGame
                     {
                         Game1.currentLevel = Game1.Level.TWO;
                         ((Game1)Game).ChangeGameState(Game1.GameState.LEVEL_CHANGE, 1);
+                    }
+                    break;
+
+                default:
+                    Log.logger.Info(ballCurrentlyOn + "No match found inside switch");
+                    break;
+            }
+        }
+
+        public void isHurdle()
+        {
+            Game1.score = (int)ballPosition.Z;
+            switch (ballCurrentlyOn)
+            {
+                case BallOnBoard.FIRST:
+                    if (ballPosition.X < -28 && ballPosition.X > -36 && ballPosition.Z > -32 && ballPosition.Z < 30)
+                    {
+                        ballPosition = previousBallPosition;          
+                    }
+                    if (ballPosition.X < 55 && ballPosition.X > -34 && ballPosition.Z < -27 && ballPosition.Z > -36)
+                    {
+                        ballPosition = previousBallPosition;
+                    }
+                   
+                    break;
+
+                case BallOnBoard.SECOND:
+                    if (ballPosition.X > 0 && ballPosition.X < 7 && ballPosition.Z > -55 && ballPosition.Z < 3)
+                    {
+                        ballPosition = previousBallPosition;
+                    }
+                    if (ballPosition.X > 18 && ballPosition.X < 76 && ballPosition.Z < 2 && ballPosition.Z > -4)
+                    {
+                        ballPosition = previousBallPosition;
+                    }
+                    break;
+
+                case BallOnBoard.THIRD:
+                    if (ballPosition.X > -76 && ballPosition.X < 12 && ballPosition.Z > -20 && ballPosition.Z < -12)
+                    {
+                        ballPosition = previousBallPosition;
+                    }
+                    if (ballPosition.X > 8 && ballPosition.X < 15 && ballPosition.Z > 2 && ballPosition.Z < 53)
+                    {
+                        ballPosition = previousBallPosition;
+                    }
+                    break;
+
+                case BallOnBoard.FOURTH:
+                    if (ballPosition.X > -39 && ballPosition.X < 10 && ballPosition.Z > -40 && ballPosition.Z < -30)
+                    {
+                        ballPosition = previousBallPosition;
+                    }
+                    if (ballPosition.X > 2 && ballPosition.X < 10 && ballPosition.Z > -40 && ballPosition.Z < 53)
+                    {
+                        ballPosition = previousBallPosition;
                     }
                     break;
 
