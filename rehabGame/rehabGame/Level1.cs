@@ -226,27 +226,24 @@ namespace rehabGame
                 ballPosition.Z += bbs.CenterOfGravity.Y * 0.05F;
                 ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
 
-                if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                if (pitchAngle > 0)
                 {
-                    ballPosition.X -= (0.005F * right++);
+                    ballPosition.X += (0.004F * right++);
                     left = 0;
                 }
-
-                if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                if (pitchAngle < 0)
                 {
-                    ballPosition.X += (0.005F * left++);
+                    ballPosition.X -= (0.004F * left++);
                     right = 0;
                 }
-
-                if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                if (yawAngle > 0)
                 {
-                    ballPosition.Z -= (0.005F * up++);
+                    ballPosition.Z += (0.004F * up++);
                     down = 0;
                 }
-
-                if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                if (yawAngle < 0)
                 {
-                    ballPosition.Z += (0.005F * down++);
+                    ballPosition.Z -= (0.004F * down++);
                     up = 0;
                 }
             }
