@@ -114,7 +114,7 @@ namespace rehabGame
 
         protected override void LoadContent()
         {
-            Log.logger.Info("Loading level1 content");
+            Log.logger.Info("Loading level2 content");
             ball = Game.Content.Load<Model>(@"Models\ball");
             boards[0] = Game.Content.Load<Model>(@"Models\Level21");
             boards[1] = Game.Content.Load<Model>(@"Models\Level22");
