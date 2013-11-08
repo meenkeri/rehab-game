@@ -220,10 +220,6 @@ namespace rehabGame
 
             if (!drop)
             {
-                WiimoteState s = BalanceBoard.getBalanceBoard().WiimoteState;
-                BalanceBoardState bbs = s.BalanceBoardState;
-                ballPosition.X -= bbs.CenterOfGravity.X * 0.05F;
-                ballPosition.Z += bbs.CenterOfGravity.Y * 0.05F;
                 ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
 
                 if (pitchAngle > 0)
