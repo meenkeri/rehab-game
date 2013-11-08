@@ -292,8 +292,8 @@ namespace rehabGame
                 case BallOnBoard.FOURTH:
                     if (ballPosition.X > 54 && ballPosition.X < 64 && ballPosition.Z > 28 && ballPosition.Z < 36)
                     {
-                        Game1.currentLevel = Game1.Level.TWO;
-                        ((Game1)Game).ChangeGameState(Game1.GameState.LEVEL_CHANGE, 1);
+                        Game1.currentLevel = Game1.Level.THREE;
+                        ((Game1)Game).ChangeGameState(Game1.GameState.LEVEL_CHANGE, 2);
                     }
                     break;
 

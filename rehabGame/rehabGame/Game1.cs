@@ -22,6 +22,7 @@ namespace rehabGame
         
         Level1 level1;
         Level2 level2;
+        Level3 level3;
 
         public enum GameState { START, PLAY, LEVEL_CHANGE, END }
         public static GameState currentGameState = GameState.START;
@@ -73,6 +74,11 @@ namespace rehabGame
             Components.Add(level2);
             level2.Enabled = false;
             level2.Visible = false;
+
+            level3 = new Level3(this);
+            Components.Add(level3);
+            level3.Enabled = false;
+            level3.Visible = false;
 
             //Background images component
             background = new Backgrounds(this);
@@ -166,6 +172,8 @@ namespace rehabGame
                     level1.Visible = false;
                     level2.Enabled = false;
                     level2.Visible = false;
+                    level3.Enabled = false;
+                    level3.Visible = false;
                     splashScreen.Enabled = true;
                     splashScreen.Visible = true;
                     backgroundCue.Stop(AudioStopOptions.Immediate);
@@ -185,6 +193,11 @@ namespace rehabGame
                         level2.Enabled = true;
                         level2.Visible = true;
                         break;
+
+                        case Level.THREE:
+                        level3.Enabled = true;
+                        level3.Visible = true;
+                        break;
                     }
                     splashScreen.Enabled = false;
                     splashScreen.Visible = false;
@@ -202,6 +215,8 @@ namespace rehabGame
                     level1.Visible = false;
                     level2.Enabled = false;
                     level2.Visible = false;
+                    level3.Enabled = false;
+                    level3.Visible = false;
                     background.Enabled = true;
                     background.Visible = true;
                     splashScreen.Enabled = true;
