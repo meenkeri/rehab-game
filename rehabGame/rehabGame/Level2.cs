@@ -302,52 +302,86 @@ namespace rehabGame
 
         public void isHurdle()
         {
-            Game1.score = (int)ballPosition.Z;
             switch (ballCurrentlyOn)
             {
                 case BallOnBoard.FIRST:
-                    if (ballPosition.X < -28 && ballPosition.X > -36 && ballPosition.Z > -32 && ballPosition.Z < 30)
+                    if (ballPosition.X < -28 && ballPosition.X > -37 && ballPosition.Z > -32 && ballPosition.Z < 30)
                     {
-                        ballPosition = previousBallPosition;          
+                        ballPosition.X = previousBallPosition.X;
+                    }
+                    if (ballPosition.X < -28 && ballPosition.X > -37 && ballPosition.Z > -32 && ballPosition.Z < 30)
+                    {
+                        ballPosition.Z = previousBallPosition.Z;
                     }
                     if (ballPosition.X < 55 && ballPosition.X > -34 && ballPosition.Z < -27 && ballPosition.Z > -36)
                     {
-                        ballPosition = previousBallPosition;
+                        ballPosition.Z = previousBallPosition.Z;
                     }
-                   
+                    if (ballPosition.X < 55 && ballPosition.X > -34 && ballPosition.Z < -27 && ballPosition.Z > -36)
+                    {
+                        ballPosition.X = previousBallPosition.X;
+                    }
+
                     break;
 
                 case BallOnBoard.SECOND:
                     if (ballPosition.X > 0 && ballPosition.X < 7 && ballPosition.Z > -55 && ballPosition.Z < 3)
                     {
-                        ballPosition = previousBallPosition;
+                        ballPosition.X = previousBallPosition.X;
+                    }
+                    if (ballPosition.X > 0 && ballPosition.X < 7 && ballPosition.Z > -55 && ballPosition.Z < 3)
+                    {
+                        ballPosition.Z = previousBallPosition.Z;
                     }
                     if (ballPosition.X > 18 && ballPosition.X < 76 && ballPosition.Z < 2 && ballPosition.Z > -4)
                     {
-                        ballPosition = previousBallPosition;
+                        ballPosition.Z = previousBallPosition.Z;
                     }
+                    if (ballPosition.X > 18 && ballPosition.X < 76 && ballPosition.Z < 2 && ballPosition.Z > -4)
+                    {
+                        ballPosition.X = previousBallPosition.X;
+                    }
+
                     break;
 
                 case BallOnBoard.THIRD:
                     if (ballPosition.X > -76 && ballPosition.X < 12 && ballPosition.Z > -20 && ballPosition.Z < -12)
                     {
-                        ballPosition = previousBallPosition;
+                        ballPosition.Z = previousBallPosition.Z;
                     }
-                    if (ballPosition.X > 8 && ballPosition.X < 15 && ballPosition.Z > 2 && ballPosition.Z < 53)
+                    if (ballPosition.X > -76 && ballPosition.X < 12 && ballPosition.Z > -20 && ballPosition.Z < -12)
                     {
-                        ballPosition = previousBallPosition;
+                        ballPosition.X = previousBallPosition.X;
                     }
+                    if (ballPosition.X > 8 && ballPosition.X < 16 && ballPosition.Z > 2 && ballPosition.Z < 53)
+                    {
+                        ballPosition.X = previousBallPosition.X;
+                    }
+                    if (ballPosition.X > 8 && ballPosition.X < 16 && ballPosition.Z > 2 && ballPosition.Z < 53)
+                    {
+                        ballPosition.Z = previousBallPosition.Z;
+                    }
+
                     break;
 
                 case BallOnBoard.FOURTH:
                     if (ballPosition.X > -39 && ballPosition.X < 10 && ballPosition.Z > -40 && ballPosition.Z < -30)
                     {
-                        ballPosition = previousBallPosition;
+                        ballPosition.Z = previousBallPosition.Z;
                     }
-                    if (ballPosition.X > 2 && ballPosition.X < 10 && ballPosition.Z > -40 && ballPosition.Z < 53)
+                    if (ballPosition.X > -39 && ballPosition.X < 10 && ballPosition.Z > -40 && ballPosition.Z < -30)
                     {
-                        ballPosition = previousBallPosition;
+                        ballPosition.X = previousBallPosition.X;
                     }
+                    if (ballPosition.X > 3 && ballPosition.X < 12 && ballPosition.Z > -40 && ballPosition.Z < 53)
+                    {
+                        ballPosition.X = previousBallPosition.X;
+                    }
+                    if (ballPosition.X > 3 && ballPosition.X < 12 && ballPosition.Z > -40 && ballPosition.Z < 53)
+                    {
+                        ballPosition.Z = previousBallPosition.Z;
+                    }
+
                     break;
 
                 default:
