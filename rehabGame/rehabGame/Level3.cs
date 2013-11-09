@@ -137,6 +137,8 @@ namespace rehabGame
                 isHole();
                 isHurdle();
                 isVisible();
+                if (drop)
+                    Game1.blank = false;
             }
 
             base.Update(gameTime);
@@ -378,8 +380,8 @@ namespace rehabGame
                         Game1.blank = true;
                     else
                         Game1.blank = false;
-
-                    break;
+                    
+                        break;
 
                 case BallOnBoard.THIRD:
                     if (ballPosition.X > -20 && ballPosition.X < 24 && ballPosition.Z > 3 && ballPosition.Z < 53)
