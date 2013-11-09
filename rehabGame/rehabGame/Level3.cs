@@ -135,6 +135,7 @@ namespace rehabGame
                 generalBoardUpdate();
                 generalBallUpdate();
                 isHole();
+                isHurdle();
             }
 
             base.Update(gameTime);
@@ -262,7 +263,6 @@ namespace rehabGame
 
         public void isHole()
         {
-            Game1.score = (int) ballPosition.Z;
             switch (ballCurrentlyOn)
             {
                 case BallOnBoard.FIRST:
@@ -282,7 +282,7 @@ namespace rehabGame
                     break;
 
                 case BallOnBoard.THIRD:
-                    if (ballPosition.X < -50 && ballPosition.X > -65 && ballPosition.Z > 26 && ballPosition.Z < 38)
+                    if (ballPosition.X < -50 && ballPosition.X > -60 && ballPosition.Z > 26 && ballPosition.Z < 36)
                     {
                         drop = true;
                         dropTheBall(328, 236, BallOnBoard.FOURTH);
@@ -294,6 +294,64 @@ namespace rehabGame
                     {
                         ((Game1)Game).ChangeGameState(Game1.GameState.END, 0);
                     }
+                    break;
+
+                default:
+                    Log.logger.Info(ballCurrentlyOn + "No match found inside switch");
+                    break;
+            }
+        }
+
+        public void isHurdle()
+        {
+            switch (ballCurrentlyOn)
+            {
+                case BallOnBoard.FIRST:
+                    if (ballPosition.X > 24 && ballPosition.X < 32 && ballPosition.Z > -56 && ballPosition.Z < 18)
+                    {
+                        ballPosition.X = previousBallPosition.X;
+                    }
+                    if (ballPosition.X > 24 && ballPosition.X < 32 && ballPosition.Z > -56 && ballPosition.Z < 18)
+                    {
+                        ballPosition.Z = previousBallPosition.Z;
+                    }
+                    
+                    break;
+
+                case BallOnBoard.SECOND:
+                    if (ballPosition.X > -2 && ballPosition.X < 6 && ballPosition.Z > -56 && ballPosition.Z < 19)
+                    {
+                        ballPosition.X = previousBallPosition.X;
+                    }
+                    if (ballPosition.X > -2 && ballPosition.X < 6 && ballPosition.Z > -56 && ballPosition.Z < 19)
+                    {
+                        ballPosition.Z = previousBallPosition.Z;
+                    }
+                    
+                    break;
+
+                case BallOnBoard.THIRD:
+                    if (ballPosition.X > -76 && ballPosition.X < 24 && ballPosition.Z > -5 && ballPosition.Z < 3)
+                    {
+                        ballPosition.Z = previousBallPosition.Z;
+                    }
+                    if (ballPosition.X > -76 && ballPosition.X < 24 && ballPosition.Z > -5 && ballPosition.Z < 3)
+                    {
+                        ballPosition.X = previousBallPosition.X;
+                    }
+
+                    break;
+
+                case BallOnBoard.FOURTH:
+                    if (ballPosition.X > 6 && ballPosition.X < 15 && ballPosition.Z < 38 && ballPosition.Z > -42)
+                    {
+                        ballPosition.X = previousBallPosition.X;
+                    }
+                    if (ballPosition.X > 6 && ballPosition.X < 15 && ballPosition.Z < 38 && ballPosition.Z > -42)
+                    {
+                        ballPosition.Z = previousBallPosition.Z;
+                    }
+
                     break;
 
                 default:
