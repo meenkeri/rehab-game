@@ -136,6 +136,7 @@ namespace rehabGame
                 generalBallUpdate();
                 isHole();
                 isHurdle();
+                isVisible();
             }
 
             base.Update(gameTime);
@@ -356,6 +357,46 @@ namespace rehabGame
 
                 default:
                     Log.logger.Info(ballCurrentlyOn + "No match found inside switch");
+                    break;
+            }
+        }
+
+        private void isVisible()
+        {
+            switch (ballCurrentlyOn)
+            {
+                case BallOnBoard.FIRST:
+                    if (ballPosition.X > -20 && ballPosition.X < 75 && ballPosition.Z > 0 && ballPosition.Z < 50)
+                        Game1.blank = true;
+                    else
+                        Game1.blank = false;
+
+                    break;
+
+                case BallOnBoard.SECOND:
+                    if (ballPosition.X > -41 && ballPosition.X < 70 && ballPosition.Z > -19 && ballPosition.Z < 49)
+                        Game1.blank = true;
+                    else
+                        Game1.blank = false;
+
+                    break;
+
+                case BallOnBoard.THIRD:
+                    if (ballPosition.X > -20 && ballPosition.X < 24 && ballPosition.Z > 3 && ballPosition.Z < 53)
+                        Game1.blank = true;
+                    else
+                        Game1.blank = false;
+
+                    break;
+
+                case BallOnBoard.FOURTH:
+                    if (ballPosition.X > 10 && ballPosition.X < 76 && ballPosition.Z > 20 && ballPosition.Z < 53)
+                        Game1.blank = true;
+                    else if (ballPosition.X > 10 && ballPosition.X < 76 && ballPosition.Z < -27 && ballPosition.Z > -55)
+                        Game1.blank = true;
+                    else
+                        Game1.blank = false;
+
                     break;
             }
         }
