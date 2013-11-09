@@ -134,6 +134,7 @@ namespace rehabGame
             {
                 generalBoardUpdate();
                 generalBallUpdate();
+                isHole();
             }
 
             base.Update(gameTime);
@@ -257,6 +258,48 @@ namespace rehabGame
 
             //Move model
             ballWorld = Matrix.CreateTranslation(ballPosition);
+        }
+
+        public void isHole()
+        {
+            Game1.score = (int) ballPosition.Z;
+            switch (ballCurrentlyOn)
+            {
+                case BallOnBoard.FIRST:
+                    if (ballPosition.X > 55 && ballPosition.X < 66 && ballPosition.Z < -33 && ballPosition.Z > -45)
+                    {
+                        drop = true;
+                        dropTheBall(104, 12, BallOnBoard.SECOND);
+                    }
+                    break;
+
+                case BallOnBoard.SECOND:
+                    if (ballPosition.X > 32 && ballPosition.X < 45 && ballPosition.Z > 0 && ballPosition.Z < 11)
+                    {
+                        drop = true;
+                        dropTheBall(216, 124, BallOnBoard.THIRD);
+                    }
+                    break;
+
+                case BallOnBoard.THIRD:
+                    if (ballPosition.X < -50 && ballPosition.X > -65 && ballPosition.Z > 26 && ballPosition.Z < 38)
+                    {
+                        drop = true;
+                        dropTheBall(328, 236, BallOnBoard.FOURTH);
+                    }
+                    break;
+
+                case BallOnBoard.FOURTH:
+                    if (ballPosition.X > 37 && ballPosition.X < 47 && ballPosition.Z < 4 && ballPosition.Z > -7)
+                    {
+                        ((Game1)Game).ChangeGameState(Game1.GameState.END, 0);
+                    }
+                    break;
+
+                default:
+                    Log.logger.Info(ballCurrentlyOn + "No match found inside switch");
+                    break;
+            }
         }
 
         private void dropTheBall(int ballHeight, int cameraHeight, BallOnBoard next)
