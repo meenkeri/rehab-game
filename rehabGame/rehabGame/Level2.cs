@@ -407,6 +407,7 @@ namespace rehabGame
             if (cameraPosition.Z <= -cameraHeight)
                 cameraPosition.Z = -cameraHeight;
             CreateLookAt();
+            Game1.time = 30;
         }
 
         private void CreateLookAt()

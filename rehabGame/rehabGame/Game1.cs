@@ -33,7 +33,7 @@ namespace rehabGame
         Backgrounds background;
         SpriteFont scoreFont;
         SpriteFont timeFont;
-        public static int time = 0;
+        public static float time = 30;
         public static int score = 0;
 
         AudioEngine audioEngine;
@@ -136,6 +136,12 @@ namespace rehabGame
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+            if (currentGameState == GameState.PLAY)
+            {
+                time -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (score < 0)
+                    ChangeGameState(Game1.GameState.END, 0);
+            }
 
             base.Update(gameTime);
         }
@@ -159,7 +165,7 @@ namespace rehabGame
                 spriteBatch.DrawString(scoreFont, scoreText, new Vector2(10, 10), Color.White);
 
                 //Draw the time left
-                string timeText = IConstants.TIME + time;
+                string timeText = IConstants.TIME + (int)time;
                 spriteBatch.DrawString(timeFont, timeText, new Vector2((Window.ClientBounds.Width) - 180, 10), Color.White);
             }
 
