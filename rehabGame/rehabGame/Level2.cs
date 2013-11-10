@@ -83,6 +83,9 @@ namespace rehabGame
         public int up = 0;
         public int down = 0;
 
+        //Time
+        int timeTaken;
+
         public Level2(Game game)
             : base(game)
         {
@@ -268,30 +271,37 @@ namespace rehabGame
                 case BallOnBoard.FIRST:
                     if (ballPosition.X < -50 && ballPosition.X > -60 && ballPosition.Z < -36 && ballPosition.Z > -45)
                     {
+                        if (!drop)
+                            timeTaken = (int)Game1.time;
                         drop = true;
-                        dropTheBall(104, 12, BallOnBoard.SECOND);
+                        dropTheBall(104, 12, BallOnBoard.SECOND, timeTaken);
                     }
                     break;
 
                 case BallOnBoard.SECOND:
                     if (ballPosition.X > 55 && ballPosition.X < 65 && ballPosition.Z < -34 && ballPosition.Z > -40)
                     {
+                        if (!drop)
+                            timeTaken = (int)Game1.time;
                         drop = true;
-                        dropTheBall(216, 124, BallOnBoard.THIRD);
+                        dropTheBall(216, 124, BallOnBoard.THIRD, timeTaken);
                     }
                     break;
 
                 case BallOnBoard.THIRD:
                     if (ballPosition.X < -56 && ballPosition.X > -66 && ballPosition.Z > 26 && ballPosition.Z < 36)
                     {
+                        if (!drop)
+                            timeTaken = (int)Game1.time;
                         drop = true;
-                        dropTheBall(328, 236, BallOnBoard.FOURTH);
+                        dropTheBall(328, 236, BallOnBoard.FOURTH, timeTaken);
                     }
                     break;
 
                 case BallOnBoard.FOURTH:
                     if (ballPosition.X > 54 && ballPosition.X < 64 && ballPosition.Z > 28 && ballPosition.Z < 36)
                     {
+                        Game1.addScore((int)Game1.time);
                         Game1.currentLevel = Game1.Level.THREE;
                         ((Game1)Game).ChangeGameState(Game1.GameState.LEVEL_CHANGE, 2);
                     }
@@ -393,7 +403,7 @@ namespace rehabGame
             }
         }
 
-        private void dropTheBall(int ballHeight, int cameraHeight, BallOnBoard next)
+        private void dropTheBall(int ballHeight, int cameraHeight, BallOnBoard next, int timeTaken)
         {
             ballPosition += Vector3.Up * 0.6F;
             if (ballPosition.Y >= ballHeight)
@@ -402,6 +412,7 @@ namespace rehabGame
                 ballCurrentlyOn = next;
                 yawAngle = pitchAngle = 0;
                 drop = false;
+                Game1.addScore(timeTaken);
             }
             cameraPosition.Z -= 1.5F;
             if (cameraPosition.Z <= -cameraHeight)
