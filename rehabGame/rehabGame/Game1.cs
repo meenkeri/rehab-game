@@ -139,7 +139,7 @@ namespace rehabGame
             if (currentGameState == GameState.PLAY)
             {
                 time -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-                if (score < 0)
+                if (score < 0 || time < 0)
                     ChangeGameState(Game1.GameState.END, 0);
             }
 
