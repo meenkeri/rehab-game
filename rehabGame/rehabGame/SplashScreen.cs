@@ -19,8 +19,10 @@ namespace rehabGame
     {
         string textToDraw;
         string secondaryTextToDraw;
+        string endScoreTextToDraw;
         SpriteFont spriteFont;
         SpriteFont secondarySpriteFont;
+        SpriteFont endScore;
         SpriteBatch spriteBatch;
         Game1.GameState currentGameState;
         
@@ -47,7 +49,8 @@ namespace rehabGame
             //Load fonts
             spriteFont = Game.Content.Load<SpriteFont>(@"Fonts\SplashScreenFontLarge");
             secondarySpriteFont = Game.Content.Load<SpriteFont>(@"Fonts\SplashScreenFont");
-            
+            endScore = Game.Content.Load<SpriteFont>(@"Fonts\EndScore");
+
             //Create sprite batch
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
 
@@ -70,7 +73,7 @@ namespace rehabGame
                 else if (currentGameState == Game1.GameState.END)
                     Game.Exit();
             }
-            
+
             base.Update(gameTime);
         }
 
@@ -86,6 +89,12 @@ namespace rehabGame
 
             //Draw subtext
             spriteBatch.DrawString(secondarySpriteFont, secondaryTextToDraw, new Vector2(Game.Window.ClientBounds.Width / 2 - secondarySpriteFont.MeasureString(secondaryTextToDraw).X / 2, Game.Window.ClientBounds.Height / 2 + TitleSize.Y + 10), Color.White);
+
+            if (currentGameState == Game1.GameState.END)
+            {
+                //Draw end score
+                spriteBatch.DrawString(endScore, endScoreTextToDraw, new Vector2(Game.Window.ClientBounds.Width / 2 - endScore.MeasureString(endScoreTextToDraw).X / 2, Game.Window.ClientBounds.Height / 2 - 80), Color.White);
+            }
 
             spriteBatch.End();
             base.Draw(gameTime);
@@ -104,6 +113,7 @@ namespace rehabGame
                     break;
                 case Game1.GameState.END:
                     secondaryTextToDraw = IConstants.QUIT;
+                    endScoreTextToDraw = IConstants.SCORE + Game1.score;
                     break;
             }
         }

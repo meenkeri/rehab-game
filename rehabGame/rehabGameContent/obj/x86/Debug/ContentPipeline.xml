@@ -306,6 +306,15 @@
       <Output>C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Fonts\TimeFont.xnb</Output>
       <Time>2013-11-09T18:48:51.4254911-08:00</Time>
     </Item>
+    <Item>
+      <Source>Fonts\EndScore.spritefont</Source>
+      <Name>Fonts\EndScore</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Fonts\EndScore.xnb</Output>
+      <Time>2013-11-10T10:17:32.0677804-08:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
