@@ -32,6 +32,8 @@ namespace rehabGame
         SplashScreen splashScreen;
         Backgrounds background;
         SpriteFont scoreFont;
+        SpriteFont timeFont;
+        public static int time = 0;
         public static int score = 0;
 
         AudioEngine audioEngine;
@@ -104,6 +106,7 @@ namespace rehabGame
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scoreFont = Content.Load<SpriteFont>(@"Fonts\ScoreFont");
+            timeFont = Content.Load<SpriteFont>(@"Fonts\TimeFont");
 
             audioEngine = new AudioEngine(@"Content\Audio\GameAudio.xgs");
             waveBank = new WaveBank(audioEngine, @"Content\Audio\Wave Bank.xwb");
@@ -154,6 +157,10 @@ namespace rehabGame
                 //Draw the current score
                 string scoreText = IConstants.SCORE + score;
                 spriteBatch.DrawString(scoreFont, scoreText, new Vector2(10, 10), Color.White);
+
+                //Draw the time left
+                string timeText = IConstants.TIME + time;
+                spriteBatch.DrawString(timeFont, timeText, new Vector2((Window.ClientBounds.Width) - 180, 10), Color.White);
             }
 
             spriteBatch.End();

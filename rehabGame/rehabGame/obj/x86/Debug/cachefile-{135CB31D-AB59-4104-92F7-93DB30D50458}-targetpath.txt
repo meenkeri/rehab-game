@@ -15,6 +15,7 @@ Content\Models\Level31.xnb
 Content\Models\Level32.xnb
 Content\Models\Level34.xnb
 Content\Models\Level33.xnb
+Content\Fonts\TimeFont.xnb
 Content\Audio\GameAudio.xgs
 Content\Audio\Wave Bank.xwb
 Content\Audio\Sound Bank.xsb

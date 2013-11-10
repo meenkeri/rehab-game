@@ -120,7 +120,7 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Collision.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="Constants.cs" />
+    <Compile Include="IConstants.cs" />
     <Compile Include="Level1.cs" />
     <Compile Include="Level3.cs" />
     <Compile Include="Level2.cs" />

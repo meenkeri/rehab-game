@@ -24,5 +24,8 @@ namespace rehabGame
 
         //Score
         public static string SCORE = "Score: ";
+
+        //Time Left
+        public static string TIME = "Time left: ";
     }
 }

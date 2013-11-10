@@ -297,6 +297,15 @@
       <Output>obj\x86\Debug\Models\Level33_0.xml</Output>
       <Time>2013-11-08T18:28:03.4349328-08:00</Time>
     </Item>
+    <Item>
+      <Source>Fonts\TimeFont.spritefont</Source>
+      <Name>Fonts\TimeFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Meenkeri\Documents\Visual Studio 2010\Projects\rehab-game\rehabGame\rehabGame\bin\x86\Debug\Content\Fonts\TimeFont.xnb</Output>
+      <Time>2013-11-09T18:48:51.4254911-08:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
