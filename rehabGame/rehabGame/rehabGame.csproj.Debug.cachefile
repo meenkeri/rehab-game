@@ -7,16 +7,16 @@ Content\Models\Level21.xnb
 Content\Models\Level22.xnb
 Content\Models\Level23.xnb
 Content\Models\Level24.xnb
+Content\Models\Level31.xnb
+Content\Models\Level34.xnb
+Content\Models\Level32.xnb
+Content\Models\Level33.xnb
 Content\Fonts\SplashScreenFont.xnb
 Content\Fonts\SplashScreenFontLarge.xnb
 Content\Fonts\ScoreFont.xnb
-Content\Textures\background.xnb
-Content\Models\Level31.xnb
-Content\Models\Level32.xnb
-Content\Models\Level34.xnb
-Content\Models\Level33.xnb
 Content\Fonts\TimeFont.xnb
 Content\Fonts\EndScore.xnb
+Content\Textures\background.xnb
 Content\Audio\GameAudio.xgs
 Content\Audio\Wave Bank.xwb
 Content\Audio\Sound Bank.xsb

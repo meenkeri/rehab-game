@@ -251,9 +251,6 @@ namespace rehabGame
                 }
             }
 
-            if (left > 150 || right > 150 || up > 150 || down > 150)
-                left = right = up = down = 150;
-
             if (ballPosition.X < -75)
                 ballPosition.X = -75;
             if (ballPosition.X > 75)
