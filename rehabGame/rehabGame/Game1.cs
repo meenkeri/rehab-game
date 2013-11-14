@@ -112,6 +112,8 @@ namespace rehabGame
             waveBank = new WaveBank(audioEngine, @"Content\Audio\Wave Bank.xwb");
             soundBank = new SoundBank(audioEngine, @"Content\Audio\Sound Bank.xsb");
             backgroundCue = soundBank.GetCue("background");
+
+            base.LoadContent();
         }
 
         /// <summary>
