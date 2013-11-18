@@ -16,41 +16,54 @@ namespace rehabGame
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        public static Boolean blank = false;
+        //GameDeviceManager
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         
+        //Proprioception
+        public static Boolean blank = false;
+        
+        //Game levels
         Level1 level1;
         Level2 level2;
         Level3 level3;
 
-        public enum GameState { START, PLAY, LEVEL_CHANGE, END }
-        public static GameState currentGameState = GameState.START;
-        public enum Level { ONE, TWO, THREE }
-        public static Level currentLevel = Level.ONE;
-
-        SplashScreen splashScreen;
-        Backgrounds background;
-        SpriteFont scoreFont;
-        SpriteFont timeFont;
-        public static float time = 30;
-        public static int score = 0;
-
+        //Game audio
         AudioEngine audioEngine;
         WaveBank waveBank;
         SoundBank soundBank;
         Cue backgroundCue;
         Cue levelUpCue;
 
+        //GameState
+        public enum GameState { START, PLAY, LEVEL_CHANGE, END }
+        public static GameState currentGameState = GameState.START;
+        
+        //Current level
+        public enum Level { ONE, TWO, THREE }
+        public static Level currentLevel = Level.ONE;
+
+        //SplashScreen and background
+        SplashScreen splashScreen;
+        Backgrounds background;
+        
+        //Font text display
+        SpriteFont scoreFont;
+        SpriteFont timeFont;
+        public static float time = 30;
+        public static int score = 0;
+
         public Game1()
         {
             Log.logger.Info("Loading the game1 constructor");
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
             graphics.PreferredBackBufferWidth = 1366;
             graphics.PreferredBackBufferHeight = 768;
             //Enable Full Screen Mode
             graphics.IsFullScreen = true;
+            
             new BalanceBoard();
             new Log();
         }
@@ -64,9 +77,8 @@ namespace rehabGame
         protected override void Initialize()
         {
             Log.logger.Info("Initializing the game1");
-            //camera = new Camera(this, new Vector3(0, 150, 120), Vector3.Zero, Vector3.Down);
-            //Components.Add(camera);
             
+            //Level Components
             level1 = new Level1(this);
             Components.Add(level1);
             level1.Enabled = false;
@@ -82,7 +94,7 @@ namespace rehabGame
             level3.Enabled = false;
             level3.Visible = false;
 
-            //Background images component
+            //Background image component
             background = new Backgrounds(this);
             Components.Add(background);
             background.Enabled = true;
@@ -103,11 +115,14 @@ namespace rehabGame
         protected override void LoadContent()
         {
             Log.logger.Info("Loading the game1 content");
+            
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            //Text on the screen
             scoreFont = Content.Load<SpriteFont>(@"Fonts\ScoreFont");
             timeFont = Content.Load<SpriteFont>(@"Fonts\TimeFont");
 
+            //Audio
             audioEngine = new AudioEngine(@"Content\Audio\GameAudio.xgs");
             waveBank = new WaveBank(audioEngine, @"Content\Audio\Wave Bank.xwb");
             soundBank = new SoundBank(audioEngine, @"Content\Audio\Sound Bank.xsb");
@@ -138,6 +153,8 @@ namespace rehabGame
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+            
+            //Time countdown - End the game after 30 seconds
             if (currentGameState == GameState.PLAY)
             {
                 time -= (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -154,11 +171,17 @@ namespace rehabGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            //2D on top of 3D
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+            
+            //Background color
             GraphicsDevice.Clear(Color.Black);
+            
+            //Game visual control
             if (!blank)
                 base.Draw(gameTime);
+            
             spriteBatch.Begin();
             if (currentGameState == GameState.PLAY)
             {
