@@ -99,6 +99,7 @@ namespace rehabGame
         public override void Initialize()
         {
             Log.logger.Info("Initializing level1");
+            
             //Build camera view matrix
             cameraPosition = pos;
             cameraDirection = target - pos;
@@ -159,6 +160,7 @@ namespace rehabGame
 
         public void generalBoardUpdate()
         {
+            //Rotate the board
             board1Rotation = Matrix.CreateRotationX(MathHelper.Pi / 2);
             board1Movement = Matrix.CreateTranslation(board1Position);
             board2Rotation = Matrix.CreateRotationX(MathHelper.Pi / 2);
@@ -190,6 +192,7 @@ namespace rehabGame
             if (pitchAngle <= -0.05F)
                 pitchAngle = -0.05F;
 
+            //Apply rotation to only one board at a time
             switch (ballCurrentlyOn)
             {
                 case BallOnBoard.FIRST:
@@ -216,11 +219,13 @@ namespace rehabGame
        
         public void generalBallUpdate()
         {
+            //Know the previous ball position
             previousBallPosition = ballPosition;
 
             LRHeight = Helper.adjustBallHeight(ballPosition.X, pitchAngle);
             UDHeight = Helper.adjustBallHeight(ballPosition.Z, yawAngle);
 
+            //Do nothing when the ball is in drop motion
             if (!drop)
             {
                 ballPosition.Y = LRHeight + UDHeight + (float)ballCurrentlyOn;
@@ -262,6 +267,7 @@ namespace rehabGame
 
         public void isHole()
         {
+            //Check for the collision between ball and the hole
             switch (ballCurrentlyOn)
             {
                 case BallOnBoard.FIRST:

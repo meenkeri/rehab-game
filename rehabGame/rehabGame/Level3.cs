@@ -99,6 +99,7 @@ namespace rehabGame
         public override void Initialize()
         {
             Log.logger.Info("Initializing level1");
+            
             //Build camera view matrix
             cameraPosition = pos;
             cameraDirection = target - pos;
@@ -118,6 +119,7 @@ namespace rehabGame
         protected override void LoadContent()
         {
             Log.logger.Info("Loading level3 content");
+            
             ball = Game.Content.Load<Model>(@"Models\ball");
             boards[0] = Game.Content.Load<Model>(@"Models\Level31");
             boards[1] = Game.Content.Load<Model>(@"Models\Level32");
