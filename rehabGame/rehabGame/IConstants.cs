@@ -15,10 +15,13 @@ namespace rehabGame
     {
         //WBB
         public static string WBB_ERROR = "Can't find a BalanceBoard";
-        
+
         //Splash screen
         public static string TITLE = "Welcome to Rehab Game";
-        public static string SUB_TITLE = "Press Enter To Begin";
+        public static string SUB_TITLE = "Press Enter To Begin" + "\n" + "\n" + "\n" +
+                                         "By: " + "\n" +
+                                         "Shankar Meenkeri" + "\n" +
+                                         "San Diego State University";
         public static string QUIT = "Press Enter To Quit";
         public static string GAME_OVER = "Game Over";
 
