@@ -19,7 +19,7 @@ namespace rehabGame
         //Splash screen
         public static string TITLE = "Welcome to Rehab Game";
         public static string SUB_TITLE = "Press Enter To Begin" + "\n" + "\n" + "\n" +
-                                         "By: " + "\n" +
+                                         "Game Developed By: " + "\n" +
                                          "Shankar Meenkeri" + "\n" +
                                          "San Diego State University";
         public static string QUIT = "Press Enter To Quit";
