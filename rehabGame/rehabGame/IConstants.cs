@@ -21,6 +21,8 @@ namespace rehabGame
         public static string SUB_TITLE = "Press Enter To Begin" + "\n" + "\n" + "\n" +
                                          "Game Developed By: " + "\n" +
                                          "Shankar Meenkeri" + "\n" +
+                                         "Computer Science" + "\n" +
+                                         "Masters Defense" + "\n" +
                                          "San Diego State University";
         public static string QUIT = "Press Enter To Quit";
         public static string GAME_OVER = "Game Over";
