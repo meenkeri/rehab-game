@@ -50,8 +50,11 @@ namespace rehabGame
         //Font text display
         SpriteFont scoreFont;
         SpriteFont timeFont;
+        SpriteFont levelFont;
+
         public static float time = 30;
         public static int score = 0;
+        public string levelNumber = "Level 1";
 
         public Game1()
         {
@@ -121,6 +124,7 @@ namespace rehabGame
             //Text on the screen
             scoreFont = Content.Load<SpriteFont>(@"Fonts\ScoreFont");
             timeFont = Content.Load<SpriteFont>(@"Fonts\TimeFont");
+            levelFont = Content.Load<SpriteFont>(@"Fonts\CurrentLevelFont");
 
             //Audio
             audioEngine = new AudioEngine(@"Content\Audio\GameAudio.xgs");
@@ -189,6 +193,10 @@ namespace rehabGame
                 string scoreText = IConstants.SCORE + score;
                 spriteBatch.DrawString(scoreFont, scoreText, new Vector2(10, 10), Color.White);
 
+                //Draw what level the game is on
+                string levelText = levelNumber;
+                spriteBatch.DrawString(levelFont, levelText, new Vector2((Window.ClientBounds.Width) / 2, 10), Color.White);
+
                 //Draw the time left
                 string timeText = IConstants.TIME + (int)time;
                 spriteBatch.DrawString(timeFont, timeText, new Vector2((Window.ClientBounds.Width) - 180, 10), Color.White);
@@ -225,16 +233,19 @@ namespace rehabGame
                         case Level.ONE:
                         level1.Enabled = true;
                         level1.Visible = true;
+                        levelNumber = "Level 1";
                         break;
 
                         case Level.TWO:
                         level2.Enabled = true;
                         level2.Visible = true;
+                        levelNumber = "Level 2";
                         break;
 
                         case Level.THREE:
                         level3.Enabled = true;
                         level3.Visible = true;
+                        levelNumber = "Level 3";
                         break;
                     }
                     splashScreen.Enabled = false;
