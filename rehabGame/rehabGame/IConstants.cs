@@ -26,7 +26,7 @@ namespace rehabGame
         public static string SUB_TITLE = "Press Enter To Begin";
                                          
         public static string QUIT = "Press Enter To Quit";
-        public static string GAME_OVER = "Game Over";
+        public static string GAME_OVER = "\n" + "\n" + "Game Over";
 
         //Score
         public static string SCORE = "Score: ";
